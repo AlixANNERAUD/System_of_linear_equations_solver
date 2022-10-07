@@ -36,9 +36,10 @@ double** Allocation_Matrice(unsigned int N, unsigned int M)
 //
 double* Sol_Inf(double** a, double* b, unsigned int Taille)
 {
-
+    // - Allocation de la matrice pour X.
     double* x = malloc(Taille*sizeof(double));
 
+    // - 
     for (unsigned int i = 0; i < Taille; i++)
     {
         x[i] = 0;
@@ -54,12 +55,12 @@ double* Sol_Inf(double** a, double* b, unsigned int Taille)
             Sum = Sum + a[i][j]*x[j];
         }
         
+        x[i] = (b[i] - Sum) / a[i][i];+)
+        {
+            printf("j = %u \n", j);
+            Sum = Sum + a[i][j] * x[j];
+        }
         x[i] = (b[i] - Sum) / a[i][i];
-    }
-    
-    return x;
-}
-
 //
 // - Algorythme de la remontée
 //
@@ -87,8 +88,13 @@ double* Sol_Sup(double** a, double* b, unsigned int Taille)
     }
 
     return x;
-
 }
+
+double* Gauss(int Taille, double** A, double* B)
+{
+    for (unsigned int i = 0; i < Taille, )
+}
+
 
 int main()
 {
