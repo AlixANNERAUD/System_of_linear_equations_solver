@@ -78,7 +78,7 @@ double* Sol_Sup(double** a, double* b, unsigned int Taille)
     {
         printf("i = %u\n", i);
         double Sum = 0;
-        for (unsigned int j = i + 1; j <= Taille; j--)
+        for (unsigned int j = i + 1; j <= Taille; j++)
         {
             printf("j = %u \n", j);
             Sum = Sum + a[i][j] * x[j];
