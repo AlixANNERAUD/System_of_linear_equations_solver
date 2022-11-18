@@ -149,6 +149,101 @@ Algorithme
 \end_layout
 
 \begin_layout Standard
+Soit A une matrice carrée de taille N, X et B un vecteur de taille N.
+\end_layout
+
+\begin_layout Standard
+pour i = 1 à N faire
+\end_layout
+
+\begin_layout Standard
+sum = 0
+\end_layout
+
+\begin_layout Standard
+pour j=1 à i - 1 faire
+\end_layout
+
+\begin_layout Standard
+sum=sum+A[i][j]*x[j]
+\end_layout
+
+\begin_layout Standard
+fin pour
+\end_layout
+
+\begin_layout Standard
+x[i] = (b[i] - sum)/Aii
+\end_layout
+
+\begin_layout Standard
+fin pour
+\end_layout
+
+\begin_layout Subsection
+Méthode triangulaire supérieure
+\end_layout
+
+\begin_layout Subsection
+Elimination de Gauss
+\end_layout
+
+\begin_layout Standard
+On cherche a résourde 
+\begin_inset Formula $AX+B$
+\end_inset
+
+, on va chercher à les transformer l'expression en 
+\begin_inset Formula $UX=$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Factorisation LU
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $AX=B\Leftrightarrow L\underbrace{UX}_{Y}=B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donc 
+\begin_inset Formula $A=LU$
+\end_inset
+
+ avec 
+\begin_inset Formula $L=\begin{pmatrix} & 0 & 0\\
+\vdots &  & 0\\
+ & \cdots
+\end{pmatrix}$
+\end_inset
+
+ et 
+\begin_inset Formula $U=\begin{pmatrix}. & . & .\\
+0 & . & .\\
+0 & 0 & .
+\end{pmatrix}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $LY=B\Rightarrow Y=\text{SolSup}\left(L,B\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $UX=Y\Rightarrow X=\text{Solsup }$
+\end_inset
+
 
 \end_layout
 

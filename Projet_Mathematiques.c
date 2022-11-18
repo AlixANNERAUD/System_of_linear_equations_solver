@@ -73,6 +73,13 @@ void Afficher_Matrice(double**  Matrice, int Taille)
 
 }
 
+void Afficher_Vecteur(double* Vecteur, int Taille)
+{
+    for (int i = 0; i < Taille; i++)
+    {
+        printf("%f\n", Vecteur[i]);
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
@@ -111,7 +118,7 @@ double* Sol_Inf(double** a, double* b,  int Taille)
     return x;
 }
 //
-// - Algorythme de la remontée
+// - Algorithme de la remontée
 //
 double* Sol_Sup(double** a, double* b, int Taille)
 {
@@ -162,10 +169,10 @@ double* Resol_Gauss(double** A, double* B, int Taille)
     return Sol_Sup(A,B,Taille);
 }
 
-void LU(double** L, double** U, double** A, int Taille)
+// Transforme A en U.
+void LU(double** L, double** A, int Taille)
 {
     Nettoyer_Matrice(L, Taille, Taille);
-    Nettoyer_Matrice(U, Taille, Taille);
 
     // Rempli les 1 en diagonale
     for (int i = 0; i < Taille; i++)
@@ -184,7 +191,7 @@ void LU(double** L, double** U, double** A, int Taille)
             
             for (int j = 0; j < Taille; j++)
             {
-                U[k][j] = A[k][j] - (C * A[i][j]);
+                A[k][j] = A[k][j] - (C * A[i][j]);
             }
         }
     }
@@ -236,7 +243,7 @@ int main()
 
     // - Gauss
     
-    // Remplissage des
+    // Remplissage de la matrice
     A[0][0] = 3;    A[0][1] = 1;    A[0][2] = 2;
     A[1][0] = 3;    A[1][1] = 2;    A[1][2] = 6;
     A[2][0] = 6;    A[2][1] = 1;    A[2][2] = -1;
@@ -250,20 +257,32 @@ int main()
     printf("\nLa solution x pour Gauss est :\n%f\n%f\n%f\n", X[0], X[1], X[2]);
     
     // - LU
-    A[0][0] = 3;    A[0][1] = 1;    A[0][2] = 2;
-    A[1][0] = 3;    A[1][1] = 2;    A[1][2] = 6;
-    A[2][0] = 6;    A[2][1] = 1;    A[2][2] = -1;
+    Nettoyer_Matrice(A, Taille, Taille);
+    
+    A[0][0] = 1;    A[0][1] = 2;    A[0][2] = 3;
+    A[1][0] = 5;    A[1][1] = 2;    A[1][2] = 1;
+    A[2][0] = 3;    A[2][1] = -1;    A[2][2] = 1;
+
+    B[0] = 5;
+    B[1] = 5;
+    B[2] = 6;
 
     double** L = Allocation_Matrice(Taille, Taille);
-    double** U = Allocation_Matrice(Taille, Taille);
 
-    LU(L, U, A, Taille);
+    LU(L, A, Taille);
 
+    double* Y = Sol_Inf(L,B, Taille);
+
+    X = Sol_Sup(A, Y, Taille);
+    
     printf("U : \n");
-    Afficher_Matrice(U, Taille);
+    Afficher_Matrice(A, Taille);
 
     printf("L : \n");
     Afficher_Matrice(L, Taille);
+
+    printf("X : \n");
+    Afficher_Vecteur(X, Taille);
 
     Desallocation_Matrice(A, Taille);
     Desallocation_Vecteur(B);
