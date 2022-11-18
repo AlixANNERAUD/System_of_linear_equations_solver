@@ -274,14 +274,8 @@ int main()
     double* Y = Sol_Inf(L,B, Taille);
 
     X = Sol_Sup(A, Y, Taille);
-    
-    printf("U : \n");
-    Afficher_Matrice(A, Taille);
 
-    printf("L : \n");
-    Afficher_Matrice(L, Taille);
-
-    printf("X : \n");
+    printf("La solution X pour LU : \n");
     Afficher_Vecteur(X, Taille);
 
     Desallocation_Matrice(A, Taille);

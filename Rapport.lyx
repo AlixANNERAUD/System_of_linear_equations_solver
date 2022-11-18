@@ -80,6 +80,18 @@ Rapport du projet de mathématiques.
 \end_layout
 
 \begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Ecrire Introduction
+\end_layout
+
+\begin_layout Section
+Bibliographie
+\end_layout
+
+\begin_layout Section
 Méthodes directes
 \end_layout
 
@@ -88,15 +100,48 @@ Méthode triangulaire inférieure
 \end_layout
 
 \begin_layout Standard
-On cherche a résoudre 
+On chercher le vecteur 
+\begin_inset Formula $X$
+\end_inset
+
+ de taille 
+\begin_inset Formula $N$
+\end_inset
+
+ tel que 
 \begin_inset Formula $AX=B$
 \end_inset
 
-, pour une matrice de taille 
+, où 
+\begin_inset Formula $A$
+\end_inset
+
+ sera une matrice triangulaire inférieure carré de de taille 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ On a alors : 
+\begin_inset Formula $x_{i}=\frac{b_{i}-\sum_{j=1}^{i-1}a_{ij}x_{j}}{a_{ii}}$
+\end_inset
+
+, 
+\begin_inset Formula $i=1,\ldots,N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Exemple
+\end_layout
+
+\begin_layout Standard
+Soit 
 \begin_inset Formula $N=3$
 \end_inset
 
-, on a :
+ :
 \end_layout
 
 \begin_layout Standard
@@ -123,11 +168,16 @@ a_{31}x_{1}+a_{32}x_{2}+a_{33}x_{3}=b_{3}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\Leftrightarrow\left\{ \begin{array}{c}
-x_{1}=\frac{b_{1}}{a_{11}}\\
-x_{2}=\frac{b_{2}-a_{21}x_{1}}{a_{22}}=\frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
-x_{3}=\frac{b_{3}}{a_{33}}-\frac{a_{31}}{a_{33}}x_{1}-\frac{a_{32}}{a_{33}}x_{2}=\frac{b_{3}=\sum_{k=1}^{2}a_{3k}x_{k}}{a_{33}}
-\end{array}\right.$
+\begin_inset Formula $\Leftrightarrow\begin{pmatrix}x_{1}\\
+x_{2}\\
+x_{3}
+\end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
+\frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
+\frac{b_{3}}{a_{33}}-\frac{a_{31}}{a_{33}}x_{1}-\frac{a_{32}}{a_{33}}x_{2}
+\end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
+\frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
+\frac{b_{3}-\sum_{k=1}^{2}a_{3k}x_{k}}{a_{33}}
+\end{pmatrix}$
 \end_inset
 
 
@@ -149,11 +199,152 @@ Algorithme
 \end_layout
 
 \begin_layout Standard
+Soit A une matrice carrée de taille N, X et B un vecteur de taille N.
+\end_layout
 
+\begin_layout Standard
+pour i = 1 à N faire
+\end_layout
+
+\begin_layout Standard
+sum = 0
+\end_layout
+
+\begin_layout Standard
+pour j=1 à i - 1 faire
+\end_layout
+
+\begin_layout Standard
+sum=sum+A[i][j]*x[j]
+\end_layout
+
+\begin_layout Standard
+fin pour
+\end_layout
+
+\begin_layout Standard
+x[i] = (b[i] - sum)/Aii
+\end_layout
+
+\begin_layout Standard
+fin pour
 \end_layout
 
 \begin_layout Subsection
-Méthode de Chowleski
+Méthode triangulaire supérieure
+\end_layout
+
+\begin_layout Subsection
+Elimination de Gauss
+\end_layout
+
+\begin_layout Standard
+On cherche a résourde 
+\begin_inset Formula $AX+B$
+\end_inset
+
+, on va chercher à les transformer l'expression en 
+\begin_inset Formula $UX=$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Factorisation LU
+\end_layout
+
+\begin_layout Standard
+On factorise 
+\begin_inset Formula $A$
+\end_inset
+
+ en une matrice triangulaire supérieure qu'on appele 
+\begin_inset Formula $U$
+\end_inset
+
+ et une matrice triangulaire inférieure qu'on appele 
+\begin_inset Formula $L$
+\end_inset
+
+ à l'aide de la fonction 
+\begin_inset Quotes eld
+\end_inset
+
+LU
+\begin_inset Quotes erd
+\end_inset
+
+.
+ La diagonale de 
+\begin_inset Formula $L$
+\end_inset
+
+ sera rempli de 
+\begin_inset Formula $1$
+\end_inset
+
+ afin de faciliter la factorisation.
+\end_layout
+
+\begin_layout Standard
+On a donc : 
+\begin_inset Formula $AX=B\Leftrightarrow LUX=B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ensuite, on cherche à obtenir 
+\begin_inset Formula $Y=UX$
+\end_inset
+
+ tel que 
+\begin_inset Formula $LY=B$
+\end_inset
+
+ avec la fonction 
+\begin_inset Quotes eld
+\end_inset
+
+Sol_Inf
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Enfin, on peut trouver 
+\begin_inset Formula $X$
+\end_inset
+
+ avec 
+\begin_inset Formula $UX=Y$
+\end_inset
+
+ avec la fonction 
+\begin_inset Quotes eld
+\end_inset
+
+Sol_Sup
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Algorithme
+\end_layout
+
+\begin_layout Subsection
+Méthode de Cholesky
+\end_layout
+
+\begin_layout Section
+Conclusion
 \end_layout
 
 \end_body
