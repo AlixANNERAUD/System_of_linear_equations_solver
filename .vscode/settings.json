@@ -26,5 +26,9 @@
     "**/.*/**",
     "**/.vscode",
     "**/.vscode/**"
-  ]
+  ],
+  "files.associations": {
+    "*.XRF": "json",
+    "math.h": "c"
+  }
 }

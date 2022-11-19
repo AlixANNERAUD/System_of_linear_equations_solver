@@ -1,1 +1,1 @@
-gcc Projet_Mathematiques.c -o ./build/out
+gcc Projet_Mathematiques.c -o ./build/out -lm
