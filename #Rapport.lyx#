@@ -664,21 +664,21 @@ On a également pour les autres termes :
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $l_{21}l_{11}=a_{21}\Rightarrow l_{21}=\frac{a_{21}}{l_{11}}$
+\begin_inset Formula $l_{21}l_{11}=A_{21}\Rightarrow l_{21}=\frac{A_{21}}{l_{11}}$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $l_{31}l_{11}=a_{31}\Rightarrow l_{31}=\frac{a_{31}}{l_{11}}$
+\begin_inset Formula $l_{31}l_{11}=A_{31}\Rightarrow l_{31}=\frac{A_{21}}{l_{11}}$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $l_{31}l_{11}=a_{41}\Rightarrow l_{41}=\frac{a_{31}}{l_{11}}$
+\begin_inset Formula $l_{31}l_{11}=A_{41}\Rightarrow l_{41}=\frac{A_{21}}{l_{11}}$
 \end_inset
 
 

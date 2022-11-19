@@ -79,16 +79,88 @@
 Rapport du projet de mathématiques.
 \end_layout
 
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\reel}{\mathbb{R}}
+{\mathbb{R}}
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Introduction
 \end_layout
 
+\begin_layout Subsection
+Motivation
+\end_layout
+
 \begin_layout Standard
-Ecrire Introduction
+Le but est de résoudre l'équation linéaire de matrice : 
+\begin_inset Formula $AX=B$
+\end_inset
+
+ dans 
+\begin_inset Formula $\reel^{N}$
+\end_inset
+
+ sans avoir à calculer 
+\begin_inset Formula $A^{-1}$
+\end_inset
+
+.
+ Car calculer 
+\begin_inset Formula $A^{-1}$
+\end_inset
+
+ peut poser problème lorsque 
+\begin_inset Formula $N$
+\end_inset
+
+ devient grand.
+ En effet, pour 
+\begin_inset Formula $N=20$
+\end_inset
+
+, il faudra 5 fois l'age de l'univers pour calculer 
+\begin_inset Formula $A^{-1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Nous allons donc à l'aide de plusieurs méthodes, tenter de simplifier le
+ problème en sous-problèmes plus simple à résoudre et procéder à des optimisatio
+ns graduelles afin d'optimiser le cout en temps de calcul et l'espace mémoire
+ utilisé pour le cacul.
 \end_layout
 
 \begin_layout Section
 Bibliographie
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+Hamdi's Holy Bible
+\begin_inset Quotes erd
+\end_inset
+
+, edition la Crémière, 2022.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+La Nature Est Bien Faite
+\begin_inset Quotes erd
+\end_inset
+
+, edition Le Beure, 2022.
 \end_layout
 
 \begin_layout Section
@@ -199,6 +271,10 @@ Algorithme
 \end_layout
 
 \begin_layout Standard
+Algorithme de la remontée :
+\end_layout
+
+\begin_layout Standard
 Soit A une matrice carrée de taille N, X et B un vecteur de taille N.
 \end_layout
 
@@ -234,8 +310,28 @@ fin pour
 Méthode triangulaire supérieure
 \end_layout
 
+\begin_layout Subsubsection*
+Algorithme
+\end_layout
+
+\begin_layout Standard
+Algorithme de la descente
+\end_layout
+
 \begin_layout Subsection
 Elimination de Gauss
+\end_layout
+
+\begin_layout Subsubsection*
+Contexte
+\end_layout
+
+\begin_layout Standard
+Ecrire une biographie.
+\end_layout
+
+\begin_layout Subsubsection*
+Méthode
 \end_layout
 
 \begin_layout Standard
@@ -244,14 +340,43 @@ On cherche a résourde
 \end_inset
 
 , on va chercher à les transformer l'expression en 
-\begin_inset Formula $UX=$
+\begin_inset Formula $UX=e$
 \end_inset
 
  
 \end_layout
 
+\begin_layout Subsubsection*
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Cette méthode est relativement efficace, cependant, il faut reclaculer totalemen
+t les matrices 
+\begin_inset Formula $U$
+\end_inset
+
+ et 
+\begin_inset Formula $e$
+\end_inset
+
+ si 
+\begin_inset Formula $B$
+\end_inset
+
+ change, ce qui est couteux en temps de calcul.
+\end_layout
+
 \begin_layout Subsection
-Factorisation LU
+Factorisation 
+\begin_inset Quotes eld
+\end_inset
+
+LU
+\begin_inset Quotes erd
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -267,7 +392,12 @@ On factorise
 \begin_inset Formula $L$
 \end_inset
 
- à l'aide de la fonction 
+ tel que 
+\begin_inset Formula $A=LU$
+\end_inset
+
+.
+ Cette opération est réalisé à l'aide de la fonction 
 \begin_inset Quotes eld
 \end_inset
 
@@ -288,15 +418,27 @@ LU
 \end_layout
 
 \begin_layout Standard
-On a donc : 
-\begin_inset Formula $AX=B\Leftrightarrow LUX=B$
+Comme on a 
+\begin_inset Formula $A=LU$
+\end_inset
+
+ et 
+\begin_inset Formula $AX=B$
+\end_inset
+
+, on peut en déduire que : 
+\begin_inset Formula $LUX=B$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Standard
-Ensuite, on cherche à obtenir 
+Ensuite, on cherche à obtenir la matrice 
+\begin_inset Formula $Y$
+\end_inset
+
+ 
 \begin_inset Formula $Y=UX$
 \end_inset
 
@@ -339,12 +481,293 @@ Sol_Sup
 Algorithme
 \end_layout
 
+\begin_layout Standard
+<ecrire algo>
+\end_layout
+
+\begin_layout Subsubsection*
+Conclusion
+\end_layout
+
 \begin_layout Subsection
-Méthode de Cholesky
+Factorisation de Cholesky
+\end_layout
+
+\begin_layout Subsubsection*
+Contexte
+\end_layout
+
+\begin_layout Standard
+Ecrire une biographie.
+\end_layout
+
+\begin_layout Subsubsection*
+Méthode
+\end_layout
+
+\begin_layout Standard
+Soit la matrice 
+\begin_inset Formula $A$
+\end_inset
+
+ qui est : 
+\end_layout
+
+\begin_layout Itemize
+Symétrique : c'est à dire que 
+\begin_inset Formula $A=A^{T}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Définie positive, c'est à dire quelle est positive et inversible, tel que
+ 
+\begin_inset Formula $\left\langle AY,Y\right\rangle >0,\forall Y\in\reel^{N}\setminus\left\{ \overrightarrow{0}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Alors, on a : 
+\begin_inset Formula $A=L\cdot L^{T}$
+\end_inset
+
+ ou 
+\begin_inset Formula $L=\begin{pmatrix}l_{11} & 0 & 0\\
+\vdots & \ddots & 0\\
+l_{1N} & \cdots & l_{NN}
+\end{pmatrix}$
+\end_inset
+
+ avec 
+\begin_inset Formula $L_{ii}>0$
+\end_inset
+
+ pour 
+\begin_inset Formula $i=0,\ldots,N$
+\end_inset
+
+ (une matrice triangulaire inférieure dont la diagonale est positive).
+\end_layout
+
+\begin_layout Standard
+On a donc 
+\begin_inset Formula $A=L\cdot L^{T}$
+\end_inset
+
+ et 
+\begin_inset Formula $AX=B$
+\end_inset
+
+, si on remplace 
+\begin_inset Formula $A$
+\end_inset
+
+, 
+\begin_inset Formula $L\cdot L^{T}X=B$
+\end_inset
+
+ et simplifier avec 
+\begin_inset Formula $LY=B$
+\end_inset
+
+ ou 
+\begin_inset Formula $Y=L^{T}X$
+\end_inset
+
+.
+ On peut donc résoudre 
+\begin_inset Formula $LY=B$
+\end_inset
+
+ avec la fonction 
+\begin_inset Quotes eld
+\end_inset
+
+Sol_Inf
+\begin_inset Quotes erd
+\end_inset
+
+ et puis ensuite résoudre 
+\begin_inset Formula $L^{T}X=Y$
+\end_inset
+
+ avec la fonction 
+\begin_inset Quotes eld
+\end_inset
+
+Sol_Sup
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Exemple
+\end_layout
+
+\begin_layout Standard
+Soit 
+\begin_inset Formula $L$
+\end_inset
+
+ une matrice de taille 
+\begin_inset Formula $N*N$
+\end_inset
+
+ ou 
+\begin_inset Formula $N=4$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+On créer une matrice 
+\begin_inset Formula $L$
+\end_inset
+
+ tel que 
+\begin_inset Formula $L\cdot L^{T}=A$
+\end_inset
+
+, on a :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\underbrace{\begin{pmatrix}l_{11} & 0 & 0 & 0\\
+l_{21} & l_{22} & 0 & 0\\
+l_{31} & l_{32} & l_{33} & 0\\
+l_{41} & l_{42} & l_{43} & l_{44}
+\end{pmatrix}}_{L}\underbrace{\begin{pmatrix}l_{11} & l_{21} & l_{31} & l_{41}\\
+0 & l_{22} & l_{32} & l_{42}\\
+0 & 0 & l_{33} & l_{43}\\
+0 & 0 & 0 & l_{44}
+\end{pmatrix}}_{L^{T}}=\underbrace{\begin{pmatrix}a_{11} & a_{12} & a_{13} & a_{14}\\
+a_{21} & a_{22} & a_{23} & a_{24}\\
+a_{31} & a_{32} & a_{33} & a_{34}\\
+a_{41} & a_{42} & a_{43} & a_{44}
+\end{pmatrix}}_{A}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\Leftrightarrow\begin{pmatrix}l_{11}^{2} & l_{11}l_{21} & l_{11}l_{31} & l_{11}l_{41}\\
+l_{21}l_{11} & l_{21}^{2}+l_{22}^{2} & l_{21}l_{31}+l_{22}l_{32} & l_{21}l_{41}+l_{22}l_{42}\\
+l_{31}l_{11} & l_{31}l_{21}+l_{32}l_{22} & l_{31}^{2}+l_{32}^{2}+l_{33}^{2} & l_{31}l_{41}+l_{32}l_{42}+l_{33}l_{43}\\
+l_{41}l_{11} & l_{41}l_{21}+l_{42}l_{22} & l_{41}l_{31}+l_{42}l_{32}+l_{43}l_{33} & l_{41}^{2}+l_{42}^{2}+l_{43}^{2}+l_{44}^{2}
+\end{pmatrix}=\begin{pmatrix}a_{11} & a_{12} & a_{13} & a_{14}\\
+a_{21} & a_{22} & a_{23} & a_{24}\\
+a_{31} & a_{32} & a_{33} & a_{34}\\
+a_{41} & a_{42} & a_{43} & a_{44}
+\end{pmatrix}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On a donc pour les termes en diagonale :
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $l_{11}^{2}=a_{11}\Rightarrow l_{11}=\sqrt{a_{11}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $l_{21}^{2}+l_{22}^{2}=a_{22}\Rightarrow l_{22}=\sqrt{a_{22}-l_{21}^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $l_{31}^{2}+l_{32}^{2}+l_{33}^{2}=a_{33}\Rightarrow l_{33}=\sqrt{a_{33}-l_{31}^{2}-l_{32}^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $l_{41}^{2}+l_{42}^{2}+l_{43}^{2}+l_{44}^{2}=a_{44}\Rightarrow l_{44}=\sqrt{a_{44}-l_{41}^{2}-l_{42}^{2}-l_{43}^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On constate que : 
+\begin_inset Formula $l_{ii}=\sqrt{a_{ii}-\sum_{k=1}^{i-1}l_{ik}^{2}}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+On a également pour les autres termes :
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $l_{21}l_{11}=a_{21}\Rightarrow l_{21}=\frac{a_{21}}{l_{11}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $l_{31}l_{11}=a_{31}\Rightarrow l_{31}=\frac{a_{31}}{l_{11}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $l_{31}l_{11}=a_{41}\Rightarrow l_{41}=\frac{a_{31}}{l_{11}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+que 
+\begin_inset Formula $l_{ij}=\frac{a_{ij}}{l_{jj}}-\sum_{k=1}^{j-1}l_{ik}l_{jk}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Algorithme
+\end_layout
+
+\begin_layout Standard
+<ecrire algo>
 \end_layout
 
 \begin_layout Section
 Conclusion
+\end_layout
+
+\begin_layout Standard
+Ainsi, nous avons trouvé différentes méthodes pour résoudre l'équation de
+ matrice : 
+\begin_inset Formula $AX=B$
+\end_inset
+
+ sans à calculer directement 
+\begin_inset Formula $A^{-1}$
+\end_inset
+
+.
 \end_layout
 
 \end_body
