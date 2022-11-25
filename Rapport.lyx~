@@ -553,6 +553,59 @@ l_{1N} & \cdots & l_{NN}
  (une matrice triangulaire inférieure dont la diagonale est positive).
 \end_layout
 
+\begin_layout Standard
+On a donc 
+\begin_inset Formula $A=L\cdot L^{T}$
+\end_inset
+
+ et 
+\begin_inset Formula $AX=B$
+\end_inset
+
+, si on remplace 
+\begin_inset Formula $A$
+\end_inset
+
+, 
+\begin_inset Formula $L\cdot L^{T}X=B$
+\end_inset
+
+ et simplifier avec 
+\begin_inset Formula $LY=B$
+\end_inset
+
+ ou 
+\begin_inset Formula $Y=L^{T}X$
+\end_inset
+
+.
+ On peut donc résoudre 
+\begin_inset Formula $LY=B$
+\end_inset
+
+ avec la fonction 
+\begin_inset Quotes eld
+\end_inset
+
+Sol_Inf
+\begin_inset Quotes erd
+\end_inset
+
+ et puis ensuite résoudre 
+\begin_inset Formula $L^{T}X=Y$
+\end_inset
+
+ avec la fonction 
+\begin_inset Quotes eld
+\end_inset
+
+Sol_Sup
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsubsection*
 Exemple
 \end_layout
