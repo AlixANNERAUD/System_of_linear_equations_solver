@@ -205,15 +205,12 @@ double **Cholesky(double **A, int Taille)
         double Sum = 0;
         // Calcul de la diagonale
         // Calcul de la somme
-       
 
-        for (int k = 0; k < j ; k++)
+        for (int k = 0; k < j; k++)
         {
-        
+
             Sum += L[j][k] * L[j][k];
         }
-
-      
 
         // Calcul des termes de la diagonale de L.
         L[j][j] = sqrt(A[j][j] - Sum);
@@ -221,17 +218,35 @@ double **Cholesky(double **A, int Taille)
         // Calcul des termes pour i = j+1 à N.
         for (int i = j + 1; i < Taille; i++)
         {
-            
+
             Sum = 0;
             for (int k = 0; k < j; k++)
             {
-                
+
                 Sum += L[i][k] * L[j][k];
             }
             L[i][j] = (A[i][j] - Sum) / L[j][j];
         }
     }
     return L;
+}
+
+// Fonction qui transpose une matrice carrée inférieure en matrice carrée supérieure.
+double **Transposer(double **Matrice, int Taille)
+{
+    // On itère parmis les colones.
+    for (int i = 0; i < Taille; i++)
+    {
+        // On itère parmis les lignes.
+        for (int j = i + 1; j < Taille; j++)
+        {
+            // On inverse les termes (en cooordonnées) de la matrice.
+            Matrice[i][j] = Matrice[j][i];
+            // On supprime les termes inférieures.
+            Matrice[j][i] = 0;
+        }
+    }
+    return Matrice;
 }
 
 int main()
@@ -361,11 +376,19 @@ int main()
     A[3][2] = 14;
     A[3][3] = 15;
 
-   L = Cholesky(A, Taille);
+    L = Cholesky(A, Taille);
 
+    printf("La solution pour Choleski est :\n");
     printf("La matrice L : \n");
-    
-   Afficher_Matrice(L, Taille);
+
+    Afficher_Matrice(L, Taille);
+
+    printf("La matrice transaposée est : \n");
+
+    Transposer(L, Taille);
+
+    Afficher_Matrice(L, Taille);
+
 
     Desallocation_Matrice(L, Taille);
 
