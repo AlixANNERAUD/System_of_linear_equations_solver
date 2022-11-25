@@ -352,11 +352,22 @@ int main()
 
     Desallocation_Matrice(A, Taille);
 
+    Desallocation_Vecteur(Y);
+
+    Desallocation_Vecteur(X);
+
+    Desallocation_Vecteur(B);
+
     // - Cholesky
 
     Taille = 4;
 
     A = Allocation_Matrice(Taille, Taille);
+    B = Allocation_Vecteur(Taille);
+
+    Y = Allocation_Vecteur(Taille);
+    X = Allocation_Vecteur(Taille);
+
     Nettoyer_Matrice(A, Taille, Taille);
 
     A[0][0] = 1;
@@ -376,26 +387,49 @@ int main()
     A[3][2] = 14;
     A[3][3] = 15;
 
-    L = Cholesky(A, Taille);
+    B[0] = 5;
+    B[1] = 1;
+    B[2] = 3;
+    B[3] = 1;
+
+    Afficher_Matrice(A, Taille);
+
 
     printf("La solution pour Choleski est :\n");
+
+    L = Cholesky(A, Taille);
+
     printf("La matrice L : \n");
 
     Afficher_Matrice(L, Taille);
 
-    printf("La matrice transaposée est : \n");
+
+    Y = Sol_Inf(L, B, Taille);
 
     Transposer(L, Taille);
 
+        printf("La matrice transaposée est : \n");
+
     Afficher_Matrice(L, Taille);
 
+    X = Sol_Sup(L, Y, Taille);
+
+    printf("La solution X pour Cholesky : \n");
+
+    Afficher_Vecteur(X, Taille);
+
+    
 
     Desallocation_Matrice(L, Taille);
+
+    Desallocation_Vecteur(Y);
+
 
     // - Desallocation avant la fermeture du programme.
 
     Desallocation_Vecteur(B);
     Desallocation_Vecteur(X);
+    Desallocation_Matrice(A, Taille);
 
     return 0;
 }
