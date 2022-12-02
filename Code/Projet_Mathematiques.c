@@ -249,9 +249,57 @@ double **Transposer(double **Matrice, int Taille)
     return Matrice;
 }
 
+double *Jacobi(double **A, double *B, int Taille)
+{
+    double* X_k = Allocation_Vecteur(Taille);
+    for (int i = 0; i < Taille; i++)
+    {
+        X_k[i] = 1;
+    }
+    double* X_k_1 = Allocation_Vecteur(Taille);
+
+    double Norme = 1;
+    
+    int it = 0;
+    int it_max = 10;
+    
+    double Epsilon = 0.001;
+    
+    while ((Norme > Epsilon) && (it < it_max))
+    {
+        // Calcul de X_k_1
+        for (int i = 0; i < Taille; i++)
+        {
+            // Calcul de la somme
+            double Somme = 0;
+            for (int j = 0; j < Taille; j++)
+            {
+                if (i != j)
+                {
+                    Somme += A[i][j] * X_k[j];
+                }
+            }
+            X_k_1[i] = (B[i] - Somme) / A[i][i];
+        }
+        // Calcul de la norme
+        Norme = 0;
+        for (int i = 0; i < Taille; i++)
+        {
+            Norme += (X_k_1[i] - X_k[i]) * (X_k_1[i] - X_k[i]);
+        }
+        Norme = sqrt(Norme);
+
+        for (int i = 0; i < Taille; i++)
+        {
+            X_k[i] = X_k_1[i];
+        }
+        it++;
+    }
+    return X_k_1;
+}
+
 int main()
 {
-
     int Taille = 3;
 
     // Allocation des matrices A et B.
@@ -279,6 +327,7 @@ int main()
     X = Sol_Inf(A, B, Taille);
 
     printf("La solution x pour la remontée est :\n%f\n %f\n%f\n", X[0], X[1], X[2]);
+
 
     // Remplissage des matrices et vecteurs.
     A[0][0] = 1;
@@ -394,7 +443,6 @@ int main()
 
     Afficher_Matrice(A, Taille);
 
-
     printf("La solution pour Choleski est :\n");
 
     L = Cholesky(A, Taille);
@@ -407,7 +455,7 @@ int main()
 
     Transposer(L, Taille);
 
-        printf("La matrice transaposée est : \n");
+    printf("La matrice transaposée est : \n");
 
     Afficher_Matrice(L, Taille);
 
@@ -421,6 +469,38 @@ int main()
 
     Desallocation_Vecteur(Y);
 
+    Desallocation_Matrice(A, Taille);
+
+    Desallocation_Vecteur(B);
+
+    Desallocation_Vecteur(X);
+
+    // - Jacobi
+
+    Taille = 3;
+
+    A = Allocation_Matrice(Taille, Taille);
+    B = Allocation_Vecteur(Taille);
+
+    A[0][0] = 4;
+    A[0][1] = 1;
+    A[0][2] = 1;
+    A[1][0] = 1;
+    A[1][1] = 3;
+    A[1][2] = 1;
+    A[2][0] = 2;
+    A[2][1] = 0;
+    A[2][2] = 5;
+
+    B[0] = 1;
+    B[1] = 1;
+    B[2] = 1;
+
+    X = Jacobi(A, B, Taille);
+
+    printf("La solution X pour Jacobi : \n");
+
+    Afficher_Vecteur(X, Taille);
 
     // - Desallocation avant la fermeture du programme.
 

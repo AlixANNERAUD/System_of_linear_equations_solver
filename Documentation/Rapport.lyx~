@@ -138,29 +138,31 @@ ns graduelles afin d'optimiser le cout en temps de calcul et l'espace mémoire
 \end_layout
 
 \begin_layout Section
+Références
+\end_layout
+
+\begin_layout Subsection
 Bibliographie
 \end_layout
 
-\begin_layout Standard
-\begin_inset Quotes eld
-\end_inset
+\begin_layout Subsection
+Biographies
+\end_layout
 
-Hamdi's Holy Bible
-\begin_inset Quotes erd
-\end_inset
-
-, edition la Crémière, 2022.
+\begin_layout Subsubsection
+Gauss
 \end_layout
 
 \begin_layout Standard
-\begin_inset Quotes eld
-\end_inset
+<Faire la biographie de Gauss>
+\end_layout
 
-La Nature Est Bien Faite
-\begin_inset Quotes erd
-\end_inset
+\begin_layout Subsubsection
+Choleski
+\end_layout
 
-, edition Le Beure, 2022.
+\begin_layout Standard
+<Faire la biographie de Choleski>
 \end_layout
 
 \begin_layout Section
@@ -169,6 +171,10 @@ Méthodes directes
 
 \begin_layout Subsection
 Méthode triangulaire inférieure
+\end_layout
+
+\begin_layout Subsubsection*
+Méthode
 \end_layout
 
 \begin_layout Standard
@@ -193,7 +199,14 @@ On chercher le vecteur
 \end_inset
 
 .
- On a alors : 
+\end_layout
+
+\begin_layout Standard
+La formule générale pour les termes de 
+\begin_inset Formula $X$
+\end_inset
+
+ est : 
 \begin_inset Formula $x_{i}=\frac{b_{i}-\sum_{j=1}^{i-1}a_{ij}x_{j}}{a_{ii}}$
 \end_inset
 
@@ -204,7 +217,7 @@ On chercher le vecteur
 .
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsubsection*
 Exemple
 \end_layout
 
@@ -311,6 +324,113 @@ Méthode triangulaire supérieure
 \end_layout
 
 \begin_layout Subsubsection*
+Méthode
+\end_layout
+
+\begin_layout Standard
+On chercher le vecteur 
+\begin_inset Formula $X$
+\end_inset
+
+ de taille 
+\begin_inset Formula $N$
+\end_inset
+
+ tel que 
+\begin_inset Formula $AX=B$
+\end_inset
+
+, où 
+\begin_inset Formula $A$
+\end_inset
+
+ sera une matrice triangulaire supérieure carré de de taille 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ainsi, de manière de analogue à résolution de matrice inférieure, la formule
+ générale pour les termes de 
+\begin_inset Formula $X$
+\end_inset
+
+ est : 
+\begin_inset Formula $x_{i}=\frac{b_{i}-\sum_{j=1}^{i-1}a_{ij}x_{j}}{a_{ii}}$
+\end_inset
+
+, 
+\begin_inset Formula $i=1,\ldots,N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Exemple
+\end_layout
+
+\begin_layout Standard
+Soit 
+\begin_inset Formula $N=3$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(\begin{array}{ccc}
+a_{11} & 0 & 0\\
+a_{21} & a_{22} & 0\\
+a_{31} & a_{32} & a_{33}
+\end{array}\right)\left(\begin{array}{c}
+x_{1}\\
+x_{2}\\
+x_{3}
+\end{array}\right)=\text{\left(\begin{array}{c}
+b_{1}\\
+b_{2}\\
+b_{3}
+\end{array}\right)\ensuremath{\Leftrightarrow\left\{ \begin{array}{c}
+a_{11}x_{1}=b_{1}\\
+a_{21}x_{1}+a_{22}x_{2}=b_{2}\\
+a_{31}x_{1}+a_{32}x_{2}+a_{33}x_{3}=b_{3}
+\end{array}\right.}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\Leftrightarrow\begin{pmatrix}x_{1}\\
+x_{2}\\
+x_{3}
+\end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
+\frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
+\frac{b_{3}}{a_{33}}-\frac{a_{31}}{a_{33}}x_{1}-\frac{a_{32}}{a_{33}}x_{2}
+\end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
+\frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
+\frac{b_{3}-\sum_{k=1}^{2}a_{3k}x_{k}}{a_{33}}
+\end{pmatrix}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x_{i}=\frac{b_{i}-\sum_{j=1}^{i-1}a_{ij}x_{j}}{a_{ii}}$
+\end_inset
+
+, 
+\begin_inset Formula $i=1,\ldots,N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
 Algorithme
 \end_layout
 
@@ -320,14 +440,6 @@ Algorithme de la descente
 
 \begin_layout Subsection
 Elimination de Gauss
-\end_layout
-
-\begin_layout Subsubsection*
-Contexte
-\end_layout
-
-\begin_layout Standard
-Ecrire une biographie.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -591,7 +703,7 @@ Sol_Inf
 \begin_inset Quotes erd
 \end_inset
 
- et puis ensuite résoudre 
+ et efin résoudre 
 \begin_inset Formula $L^{T}X=Y$
 \end_inset
 
@@ -738,7 +850,7 @@ On a également pour les autres termes :
 \end_layout
 
 \begin_layout Standard
-que 
+On constate que 
 \begin_inset Formula $l_{ij}=\frac{a_{ij}}{l_{jj}}-\sum_{k=1}^{j-1}l_{ik}l_{jk}$
 \end_inset
 
