@@ -403,7 +403,6 @@ int main()
 
     Afficher_Matrice(L, Taille);
 
-
     Y = Sol_Inf(L, B, Taille);
 
     Transposer(L, Taille);
@@ -417,8 +416,6 @@ int main()
     printf("La solution X pour Cholesky : \n");
 
     Afficher_Vecteur(X, Taille);
-
-    
 
     Desallocation_Matrice(L, Taille);
 

@@ -1,0 +1,1 @@
+gcc ../Code/Projet_Mathematiques.c -o ../Binaries/Projet_Mathematiques -lm
