@@ -435,7 +435,18 @@ Algorithme
 \end_layout
 
 \begin_layout Standard
-Algorithme de la descente
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Ecrire algorithme ici
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -594,7 +605,18 @@ Algorithme
 \end_layout
 
 \begin_layout Standard
-<ecrire algo>
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Ecrire algo ici
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -603,14 +625,6 @@ Conclusion
 
 \begin_layout Subsection
 Factorisation de Cholesky
-\end_layout
-
-\begin_layout Subsubsection*
-Contexte
-\end_layout
-
-\begin_layout Standard
-Ecrire une biographie.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -862,7 +876,263 @@ Algorithme
 \end_layout
 
 \begin_layout Standard
-<ecrire algo>
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Ecrire code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Conclusion
+\end_layout
+
+\begin_layout Section
+Méthodes itératives
+\end_layout
+
+\begin_layout Standard
+Contrairement aux méthodes directes précédents où l'on cherche directement
+ le vecteur 
+\begin_inset Formula $X$
+\end_inset
+
+ pour résoudre 
+\begin_inset Formula $AX=B$
+\end_inset
+
+.
+ Ici, nous allons nous intéresser.
+\end_layout
+
+\begin_layout Subsection
+Méthode de Jacobi
+\end_layout
+
+\begin_layout Subsubsection*
+Méthode
+\end_layout
+
+\begin_layout Standard
+Soit 
+\begin_inset Formula $A$
+\end_inset
+
+ une matrice carrée de taille 
+\begin_inset Formula $N$
+\end_inset
+
+ et 
+\begin_inset Formula $B$
+\end_inset
+
+ un vecteur de taille 
+\begin_inset Formula $N$
+\end_inset
+
+, on cherche toujours à résoudre l'équation 
+\begin_inset Formula $AX=B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+On peut décomposer 
+\begin_inset Formula $A$
+\end_inset
+
+ en 3 matrices tel que 
+\begin_inset Formula $A=E+F+G$
+\end_inset
+
+ : 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $D$
+\end_inset
+
+ la matrice contenant la diagonnale de 
+\begin_inset Formula $A$
+\end_inset
+
+ : 
+\begin_inset Formula $D=\begin{pmatrix}A_{11} & 0 & 0\\
+0 & \ddots & 0\\
+0 & 0 & A_{nn}
+\end{pmatrix}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $E$
+\end_inset
+
+ la matrice contenant la partie inférieur de 
+\begin_inset Formula $A$
+\end_inset
+
+ (sans sa diagonale) : 
+\begin_inset Formula $E=\begin{pmatrix}0 & \cdots & \cdots & 0\\
+A_{1j} & \ddots & \iddots & \vdots\\
+\vdots & \ddots & \ddots & \vdots\\
+A_{ij} & \cdots & A_{\left(i-1\right)j} & 0
+\end{pmatrix}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $F$
+\end_inset
+
+ la matrice contenant la partie supérieure de 
+\begin_inset Formula $A$
+\end_inset
+
+ (sans la diagonale) : 
+\begin_inset Formula $F=\begin{pmatrix}0 & A & \cdots & A_{ij}\\
+\vdots & \ddots & \ddots & \vdots\\
+\vdots & \iddots & \ddots & A\\
+0 & \cdots & \cdots & 0
+\end{pmatrix}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'équation initiale 
+\begin_inset Formula $AX=B$
+\end_inset
+
+ devient alors : 
+\begin_inset Formula $\left(E+D+F\right)X=B$
+\end_inset
+
+, ce qui donne
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow DX=b-\left(E+F\right)X
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow X=D^{-1}\left(b-\left[E+F\right]X\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+X^{0} & k=0\\
+X^{k+1}=D^{-1}\left(b-\left[E+F\right]X^{k}\right) & k=1,\ldots,N
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ainsi, pour un 
+\begin_inset Formula $X^{0}$
+\end_inset
+
+ donné, on peut calculer 
+\begin_inset Formula $X_{i}^{k+1}=\frac{b_{i}-\sum_{j=1,j\neq i}^{N}A_{ij}X_{j}^{k}}{A_{ii}}$
+\end_inset
+
+ pour 
+\begin_inset Formula $i=1,\ldots,N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+On peut alors calculer la norme : 
+\begin_inset Formula $\text{Norm}=\left\Vert x_{k+1}-x_{k}\right\Vert _{2}=\sqrt{\sum_{n=0}^{N-1}\left(x_{k+1}\left[n\right]-x_{k}\left[n\right]\right)^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On définit 
+\begin_inset Formula $\varepsilon=0,001$
+\end_inset
+
+ et 
+\begin_inset Formula $X_{k}=X_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Algorithme
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Tant que ((Norme > Epsilon) et (it < it_max)) Faire
+\end_layout
+
+\begin_layout Plain Layout
+
+Début
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+Fin
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
