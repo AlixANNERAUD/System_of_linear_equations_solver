@@ -9,11 +9,13 @@
 //                                                                           //
 ///////////////////////////////////////////////////////////////////////////////
 
-void Nettoyer_Matrice(double **A, int N, int M)
+void Nettoyer_Matrice(double **A, int Taille)
 {
-    for (int i = 0; i < N; i++)
+    // Itère parmis les premières dimension
+    for (int i = 0; i < Taille; i++)
     {
-        for (int j = 0; j < M; j++)
+        // Itère parmis les deuxième dimension
+        for (int j = 0; j < Taille; j++)
         {
             A[i][j] = 0;
         }
@@ -21,32 +23,36 @@ void Nettoyer_Matrice(double **A, int N, int M)
 }
 
 //
-// - Allocation d'une matrice de taille N * M
+// - Allocation d'un vecteur de taille N.
 //
-double **Allocation_Matrice(int N, int M)
+double *Allocation_Vecteur(int Taille)
 {
-    double **Matrice = (double **)malloc(N * sizeof(double));
+    // - Allocation d'un espace de mémoire de taille = Taille Vecteur * Taille du type (8 octets).
+    return malloc(Taille * sizeof(double));
+}
 
-    for (int i = 0; i < N; i++)
+//
+// - Allocation d'une matrice carrée de taille N * M
+//
+double **Allocation_Matrice(int Taille)
+{
+    // - Allocation de la première dimension
+    double **Matrice = (double **)malloc(Taille * sizeof(double));
+
+    // - ALlocation de la deuxième dimension
+    for (int i = 0; i < Taille; i++)
     {
-        Matrice[i] = malloc(M * sizeof(double));
+        Matrice[i] = Allocation_Vecteur(Taille);
     }
-
+    
     return Matrice;
 }
 
-//
-// - Allocation d'un vecteur de taille N.
-//
-double *Allocation_Vecteur(int N)
-{
 
-    return malloc(N * sizeof(double));
-}
 
-void Desallocation_Matrice(double **Matrice, int N)
+void Desallocation_Matrice(double **Matrice, int Taille)
 {
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < Taille; i++)
     {
         free(Matrice[i]);
     }
@@ -169,7 +175,7 @@ double *Resol_Gauss(double **A, double *B, int Taille)
 // Transforme A en U.
 void LU(double **L, double **A, int Taille)
 {
-    Nettoyer_Matrice(L, Taille, Taille);
+    Nettoyer_Matrice(L, Taille);
 
     // Rempli les 1 en diagonale
     for (int i = 0; i < Taille; i++)
@@ -197,8 +203,8 @@ void LU(double **L, double **A, int Taille)
 // Fonction qui transforme A en L*L^T. Renvoi L.
 double **Cholesky(double **A, int Taille)
 {
-    double **L = Allocation_Matrice(Taille, Taille); // Allocation de la matrice L.
-    Nettoyer_Matrice(L, Taille, Taille);
+    double **L = Allocation_Matrice(Taille); // Allocation de la matrice L.
+    Nettoyer_Matrice(L, Taille);
 
     for (int j = 0; j < Taille; j++)
     {
@@ -251,20 +257,20 @@ double **Transposer(double **Matrice, int Taille)
 
 double *Jacobi(double **A, double *B, int Taille)
 {
-    double* X_k = Allocation_Vecteur(Taille);
+    double *X_k = Allocation_Vecteur(Taille);
     for (int i = 0; i < Taille; i++)
     {
         X_k[i] = 1;
     }
-    double* X_k_1 = Allocation_Vecteur(Taille);
+    double *X_k_1 = Allocation_Vecteur(Taille);
 
     double Norme = 1;
-    
+
     int it = 0;
     int it_max = 10;
-    
+
     double Epsilon = 0.001;
-    
+
     while ((Norme > Epsilon) && (it < it_max))
     {
         // Calcul de X_k_1
@@ -303,7 +309,7 @@ int main()
     int Taille = 3;
 
     // Allocation des matrices A et B.
-    double **A = Allocation_Matrice(Taille, Taille);
+    double **A = Allocation_Matrice(Taille);
     double *B = Allocation_Vecteur(Taille);
     double *X;
 
@@ -327,7 +333,6 @@ int main()
     X = Sol_Inf(A, B, Taille);
 
     printf("La solution x pour la remontée est :\n%f\n %f\n%f\n", X[0], X[1], X[2]);
-
 
     // Remplissage des matrices et vecteurs.
     A[0][0] = 1;
@@ -370,7 +375,7 @@ int main()
     printf("\nLa solution x pour Gauss est :\n%f\n%f\n%f\n", X[0], X[1], X[2]);
 
     // - LU
-    Nettoyer_Matrice(A, Taille, Taille);
+    Nettoyer_Matrice(A, Taille);
 
     A[0][0] = 1;
     A[0][1] = 2;
@@ -386,7 +391,7 @@ int main()
     B[1] = 5;
     B[2] = 6;
 
-    double **L = Allocation_Matrice(Taille, Taille);
+    double **L = Allocation_Matrice(Taille);
 
     LU(L, A, Taille);
 
@@ -411,13 +416,13 @@ int main()
 
     Taille = 4;
 
-    A = Allocation_Matrice(Taille, Taille);
+    A = Allocation_Matrice(Taille);
     B = Allocation_Vecteur(Taille);
 
     Y = Allocation_Vecteur(Taille);
     X = Allocation_Vecteur(Taille);
 
-    Nettoyer_Matrice(A, Taille, Taille);
+    Nettoyer_Matrice(A, Taille);
 
     A[0][0] = 1;
     A[0][1] = 1;
@@ -479,7 +484,7 @@ int main()
 
     Taille = 3;
 
-    A = Allocation_Matrice(Taille, Taille);
+    A = Allocation_Matrice(Taille);
     B = Allocation_Vecteur(Taille);
 
     A[0][0] = 4;

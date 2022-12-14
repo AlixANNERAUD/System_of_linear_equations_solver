@@ -29,6 +29,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -44,6 +45,7 @@
 \use_package undertilde 1
 \cite_engine basic
 \cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -66,6 +68,7 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
+\listings_params "language=C,keywordstyle={\color{blue}},commentstyle={\color{magenta}\itshape},emphstyle={\color{red}},breaklines=true,basicstyle={\ttfamily},stringstyle={\color{green}},identifierstyle={\color{cyan}}"
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -76,7 +79,7 @@
 \begin_body
 
 \begin_layout Title
-Rapport du projet de mathématiques.
+Rapport de projet Mathématiques.
 \end_layout
 
 \begin_layout Standard
@@ -88,12 +91,43 @@ Rapport du projet de mathématiques.
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Sommaire
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Introduction
 \end_layout
 
 \begin_layout Subsection
 Motivation
+\end_layout
+
+\begin_layout Subsection
+Application théorique
 \end_layout
 
 \begin_layout Standard
@@ -143,6 +177,18 @@ Références
 
 \begin_layout Subsection
 Bibliographie
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "example-glossaries-url"
+options "plain"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -196,6 +242,325 @@ Choleski
 
 \begin_layout Standard
 <Faire la biographie de Choleski>
+\end_layout
+
+\begin_layout Section
+Travail préliminaire
+\end_layout
+
+\begin_layout Subsection
+Type de donnée
+\end_layout
+
+\begin_layout Standard
+Tout d'abord, en C, commme la plupart des langages de programmation, il
+ est impossible d'exprimer l'intégralité des réels, entiers, complexes ...
+ car il faudrait disposer d'une mémoire illimitée.
+ Pour les nombres réels, il faut choisir parmis les types suivants :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Type
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Taille
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Minimum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+float
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+double
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+long double
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nous nous somme penché vers le type 
+\begin_inset Quotes eld
+\end_inset
+
+double
+\begin_inset Quotes erd
+\end_inset
+
+ car ils offrent une précision et une portée suffisante.
+ De plus, comme ici nous nous intéresseront à la performance offerte par
+ les algorythme.
+ Il est important que de prendre en compte cette contrainte dès le début,
+ lors du choix des type.
+ Ainsi, contrairement au type 
+\begin_inset Quotes eld
+\end_inset
+
+long double
+\begin_inset Quotes erd
+\end_inset
+
+, le type 
+\begin_inset Quotes eld
+\end_inset
+
+double
+\begin_inset Quotes erd
+\end_inset
+
+ nécéssite pas de temps processeur supplémentaire par rapport à un 
+\begin_inset Quotes eld
+\end_inset
+
+float
+\begin_inset Quotes erd
+\end_inset
+
+ sur les ordinateurs modernes.
+ C'est à dire dont les processeur possèdent des registres de calculs flotant
+ de 64 bits / 8 octects.
+\end_layout
+
+\begin_layout Subsection
+Implémentation des matrices et vecteurs
+\end_layout
+
+\begin_layout Standard
+Ensuite, les concepts de matrice et de vecteur en C ne sont pas implémenté
+ directement dans le langage.
+ Cependant, nous pouvons nous servir des types liste en 1 et 2 dimensions
+ pour imiter un vecteur et une matrice.
+ Ainsi, pour l'allocation des vecteurs et des matrices, nous avons implémenté
+ les fonctions suivantes :
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+double *Allocation_Vecteur(int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // - Allocation d'un espace de mémoire de taille = Taille Vecteur *
+ Taille du type (8 octets).
+\end_layout
+
+\begin_layout Plain Layout
+
+    return malloc(Taille * sizeof(double));
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -634,7 +999,7 @@ Sol_Sup
 \end_layout
 
 \begin_layout Subsubsection*
-Algorithme
+Code
 \end_layout
 
 \begin_layout Standard
@@ -644,7 +1009,132 @@ status open
 
 \begin_layout Plain Layout
 
-Ecrire algo ici
+void LU(double **L, double **A, int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    Nettoyer_Matrice(L, Taille, Taille);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Rempli les 1 en diagonale
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        L[i][i] = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Calcule L et U
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille - 1; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int k = i + 1; k < Taille; k++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            double C = A[k][i] / A[i][i];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            L[k][i] = C;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            for (int j = 0; j < Taille; j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                A[k][j] = A[k][j] - (C * A[i][j]);
+\end_layout
+
+\begin_layout Plain Layout
+
+            }
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -1140,27 +1630,6 @@ status open
 
 \begin_layout Plain Layout
 
-Tant que ((Norme > Epsilon) et (it < it_max)) Faire
-\end_layout
-
-\begin_layout Plain Layout
-
-Début
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\end_layout
-
-\begin_layout Plain Layout
-
-Fin
-\end_layout
-
-\begin_layout Plain Layout
-
-	
 \end_layout
 
 \end_inset
