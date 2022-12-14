@@ -1558,16 +1558,24 @@ Soit
 \begin_layout Standard
 \begin_inset Formula 
 \[
+AX=B
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
 \Rightarrow\underbrace{\begin{pmatrix}3 & 1 & 2\\
 3 & 2 & 6\\
 6 & 1 & 1
-\end{pmatrix}}_{A}\underbrace{\begin{pmatrix}x_{1}\\
-x_{2}\\
-x_{3}
-\end{pmatrix}}_{X}=\underbrace{\begin{pmatrix}2\\
+\end{pmatrix}}_{A}\\under=\begin{pmatrix}2\\
 1\\
 4
-\end{pmatrix}}_{B}
+\end{pmatrix}
 \]
 
 \end_inset
@@ -1582,16 +1590,7 @@ Or, on cherche à transformer cette expression en :
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\Rightarrow\underbrace{\begin{pmatrix}a & b & c\\
-0 & d & f\\
-0 & 0 & g
-\end{pmatrix}}_{U}\underbrace{\begin{pmatrix}x_{1}\\
-x_{2}\\
-x_{3}
-\end{pmatrix}}_{X}=\underbrace{\begin{pmatrix}e_{1}\\
-e_{2}\\
-e_{3}
-\end{pmatrix}}_{e}
+UX=e
 \]
 
 \end_inset
@@ -1600,17 +1599,18 @@ e_{3}
 \end_layout
 
 \begin_layout Standard
-On a donc
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-\begin{cases}
-3x_{1}+x_{2}+2x_{3}=2\\
-\\
-\\
-\end{cases}
+\Rightarrow\begin{pmatrix}a & b & c\\
+0 & d & f\\
+0 & 0 & g
+\end{pmatrix}\begin{pmatrix}x_{1}\\
+x_{2}\\
+x_{3}
+\end{pmatrix}=\begin{pmatrix}e_{1}\\
+e_{2}\\
+e_{3}
+\end{pmatrix}
 \]
 
 \end_inset

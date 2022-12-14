@@ -9,120 +9,143 @@
 //                                                                           //
 ///////////////////////////////////////////////////////////////////////////////
 
-void Nettoyer_Matrice(double **A, int Taille)
+// - Gestion des vecteurs et matrices
+
+// - - Nettoyage
+
+// Fonction qui nettoie un vecteur (remplissage par des 0).
+void Nettoyage_Vecteur(double *Vecteur, int Taille)
 {
-    // Itère parmis les premières dimension
+    // Itère parmis les éléments du vecteur
     for (int i = 0; i < Taille; i++)
     {
-        // Itère parmis les deuxième dimension
-        for (int j = 0; j < Taille; j++)
-        {
-            A[i][j] = 0;
-        }
+        // Remplissage par des 0
+        Vecteur[i] = 0;
     }
 }
 
-//
-// - Allocation d'un vecteur de taille N.
-//
-double *Allocation_Vecteur(int Taille)
+// - Fonction qui nettoie une matrice (remplissage par des 0).
+void Nettoyage_Matrice(double **A, int Taille)
 {
-    // - Allocation d'un espace de mémoire de taille = Taille Vecteur * Taille du type (8 octets).
-    return malloc(Taille * sizeof(double));
+    // Itère parmis la première dimension
+    for (int i = 0; i < Taille; i++)
+    {
+        // Nettoyage de la deuxième dimension
+        Nettoyage_Vecteur(A[i], Taille);
+    }
 }
 
-//
-// - Allocation d'une matrice carrée de taille N * M
-//
+// - - Allocation
+
+// Fonction qui alloue un vecteur de taille N.
+double *Allocation_Vecteur(int Taille)
+{
+    // Allocation d'un espace de mémoire de taille = Taille Vecteur * Taille du type (8 octets).
+    double *Vecteur = (double *)malloc(Taille * sizeof(double));
+
+    // Nettoyage du vecteur.
+    Nettoyage_Vecteur(Vecteur, Taille);
+
+    return Vecteur;
+}
+
+// Fonction qui alloue une matrice carrée de taille N * M
 double **Allocation_Matrice(int Taille)
 {
-    // - Allocation de la première dimension
+    // Allocation de la première dimension
     double **Matrice = (double **)malloc(Taille * sizeof(double));
 
-    // - ALlocation de la deuxième dimension
+    // Allocation de la deuxième dimension
     for (int i = 0; i < Taille; i++)
     {
         Matrice[i] = Allocation_Vecteur(Taille);
     }
-    
+
     return Matrice;
 }
 
+// - - Désallocation
 
-
-void Desallocation_Matrice(double **Matrice, int Taille)
-{
-    for (int i = 0; i < Taille; i++)
-    {
-        free(Matrice[i]);
-    }
-}
-
+// Fonction qui désalloue un vecteur de taille N.
 void Desallocation_Vecteur(double *Vecteur)
 {
     free(Vecteur);
 }
 
-void Afficher_Matrice(double **Matrice, int Taille)
+// Fonction qui désalloue une matrice carrée de taille N.
+void Desallocation_Matrice(double **Matrice, int Taille)
 {
     for (int i = 0; i < Taille; i++)
     {
-        printf("\n");
-
-        for (int j = 0; j < Taille; j++)
-        {
-            printf("| %f ", Matrice[i][j]);
-        }
-        printf("|\n");
+        Desallocation_Vecteur(Matrice[i]);
     }
 }
 
+// - - Affichage
+
+// Fonction qui affiche un vecteur de taille N.
 void Afficher_Vecteur(double *Vecteur, int Taille)
 {
+    // Saut de ligne.
+    printf("\n");
+    // Itère parmis les éléments du vecteur.
     for (int i = 0; i < Taille; i++)
     {
+        // Affichage de la valeur suivi d'un saut de ligne.
         printf("%f\n", Vecteur[i]);
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////
-//                                                                           //
-//                       Méthode triangulaire                                //
-//                                                                           //
-///////////////////////////////////////////////////////////////////////////////
-
-//
-// - Algorithme de la descente
-//
-double *Sol_Inf(double **a, double *b, int Taille)
+// Fonction qui affiche une matrice carrée de taille N.
+void Afficher_Matrice(double **Matrice, int Taille)
 {
-    // - Allocation de la matrice pour X.
-    double *x = Allocation_Vecteur(Taille);
-
-    // -
+    // Itère parmis la première dimension de la matrice.
     for (int i = 0; i < Taille; i++)
     {
-        x[i] = 0;
-    }
+        // Retour à la ligne.
+        printf("\n");
 
+        // Itère parmis la deuxième dimension de la matrice.
+        for (int j = 0; j < Taille; j++)
+        {
+            // Affichage de la valeur avec un séparateur.
+            printf("| %f ", Matrice[i][j]);
+        }
+        // Retour à la ligne.
+        printf("|\n");
+    }
+}
+
+// - Méthodes directes de résolution.
+
+// - - Méthode triangulaire
+
+// Fonction qui résoud une matrice carrée triangulaire inférieure (algorithme de la redescente).
+double *Sol_Inf(double **a, double *b, int Taille)
+{
+    // Allocation du vecteur X.
+    double *x = Allocation_Vecteur(Taille);
+
+    // Calcul du premier terme de X.
     x[0] = b[0] / a[0][0];
 
+    // Itère parmis les lignes de la matrice.
     for (int i = 1; i < Taille; i++)
     {
+        // Calcul de la somme des a[i][j] * x[j]
         double Sum = 0;
         for (int j = 0; j < i; j++)
         {
             Sum = Sum + a[i][j] * x[j];
         }
-
+        // Calcul du terme X[i].
         x[i] = (b[i] - Sum) / a[i][i];
     }
 
     return x;
 }
-//
-// - Algorithme de la remontée
-//
+
+// Fonction qui résoud une matrice carrée triangulaire supérieure (algorithme de la remontée).
 double *Sol_Sup(double **a, double *b, int Taille)
 {
     double *x = Allocation_Vecteur(Taille);
@@ -148,6 +171,8 @@ double *Sol_Sup(double **a, double *b, int Taille)
 
     return x;
 }
+
+// - - Méthode de Gauss
 
 void Gauss(double **A, double *B, double **U, double *e, int Taille)
 {
@@ -175,7 +200,7 @@ double *Resol_Gauss(double **A, double *B, int Taille)
 // Transforme A en U.
 void LU(double **L, double **A, int Taille)
 {
-    Nettoyer_Matrice(L, Taille);
+    Nettoyage_Matrice(L, Taille);
 
     // Rempli les 1 en diagonale
     for (int i = 0; i < Taille; i++)
@@ -204,7 +229,7 @@ void LU(double **L, double **A, int Taille)
 double **Cholesky(double **A, int Taille)
 {
     double **L = Allocation_Matrice(Taille); // Allocation de la matrice L.
-    Nettoyer_Matrice(L, Taille);
+    Nettoyage_Matrice(L, Taille);
 
     for (int j = 0; j < Taille; j++)
     {
@@ -236,6 +261,8 @@ double **Cholesky(double **A, int Taille)
     }
     return L;
 }
+
+// - Méthodes itératives de résolution.
 
 // Fonction qui transpose une matrice carrée inférieure en matrice carrée supérieure.
 double **Transposer(double **Matrice, int Taille)
@@ -375,7 +402,7 @@ int main()
     printf("\nLa solution x pour Gauss est :\n%f\n%f\n%f\n", X[0], X[1], X[2]);
 
     // - LU
-    Nettoyer_Matrice(A, Taille);
+    Nettoyage_Matrice(A, Taille);
 
     A[0][0] = 1;
     A[0][1] = 2;
@@ -422,7 +449,7 @@ int main()
     Y = Allocation_Vecteur(Taille);
     X = Allocation_Vecteur(Taille);
 
-    Nettoyer_Matrice(A, Taille);
+    Nettoyage_Matrice(A, Taille);
 
     A[0][0] = 1;
     A[0][1] = 1;

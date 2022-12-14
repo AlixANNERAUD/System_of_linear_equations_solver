@@ -7,7 +7,7 @@
 \textclass article
 \use_default_options true
 \maintain_unincluded_children false
-\language english
+\language french
 \language_package default
 \inputencoding auto
 \fontencoding global
@@ -63,7 +63,7 @@
 \paragraph_indentation default
 \is_math_indent 0
 \math_numbering_side default
-\quotes_style english
+\quotes_style french
 \dynamic_quotes 0
 \papercolumns 1
 \papersides 1
@@ -126,8 +126,12 @@ Introduction
 Motivation
 \end_layout
 
+\begin_layout Standard
+ds
+\end_layout
+
 \begin_layout Subsection
-Application théorique
+Théorie
 \end_layout
 
 \begin_layout Standard
@@ -171,12 +175,31 @@ ns graduelles afin d'optimiser le cout en temps de calcul et l'espace mémoire
  utilisé pour le cacul.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Références
 \end_layout
 
 \begin_layout Subsection
 Bibliographie
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "example-glossaries-url"
+options "plain"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -232,6 +255,772 @@ Choleski
 <Faire la biographie de Choleski>
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Travail préliminaire
+\end_layout
+
+\begin_layout Subsection
+Type de donnée
+\end_layout
+
+\begin_layout Standard
+Tout d'abord, en C, comme la plupart des langages de programmation, il est
+ impossible d'exprimer l'intégralité des réels, entiers, complexes ...
+ car il faudrait disposer d'une mémoire infinie pour représenter une infinité
+ de nombres.
+ Comme nous utilisons des nombres réels pour les vecteurs et matrices, il
+ faut choisir parmis les types signés flottant du C qui sont :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Type
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Taille
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Portée
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Précision maximale
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+float
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32 bits / 4 octets
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1,2\cdot10^{-38}$
+\end_inset
+
+ à 
+\begin_inset Formula $3,4\cdot10^{38}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 chiffre après la virgule
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+double
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64 bits / 8 octets
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2,3\cdot10^{-308}$
+\end_inset
+
+ à 
+\begin_inset Formula $1,7\cdot10^{308}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15 chiffres après la virgule
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+long double
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80 bits / 10 octets
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3,4\cdot10^{-4932}$
+\end_inset
+
+ à 
+\begin_inset Formula $1,1\cdot10^{4932}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19 chiffres après la virgule
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dans ce projet, le point qui nous intéresse le plus est celui de la performance
+ de la résolution, cette dernière étant très exigeante en temps processeur.
+ Ainsi, le choix du type est crucial.
+ Au final, nous avons choisi le type 
+\begin_inset Quotes eld
+\end_inset
+
+double
+\begin_inset Quotes erd
+\end_inset
+
+ car il offre une précision et une portée amplement suffisante, sans compromettr
+e les performances de nos algorithmes.
+ En effet, contrairement au type 
+\begin_inset Quotes fld
+\end_inset
+
+long double
+\begin_inset Quotes frd
+\end_inset
+
+, le type 
+\begin_inset Quotes fld
+\end_inset
+
+double
+\begin_inset Quotes frd
+\end_inset
+
+ nécessite pas de temps processeur supplémentaire par rapport à un type
+ 
+\begin_inset Quotes fld
+\end_inset
+
+float
+\begin_inset Quotes frd
+\end_inset
+
+ sur les ordinateurs modernes.
+ C'est à dire, dont les processeur possèdent des registres de calculs flottant
+ de 64 bits / 8 octets.
+ Il est à noter que cette considération aurait été différente il y 10 -
+ 20 ans car les processeurs d’antan ne supportaient ne possédaient que des
+ registres de calcul flottant de 32 bits, 16 bits voir 8 bits (pour les
+ plus anciens).
+ De plus, bien que le type 
+\begin_inset Quotes fld
+\end_inset
+
+double
+\begin_inset Quotes frd
+\end_inset
+
+ occupe deux fois plus de mémoire que le type 
+\begin_inset Quotes fld
+\end_inset
+
+float
+\begin_inset Quotes frd
+\end_inset
+
+, ici l'impact sur la mémoire reste relativement limité comparé à la précision
+ supplémentaire offerte.
+\end_layout
+
+\begin_layout Subsection
+Implémentation des matrices et vecteurs
+\end_layout
+
+\begin_layout Standard
+Ensuite, les concepts de matrice et de vecteur en C ne sont pas directement
+ implémenté dans le langage.
+ Cependant, nous pouvons utiliser une liste pour les vecteurs et des listes
+ imbriqués dans des listes (tableau à 2 dimension) pour les matrices.
+ 
+\end_layout
+
+\begin_layout Standard
+Ainsi, pour l'allocation des vecteurs et des matrices, nous avons implémenté
+ les fonctions suivantes :
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+double *Allocation_Vecteur(int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Allocation d'un espace de mémoire de taille = Taille Vecteur * Taille
+ du type (8 octets).
+\end_layout
+
+\begin_layout Plain Layout
+
+    double * Vecteur = (double *)malloc(Taille * sizeof(double));
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Nettoyage du vecteur.
+\end_layout
+
+\begin_layout Plain Layout
+
+    Nettoyage_Vecteur(Vecteur, Taille);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    return Vecteur;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+double **Allocation_Matrice(int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Allocation de la première dimension
+\end_layout
+
+\begin_layout Plain Layout
+
+    double **Matrice = (double **)malloc(Taille * sizeof(double));
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Allocation de la deuxième dimension
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        Matrice[i] = Allocation_Vecteur(Taille);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Nettoyage de la matrice (remplissage par des 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+    Nettoyage_Matrice(Matrice, Taille);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+    return Matrice;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ces fonctions appellent les fonctions 
+\begin_inset Quotes eld
+\end_inset
+
+Nettoyage_Vecteur
+\begin_inset Quotes erd
+\end_inset
+
+ et 
+\begin_inset Quotes eld
+\end_inset
+
+Nettoyage_Matrice
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Ces fonctions viennent nettoyer les matrices et vecteurs en les remplissant
+ par des 
+\begin_inset Formula $0$
+\end_inset
+
+ car la mémoire alloué en C peut ne pas être toujours propre (contenir des
+ valeurs aléatoires) :
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void Nettoyage_Vecteur(double *Vecteur, int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Itère parmis les éléments du vecteur
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Remplissage par des 0
+\end_layout
+
+\begin_layout Plain Layout
+
+        Vecteur[i] = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void Nettoyer_Matrice(double **A, int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Itère parmis la première dimension
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Nettoyage de la deuxième dimension
+\end_layout
+
+\begin_layout Plain Layout
+
+        Nettoyage_Vecteur(A[i], Taille);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ensuite, afin de rendre l'affichage des vecteurs et matrices lisible, nous
+ avons implémenté les fonctions suivantes :
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void Afficher_Vecteur(double *Vecteur, int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Saut de ligne.
+\end_layout
+
+\begin_layout Plain Layout
+
+    printf("
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Itère parmis les éléments du vecteur.
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Affichage de la valeur suivi d'un saut de ligne.
+\end_layout
+
+\begin_layout Plain Layout
+
+        printf("%f
+\backslash
+n", Vecteur[i]);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void Afficher_Matrice(double **Matrice, int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Itère parmis la première dimension de la matrice.
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Retour à la ligne.
+\end_layout
+
+\begin_layout Plain Layout
+
+        printf("
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Itère parmis la deuxième dimension de la matrice.
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int j = 0; j < Taille; j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            // Affichage de la valeur avec un séparateur.
+\end_layout
+
+\begin_layout Plain Layout
+
+            printf("| %f ", Matrice[i][j]);
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Retour à la ligne.
+\end_layout
+
+\begin_layout Plain Layout
+
+        printf("|
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Enfin, comme nous utilisons de l’allocation dynamique pour les vecteurs
+ et matrices, contrairement à l'allocation statique, la libération de la
+ mémoire (désallocation) doit être faite manuellement :
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Méthodes directes
 \end_layout
@@ -241,31 +1030,59 @@ Méthode triangulaire inférieure
 \end_layout
 
 \begin_layout Subsubsection*
-Méthode
+Introduction
 \end_layout
 
 \begin_layout Standard
-On chercher le vecteur 
-\begin_inset Formula $X$
+Soit 
+\begin_inset Formula $B$
 \end_inset
 
- de taille 
+ un vecteur de taille 
 \begin_inset Formula $N$
 \end_inset
 
- tel que 
-\begin_inset Formula $AX=B$
-\end_inset
-
-, où 
+, 
 \begin_inset Formula $A$
 \end_inset
 
- sera une matrice triangulaire inférieure carré de de taille 
+ une matrice triangulaire inférieure carrée de taille 
 \begin_inset Formula $N$
 \end_inset
 
-.
+ et 
+\begin_inset Formula $X$
+\end_inset
+
+ un vecteur de taille 
+\begin_inset Formula $N$
+\end_inset
+
+ tel.
+ On cherche pour 
+\begin_inset Formula $A$
+\end_inset
+
+ et 
+\begin_inset Formula $B$
+\end_inset
+
+ donné, 
+\begin_inset Formula $X$
+\end_inset
+
+ tel que :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+AX=B
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -285,7 +1102,7 @@ La formule générale pour les termes de
 \end_layout
 
 \begin_layout Subsubsection*
-Exemple
+Méthode
 \end_layout
 
 \begin_layout Standard
@@ -293,11 +1110,24 @@ Soit
 \begin_inset Formula $N=3$
 \end_inset
 
- :
+, on a donc : 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\left(\begin{array}{ccc}
+\begin_inset Formula 
+\[
+AX=B
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow\left(\begin{array}{ccc}
 a_{11} & 0 & 0\\
 a_{21} & a_{22} & 0\\
 a_{31} & a_{32} & a_{33}
@@ -313,14 +1143,18 @@ b_{3}
 a_{11}x_{1}=b_{1}\\
 a_{21}x_{1}+a_{22}x_{2}=b_{2}\\
 a_{31}x_{1}+a_{32}x_{2}+a_{33}x_{3}=b_{3}
-\end{array}\right.}}$
+\end{array}\right.}}
+\]
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\Leftrightarrow\begin{pmatrix}x_{1}\\
+\begin_inset Formula 
+\[
+\Rightarrow\begin{pmatrix}x_{1}\\
 x_{2}\\
 x_{3}
 \end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
@@ -329,61 +1163,157 @@ x_{3}
 \end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
 \frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
 \frac{b_{3}-\sum_{k=1}^{2}a_{3k}x_{k}}{a_{33}}
-\end{pmatrix}$
+\end{pmatrix}
+\]
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $x_{i}=\frac{b_{i}-\sum_{j=1}^{i-1}a_{ij}x_{j}}{a_{ii}}$
+On en déduit alors une formule générale pour 
+\begin_inset Formula $X$
 \end_inset
 
-, 
-\begin_inset Formula $i=1,\ldots,N$
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{i}=\frac{b_{i}-\sum_{j=1}^{i-1}a_{ij}x_{j}}{a_{ii}},i=1,\ldots,N.
+\]
+
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Subsubsection*
-Algorithme
+Code
 \end_layout
 
 \begin_layout Standard
-Algorithme de la remontée :
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+double *Sol_Inf(double **a, double *b, int Taille)
 \end_layout
 
-\begin_layout Standard
-Soit A une matrice carrée de taille N, X et B un vecteur de taille N.
+\begin_layout Plain Layout
+
+{
 \end_layout
 
-\begin_layout Standard
-pour i = 1 à N faire
+\begin_layout Plain Layout
+
+    // Allocation du vecteur X.
 \end_layout
 
-\begin_layout Standard
-sum = 0
+\begin_layout Plain Layout
+
+    double *x = Allocation_Vecteur(Taille);
 \end_layout
 
-\begin_layout Standard
-pour j=1 à i - 1 faire
+\begin_layout Plain Layout
+
 \end_layout
 
-\begin_layout Standard
-sum=sum+A[i][j]*x[j]
+\begin_layout Plain Layout
+
+    // Calcul du premier terme de X.
 \end_layout
 
-\begin_layout Standard
-fin pour
+\begin_layout Plain Layout
+
+    x[0] = b[0] / a[0][0];
 \end_layout
 
-\begin_layout Standard
-x[i] = (b[i] - sum)/Aii
+\begin_layout Plain Layout
+
 \end_layout
 
-\begin_layout Standard
-fin pour
+\begin_layout Plain Layout
+
+    // Itère parmis les lignes de la matrice.
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 1; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Calcul de la somme des a[i][j] * x[j]
+\end_layout
+
+\begin_layout Plain Layout
+
+        double Sum = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int j = 0; j < i; j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            Sum = Sum + a[i][j] * x[j];
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Calcul du terme X[i].
+\end_layout
+
+\begin_layout Plain Layout
+
+        x[i] = (b[i] - Sum) / a[i][i];
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    return x;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -391,7 +1321,7 @@ Méthode triangulaire supérieure
 \end_layout
 
 \begin_layout Subsubsection*
-Méthode
+Introduction
 \end_layout
 
 \begin_layout Standard
@@ -1086,6 +2016,13 @@ Ecrire code
 Conclusion
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Méthodes itératives
 \end_layout
@@ -1299,27 +2236,6 @@ status open
 
 \begin_layout Plain Layout
 
-Tant que ((Norme > Epsilon) et (it < it_max)) Faire
-\end_layout
-
-\begin_layout Plain Layout
-
-Début
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\end_layout
-
-\begin_layout Plain Layout
-
-Fin
-\end_layout
-
-\begin_layout Plain Layout
-
-	
 \end_layout
 
 \end_inset
@@ -1345,6 +2261,38 @@ Algorithme
 
 \begin_layout Standard
 f
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Code complet
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
