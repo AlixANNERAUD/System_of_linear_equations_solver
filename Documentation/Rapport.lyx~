@@ -1085,22 +1085,6 @@ AX=B
 
 \end_layout
 
-\begin_layout Standard
-La formule générale pour les termes de 
-\begin_inset Formula $X$
-\end_inset
-
- est : 
-\begin_inset Formula $x_{i}=\frac{b_{i}-\sum_{j=1}^{i-1}a_{ij}x_{j}}{a_{ii}}$
-\end_inset
-
-, 
-\begin_inset Formula $i=1,\ldots,N$
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Subsubsection*
 Méthode
 \end_layout
@@ -1325,27 +1309,55 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-On chercher le vecteur 
-\begin_inset Formula $X$
+Soit 
+\begin_inset Formula $B$
 \end_inset
 
- de taille 
+ un vecteur de taille 
 \begin_inset Formula $N$
 \end_inset
 
- tel que 
-\begin_inset Formula $AX=B$
-\end_inset
-
-, où 
+, 
 \begin_inset Formula $A$
 \end_inset
 
- sera une matrice triangulaire supérieure carré de de taille 
+ une matrice triangulaire supérieure carrée de taille 
 \begin_inset Formula $N$
 \end_inset
 
-.
+ et 
+\begin_inset Formula $X$
+\end_inset
+
+ un vecteur de taille 
+\begin_inset Formula $N$
+\end_inset
+
+ tel.
+ Comme pour la section précédente, on cherche pour 
+\begin_inset Formula $A$
+\end_inset
+
+ et 
+\begin_inset Formula $B$
+\end_inset
+
+ donné, 
+\begin_inset Formula $X$
+\end_inset
+
+ tel que :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+AX=B
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1374,14 +1386,27 @@ Soit
 \begin_inset Formula $N=3$
 \end_inset
 
- :
+, on a :
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\left(\begin{array}{ccc}
-a_{11} & 0 & 0\\
-a_{21} & a_{22} & 0\\
-a_{31} & a_{32} & a_{33}
+\begin_inset Formula 
+\[
+AX=B
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow\left(\begin{array}{ccc}
+a_{11} & a_{12} & a_{13}\\
+0 & a_{22} & a_{23}\\
+0 & 0 & a_{33}
 \end{array}\right)\left(\begin{array}{c}
 x_{1}\\
 x_{2}\\
@@ -1390,45 +1415,70 @@ x_{3}
 b_{1}\\
 b_{2}\\
 b_{3}
-\end{array}\right)\ensuremath{\Leftrightarrow\left\{ \begin{array}{c}
-a_{11}x_{1}=b_{1}\\
-a_{21}x_{1}+a_{22}x_{2}=b_{2}\\
-a_{31}x_{1}+a_{32}x_{2}+a_{33}x_{3}=b_{3}
-\end{array}\right.}}$
+\end{array}\right)\ensuremath{\Leftrightarrow}}
+\]
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\Leftrightarrow\begin{pmatrix}x_{1}\\
+\begin_inset Formula 
+\[
+\Rightarrow\left\{ \begin{array}{c}
+a_{33}x_{3}=b_{3}\\
+a_{22}x_{2}+a_{23}x_{3}=b_{2}\\
+a_{11}x_{1}+a_{12}x_{2}+a_{13}x_{3}=b_{1}
+\end{array}\right.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow\begin{pmatrix}x_{1}\\
 x_{2}\\
 x_{3}
-\end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
-\frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
-\frac{b_{3}}{a_{33}}-\frac{a_{31}}{a_{33}}x_{1}-\frac{a_{32}}{a_{33}}x_{2}
+\end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}-\frac{a_{12}}{a_{11}}x_{2}-\frac{a_{13}}{a_{11}}x_{3}\\
+\frac{b_{2}}{a_{22}}-\frac{a_{23}}{a_{22}}x_{3}\\
+\frac{b_{3}}{a_{33}}
 \end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
 \frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
 \frac{b_{3}-\sum_{k=1}^{2}a_{3k}x_{k}}{a_{33}}
-\end{pmatrix}$
+\end{pmatrix}
+\]
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $x_{i}=\frac{b_{i}-\sum_{j=1}^{i-1}a_{ij}x_{j}}{a_{ii}}$
+On en déduit alors une formule générale pour 
+\begin_inset Formula $X$
 \end_inset
 
-, 
-\begin_inset Formula $i=1,\ldots,N$
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{i}=\frac{b_{i}-\sum_{j=i+1}^{N}a_{ij}x_{j}}{a_{ii}},i=N,\ldots,1
+\]
+
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Subsubsection*
-Algorithme
+Code
 \end_layout
 
 \begin_layout Standard
@@ -1451,7 +1501,136 @@ Elimination de Gauss
 \end_layout
 
 \begin_layout Subsubsection*
+Introduction
+\end_layout
+
+\begin_layout Standard
+Maintenant que nous disposon des fonctions méthodes et fonctions pour résoudre
+ 
+\begin_inset Formula $AX=B$
+\end_inset
+
+ avec 
+\begin_inset Formula $A$
+\end_inset
+
+ une matrice triangulaire inférieure ou supérieure carrée.
+ On va maintenant chercher à résoudre la même équation mais lorsque 
+\begin_inset Formula $A$
+\end_inset
+
+ est une matrice carrée quelconque.
+ Nous allons utiliser la méthode de Gauss pour transformer l'expression
+ 
+\begin_inset Formula $AX=B$
+\end_inset
+
+ où 
+\begin_inset Formula $A$
+\end_inset
+
+ est une matrice carrée en 
+\begin_inset Formula $UX=e$
+\end_inset
+
+ avec 
+\begin_inset Formula $U$
+\end_inset
+
+ qui est une matrice triangulaire supérieure.
+ Ainsi, il ne restera plusq qu'a résoudre 
+\begin_inset Formula $UX=e$
+\end_inset
+
+ avec la fonction 
+\begin_inset Quotes fld
+\end_inset
+
+Sol_Sup
+\begin_inset Quotes frd
+\end_inset
+
+ pour obtenir 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
 Méthode
+\end_layout
+
+\begin_layout Standard
+Soit 
+\begin_inset Formula $N=3$
+\end_inset
+
+, tel que :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow\underbrace{\begin{pmatrix}3 & 1 & 2\\
+3 & 2 & 6\\
+6 & 1 & 1
+\end{pmatrix}}_{A}\underbrace{\begin{pmatrix}x_{1}\\
+x_{2}\\
+x_{3}
+\end{pmatrix}}_{X}=\underbrace{\begin{pmatrix}2\\
+1\\
+4
+\end{pmatrix}}_{B}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Or, on cherche à transformer cette expression en :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow\underbrace{\begin{pmatrix}a & b & c\\
+0 & d & f\\
+0 & 0 & g
+\end{pmatrix}}_{U}\underbrace{\begin{pmatrix}x_{1}\\
+x_{2}\\
+x_{3}
+\end{pmatrix}}_{X}=\underbrace{\begin{pmatrix}e_{1}\\
+e_{2}\\
+e_{3}
+\end{pmatrix}}_{e}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On a donc
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+3x_{1}+x_{2}+2x_{3}=2\\
+\\
+\\
+\end{cases}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1497,6 +1676,10 @@ LU
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection*
+Motivation
 \end_layout
 
 \begin_layout Standard

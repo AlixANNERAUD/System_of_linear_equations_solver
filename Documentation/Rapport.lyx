@@ -1300,6 +1300,25 @@ double *Sol_Inf(double **a, double *b, int Taille)
 
 \end_layout
 
+\begin_layout Subsubsection*
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Ainsi, cette algorithme possède une complexité temporelle maximale quadratique
+ (
+\begin_inset Formula $O\left(N²\right)$
+\end_inset
+
+) car nous avons deux boucles imbriqués les unes dans les autres qui dépendent
+ plus ou moins de la taille 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ 
+\end_layout
+
 \begin_layout Subsection
 Méthode triangulaire supérieure
 \end_layout
@@ -1360,23 +1379,6 @@ AX=B
 
 \end_layout
 
-\begin_layout Standard
-Ainsi, de manière de analogue à résolution de matrice inférieure, la formule
- générale pour les termes de 
-\begin_inset Formula $X$
-\end_inset
-
- est : 
-\begin_inset Formula $x_{i}=\frac{b_{i}-\sum_{j=1}^{i-1}a_{ij}x_{j}}{a_{ii}}$
-\end_inset
-
-, 
-\begin_inset Formula $i=1,\ldots,N$
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Subsubsection*
 Exemple
 \end_layout
@@ -1404,9 +1406,9 @@ AX=B
 \begin_inset Formula 
 \[
 \Rightarrow\left(\begin{array}{ccc}
-a_{11} & 0 & 0\\
-a_{21} & a_{22} & 0\\
-a_{31} & a_{32} & a_{33}
+a_{11} & a_{12} & a_{13}\\
+0 & a_{22} & a_{23}\\
+0 & 0 & a_{33}
 \end{array}\right)\left(\begin{array}{c}
 x_{1}\\
 x_{2}\\
@@ -1415,11 +1417,22 @@ x_{3}
 b_{1}\\
 b_{2}\\
 b_{3}
-\end{array}\right)\ensuremath{\Leftrightarrow\left\{ \begin{array}{c}
-a_{11}x_{1}=b_{1}\\
-a_{21}x_{1}+a_{22}x_{2}=b_{2}\\
-a_{31}x_{1}+a_{32}x_{2}+a_{33}x_{3}=b_{3}
-\end{array}\right.}}
+\end{array}\right)\ensuremath{\Leftrightarrow}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow\left\{ \begin{array}{c}
+a_{33}x_{3}=b_{3}\\
+a_{22}x_{2}+a_{23}x_{3}=b_{2}\\
+a_{11}x_{1}+a_{12}x_{2}+a_{13}x_{3}=b_{1}
+\end{array}\right.
 \]
 
 \end_inset
@@ -1433,9 +1446,9 @@ a_{31}x_{1}+a_{32}x_{2}+a_{33}x_{3}=b_{3}
 \Rightarrow\begin{pmatrix}x_{1}\\
 x_{2}\\
 x_{3}
-\end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
-\frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
-\frac{b_{3}}{a_{33}}-\frac{a_{31}}{a_{33}}x_{1}-\frac{a_{32}}{a_{33}}x_{2}
+\end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}-\frac{a_{12}}{a_{11}}x_{2}-\frac{a_{13}}{a_{11}}x_{3}\\
+\frac{b_{2}}{a_{22}}-\frac{a_{23}}{a_{22}}x_{3}\\
+\frac{b_{3}}{a_{33}}
 \end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
 \frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
 \frac{b_{3}-\sum_{k=1}^{2}a_{3k}x_{k}}{a_{33}}
@@ -1458,7 +1471,7 @@ On en déduit alors une formule générale pour
 \begin_layout Standard
 \begin_inset Formula 
 \[
-x_{i}=\frac{b_{i}-\sum_{j=1}^{i-1}a_{ij}x_{j}}{a_{ii}},i=1,\ldots,N
+x_{i}=\frac{b_{i}-\sum_{j=i+1}^{N}a_{ij}x_{j}}{a_{ii}},i=N,\ldots,1
 \]
 
 \end_inset
@@ -1485,6 +1498,19 @@ Ecrire algorithme ici
 
 \end_layout
 
+\begin_layout Subsubsection*
+Conclusion
+\end_layout
+
+\begin_layout Standard
+De manière similaire à la précédente, cette algorithme possèdent une complexité
+ quadratique (
+\begin_inset Formula $O\left(N^{2}\right)$
+\end_inset
+
+).
+\end_layout
+
 \begin_layout Subsection
 Elimination de Gauss
 \end_layout
@@ -1494,8 +1520,7 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-Maintenant que nous disposon des fonctions méthodes et fonctions pour résoudre
- 
+Maintenant que nous disposons des fonctions pour résoudre 
 \begin_inset Formula $AX=B$
 \end_inset
 
@@ -1504,13 +1529,13 @@ Maintenant que nous disposon des fonctions méthodes et fonctions pour résoudre
 \end_inset
 
  une matrice triangulaire inférieure ou supérieure carrée.
- On va maintenant chercher à combiner ces méthodes pour résoudre la même
- équation mais lorsque 
+ On va maintenant chercher à résoudre la même équation mais lorsque 
 \begin_inset Formula $A$
 \end_inset
 
  est une matrice carrée quelconque.
- On va alors chercher à transformer l'expression 
+ Nous allons utiliser la méthode de Gauss pour transformer l'expression
+ 
 \begin_inset Formula $AX=B$
 \end_inset
 
@@ -1527,11 +1552,11 @@ Maintenant que nous disposon des fonctions méthodes et fonctions pour résoudre
 \end_inset
 
  qui est une matrice triangulaire supérieure.
- Ainsi, pour résoudre 
+ Ainsi, il ne restera plusq qu'a résoudre 
 \begin_inset Formula $UX=e$
 \end_inset
 
-, il suffira d'appeler la fonction 
+ avec la fonction 
 \begin_inset Quotes fld
 \end_inset
 
@@ -1539,7 +1564,11 @@ Sol_Sup
 \begin_inset Quotes frd
 \end_inset
 
- vu précédement.
+ pour obtenir 
+\begin_inset Formula $X$
+\end_inset
+
+.
  
 \end_layout
 
@@ -1567,22 +1596,7 @@ x_{3}
 \end{pmatrix}}_{X}=\underbrace{\begin{pmatrix}2\\
 1\\
 4
-\end{pmatrix}}_{B}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Or, on cherche à transformer cette expression en :
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\Rightarrow\underbrace{\begin{pmatrix}a & b & c\\
+\end{pmatrix}}_{B}\Leftrightarrow\underbrace{\begin{pmatrix}a & b & c\\
 0 & d & f\\
 0 & 0 & g
 \end{pmatrix}}_{U}\underbrace{\begin{pmatrix}x_{1}\\
@@ -1600,17 +1614,29 @@ e_{3}
 \end_layout
 
 \begin_layout Standard
-On a donc
+On a donc :
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\begin{cases}
-3x_{1}+x_{2}+2x_{3}=2\\
-\\
-\\
-\end{cases}
+\begin{array}{c}
+(1)\\
+(2)\\
+(3)
+\end{array}\begin{pmatrix}3x_{1}+x_{2}+2x_{3}\\
+3x_{1}+2x_{2}+6x_{3}\\
+6x_{1}+x_{2}-x_{3}
+\end{pmatrix}=\begin{pmatrix}2\\
+1\\
+4
+\end{pmatrix}\Leftrightarrow\begin{pmatrix}ax_{1}+bx_{2}+cx_{3}\\
+dx_{2}+fx_{3}\\
+gx_{3}
+\end{pmatrix}=\begin{pmatrix}e_{1}\\
+e_{2}\\
+e_{3}
+\end{pmatrix}
 \]
 
 \end_inset
@@ -1619,15 +1645,160 @@ On a donc
 \end_layout
 
 \begin_layout Standard
-On cherche a résourde 
-\begin_inset Formula $AX+B$
+On va maintenant éliminer 
+\begin_inset Formula $x_{1}$
 \end_inset
 
-, on va chercher à les transformer l'expression en 
-\begin_inset Formula $UX=e$
+ des équations 
+\begin_inset Formula $(2)$
 \end_inset
 
- 
+ et 
+\begin_inset Formula $(3)$
+\end_inset
+
+ en utilisant 
+\begin_inset Formula $(1)$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{c}
+(1)\\
+(2')\\
+(3')
+\end{array}\begin{pmatrix}(1)\\
+(2)-\frac{3}{3}(1)\\
+(3)-\frac{3}{6}\left(1\right)
+\end{pmatrix}=\begin{pmatrix}3x_{1}+x_{2}+2x_{3}\\
+x_{2}+4x_{3}\\
+-x_{2}-5x_{3}
+\end{pmatrix}=\begin{pmatrix}2\\
+-1\\
+0
+\end{pmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Puis, on va éliminer 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ de l'équation 
+\begin_inset Formula $(3')$
+\end_inset
+
+ en utilisant 
+\begin_inset Formula $(2')$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{c}
+(1)\\
+(2')\\
+(3'')
+\end{array}\begin{pmatrix}(1)\\
+(2)-\frac{3}{3}(1)\\
+(3')-\frac{-1}{1}(2')
+\end{pmatrix}=\begin{pmatrix}3x_{1}+x_{2}+2x_{3}\\
+x_{2}+4x_{3}\\
+-x_{3}
+\end{pmatrix}=\begin{pmatrix}2\\
+-1\\
+-1
+\end{pmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si on factorise par 
+\begin_inset Formula $X$
+\end_inset
+
+, on a donc bien 
+\begin_inset Formula $U$
+\end_inset
+
+ une matrice triangulaire supérieure carrée :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\underbrace{\begin{pmatrix}3 & 1 & 2\\
+0 & 1 & 4\\
+0 & 0 & -1
+\end{pmatrix}}_{U}\underbrace{\begin{pmatrix}x_{1}\\
+x_{2}\\
+x_{3}
+\end{pmatrix}}_{X}=\underbrace{\begin{pmatrix}2\\
+-1\\
+-1
+\end{pmatrix}}_{e}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il ne reste plus qu'à utiliser 
+\begin_inset Quotes fld
+\end_inset
+
+Sol_Sup
+\begin_inset Quotes frd
+\end_inset
+
+ pour résoudre cette équation.
+\end_layout
+
+\begin_layout Subsubsection*
+Code
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Code de mes fesses
+\end_layout
+
+\begin_layout Plain Layout
+
+void KILL_ME()
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1635,8 +1806,16 @@ Conclusion
 \end_layout
 
 \begin_layout Standard
-Cette méthode est relativement efficace, cependant, il faut reclaculer totalemen
-t les matrices 
+Cette méthode est de complexité 
+\begin_inset Formula $O\left(\right)$
+\end_inset
+
+, ce qui est relativement efficace.
+ Cependant, à chaque changement de 
+\begin_inset Formula $B$
+\end_inset
+
+, il faut reclaculer totalement les matrices 
 \begin_inset Formula $U$
 \end_inset
 
@@ -1644,11 +1823,7 @@ t les matrices
 \begin_inset Formula $e$
 \end_inset
 
- si 
-\begin_inset Formula $B$
-\end_inset
-
- change, ce qui est couteux en temps de calcul.
+, ce qui est couteux en temps de calcul.
 \end_layout
 
 \begin_layout Subsection
@@ -1664,28 +1839,42 @@ LU
 \end_layout
 
 \begin_layout Subsubsection*
-Motivation
+Introduction
 \end_layout
 
 \begin_layout Standard
-On factorise 
-\begin_inset Formula $A$
-\end_inset
-
- en une matrice triangulaire supérieure qu'on appele 
+Afin d'éviter de recalculer 
 \begin_inset Formula $U$
 \end_inset
 
- et une matrice triangulaire inférieure qu'on appele 
+ si 
+\begin_inset Formula $B$
+\end_inset
+
+ change, on factorise 
+\begin_inset Formula $A$
+\end_inset
+
+ de notre expression 
+\begin_inset Formula $AX=B$
+\end_inset
+
+ en deux matrice triangulaire inférieure et suppérieure carrée , respectivement
+ 
+\begin_inset Formula $U$
+\end_inset
+
+ et 
 \begin_inset Formula $L$
 \end_inset
 
- tel que 
+.
+ On a donc : 
 \begin_inset Formula $A=LU$
 \end_inset
 
 .
- Cette opération est réalisé à l'aide de la fonction 
+ Cette opération sera réalisé par la fonction 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1694,75 +1883,71 @@ LU
 \end_inset
 
 .
- La diagonale de 
-\begin_inset Formula $L$
-\end_inset
-
- sera rempli de 
-\begin_inset Formula $1$
-\end_inset
-
- afin de faciliter la factorisation.
-\end_layout
-
-\begin_layout Standard
-Comme on a 
-\begin_inset Formula $A=LU$
-\end_inset
-
- et 
+ On passe alors de 
 \begin_inset Formula $AX=B$
 \end_inset
 
-, on peut en déduire que : 
+ à 
 \begin_inset Formula $LUX=B$
 \end_inset
 
-.
-\end_layout
-
-\begin_layout Standard
-Ensuite, on cherche à obtenir la matrice 
-\begin_inset Formula $Y$
-\end_inset
-
- 
+, que l'on peut encore factoriser en 
 \begin_inset Formula $Y=UX$
 \end_inset
 
- tel que 
+, tel que 
 \begin_inset Formula $LY=B$
 \end_inset
 
- avec la fonction 
-\begin_inset Quotes eld
-\end_inset
-
-Sol_Inf
-\begin_inset Quotes erd
-\end_inset
-
 .
+ 
 \end_layout
 
 \begin_layout Standard
-Enfin, on peut trouver 
-\begin_inset Formula $X$
+On peut maintenant passer à la résolution.
+ Tout d'abord avec l'équation 
+\begin_inset Formula $LUX=B$
 \end_inset
 
- avec 
-\begin_inset Formula $UX=Y$
+, 
+\begin_inset Formula $L$
 \end_inset
 
- avec la fonction 
-\begin_inset Quotes eld
+ étant une matrice triangulaire inférieure, la résolution avec 
+\begin_inset Quotes fld
 \end_inset
 
 Sol_Sup
-\begin_inset Quotes erd
+\begin_inset Quotes frd
+\end_inset
+
+ nous permet d'obtenir 
+\begin_inset Formula $Y$
 \end_inset
 
 .
+ Puis, comme 
+\begin_inset Formula $Y=UX$
+\end_inset
+
+, on peut enfin calculer 
+\begin_inset Formula $X$
+\end_inset
+
+ à l'aide de 
+\begin_inset Quotes fld
+\end_inset
+
+Sol_Inf
+\begin_inset Quotes frd
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Méthode
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1913,6 +2098,20 @@ void LU(double **L, double **A, int Taille)
 Conclusion
 \end_layout
 
+\begin_layout Standard
+Cette fonction est de complexité temporelle 
+\begin_inset Formula $O\left(\right)$
+\end_inset
+
+.
+ Cependant, dans le cas où 
+\begin_inset Formula $A$
+\end_inset
+
+ est symétrique, il est possible de procéder à d'autres optimisations et
+ diminuer le temps de calcul.
+\end_layout
+
 \begin_layout Subsection
 Factorisation de Cholesky
 \end_layout
@@ -1951,22 +2150,8 @@ Alors, on a :
 \begin_inset Formula $A=L\cdot L^{T}$
 \end_inset
 
- ou 
-\begin_inset Formula $L=\begin{pmatrix}l_{11} & 0 & 0\\
-\vdots & \ddots & 0\\
-l_{1N} & \cdots & l_{NN}
-\end{pmatrix}$
-\end_inset
-
- avec 
-\begin_inset Formula $L_{ii}>0$
-\end_inset
-
- pour 
-\begin_inset Formula $i=0,\ldots,N$
-\end_inset
-
- (une matrice triangulaire inférieure dont la diagonale est positive).
+ ou L est une matrice triangulaire inférieure carrée dont la diagonale est
+ positive.
 \end_layout
 
 \begin_layout Standard
@@ -2023,11 +2208,15 @@ Sol_Sup
 \end_layout
 
 \begin_layout Subsubsection*
-Exemple
+Méthode
 \end_layout
 
 \begin_layout Standard
 Soit 
+\begin_inset Formula $N=4$
+\end_inset
+
+, 
 \begin_inset Formula $L$
 \end_inset
 
@@ -2035,11 +2224,7 @@ Soit
 \begin_inset Formula $N*N$
 \end_inset
 
- ou 
-\begin_inset Formula $N=4$
-\end_inset
-
- 
+ : 
 \end_layout
 
 \begin_layout Standard
@@ -2055,7 +2240,9 @@ On créer une matrice
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\underbrace{\begin{pmatrix}l_{11} & 0 & 0 & 0\\
+\begin_inset Formula 
+\[
+\underbrace{\begin{pmatrix}l_{11} & 0 & 0 & 0\\
 l_{21} & l_{22} & 0 & 0\\
 l_{31} & l_{32} & l_{33} & 0\\
 l_{41} & l_{42} & l_{43} & l_{44}
@@ -2067,7 +2254,9 @@ l_{41} & l_{42} & l_{43} & l_{44}
 a_{21} & a_{22} & a_{23} & a_{24}\\
 a_{31} & a_{32} & a_{33} & a_{34}\\
 a_{41} & a_{42} & a_{43} & a_{44}
-\end{pmatrix}}_{A}$
+\end{pmatrix}}_{A}
+\]
+
 \end_inset
 
 
