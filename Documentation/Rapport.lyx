@@ -154,7 +154,40 @@ Gauss
 \end_layout
 
 \begin_layout Standard
-<Faire la biographie de Gauss>
+Avant d'étudier la méthode de Gauss, il peut être pertinent d'établir une
+ courte biographie de son auteur.
+ Surnommé 
+\begin_inset Quotes eld
+\end_inset
+
+prince des mathématiques
+\begin_inset Quotes erd
+\end_inset
+
+ par ses pairs, ce mathématicien, né le 30 avril 1777, a contribué de bien
+ des manières à développer non seulement les mathématiques mais également
+ les méthodes en astrophysique et en électromagnétisme.
+ Johann Carl Friedrich Gauss a pu se pencher sur des problèmes dits classiques
+ (depuis l'antiquité) en adoptant des méthodes et raisonnements modernes.
+ Il démontre alors le théorème fondamental de l'algèbre que l'on connaît
+ aujourd'hui sous le nom du théorème de d'Alembert-Gauss, il dédie également
+ un ouvrage à la théorie des nombres contenant plusieurs démonstrations
+ qui révolutionnent l'arithmétique, on lui doit en partie la forme actuelle
+ des nombres complexes.
+ En astrophysique, il met au point la méthodes des moindres carrés permettant
+ de minimiser les incertitudes dues aux mesures ce qui lui permet de déterminer
+ exactement la position de Ceres, une planète naine du système solaire.
+ Avec la contribution de Wilhem Weber, Gauss formule deux théorèmes essentiels
+ en électromagnétisme réfutant l'existence de monopôle magnétique et établissant
+ une relation entre le flux d'un champ électrique sur une surface fermée
+ et la charge électrique totale à l'intérieur de cette surface.
+ Cette liste est loin de résumer tous ses travaux, dont une partie a été
+ publiée après son décès le 23 février 1855, ces derniers sont très nombreux
+ et ont servi de base de recherche pour d'autres mathématiciens et physiciens
+ après lui.
+ Il est donc intéressant d'étudier la solution apportée par Gauss et de
+ l'appliquer à notre problématique.
+ L'élimination de Gauss est expliquée ci-après.
 \end_layout
 
 \begin_layout Subsubsection
