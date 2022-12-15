@@ -248,11 +248,30 @@ prince des mathématiques
 \end_layout
 
 \begin_layout Subsubsection
-Choleski
+Cholesky
 \end_layout
 
 \begin_layout Standard
-<Faire la biographie de Choleski>
+André-Louis Cholesky, également appelé René Cholesky, est un polytechnicien
+ français qui s'est engagé dans l'armée suite à sa formation.
+ Au cours de sa carrière militaire, on lui assigne différentes missions
+ qui l'emmènent à plusieurs endroits où il effectue notamment des travaux
+ de triangulation.
+ Il participe à la Première Guerre mondiale où il est blessé et il meurt
+ le 31 août 1918 des suites de ses blessures.
+ Cependant, on le connaît plus pour ses conctributions aux mathématiques
+ que pour sa carrière de militaire.
+ En effet, il est l'auteur d'un manuscrit intitulé 
+\begin_inset Quotes eld
+\end_inset
+
+Sur la résolution numérique des systèmes d'équations linéaires
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Cette méthode est en fait une nouvelle approche de la méthode des moindres
+ carrés et sera publiée 6 ans après sa mort.
 \end_layout
 
 \begin_layout Standard
