@@ -211,6 +211,20 @@ Gauss
 \end_layout
 
 \begin_layout Standard
+\begin_inset Graphics
+	filename Gauss.png
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
 Avant d'étudier la méthode de Gauss, il peut être pertinent d'établir une
  courte biographie de son auteur.
  Surnommé 
@@ -1057,11 +1071,15 @@ Soit
 \begin_inset Formula $B$
 \end_inset
 
- un vecteur de taille 
+ et 
+\begin_inset Formula $X$
+\end_inset
+
+, des vecteurs de taille 
 \begin_inset Formula $N$
 \end_inset
 
-, 
+ et 
 \begin_inset Formula $A$
 \end_inset
 
@@ -1069,16 +1087,8 @@ Soit
 \begin_inset Formula $N$
 \end_inset
 
- et 
-\begin_inset Formula $X$
-\end_inset
-
- un vecteur de taille 
-\begin_inset Formula $N$
-\end_inset
-
- tel.
- On cherche pour 
+.
+ On cherche, pour 
 \begin_inset Formula $A$
 \end_inset
 
@@ -1142,11 +1152,25 @@ x_{3}
 b_{1}\\
 b_{2}\\
 b_{3}
-\end{array}\right)\ensuremath{\Leftrightarrow\left\{ \begin{array}{c}
-a_{11}x_{1}=b_{1}\\
-a_{21}x_{1}+a_{22}x_{2}=b_{2}\\
-a_{31}x_{1}+a_{32}x_{2}+a_{33}x_{3}=b_{3}
-\end{array}\right.}}
+\end{array}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow\begin{pmatrix}a_{11}x_{1}\\
+a_{21}x_{1}+a_{22}x_{2}\\
+a_{31}x_{1}+a_{32}x_{2}+a_{33}x_{3}
+\end{pmatrix}=\left(\begin{array}{c}
+b_{1}\\
+b_{2}\\
+b_{3}
+\end{array}\right)
 \]
 
 \end_inset
@@ -1163,9 +1187,6 @@ x_{3}
 \end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
 \frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
 \frac{b_{3}}{a_{33}}-\frac{a_{31}}{a_{33}}x_{1}-\frac{a_{32}}{a_{33}}x_{2}
-\end{pmatrix}=\begin{pmatrix}\frac{b_{1}}{a_{11}}\\
-\frac{b_{2}}{a_{22}}-\frac{a_{21}}{a_{22}}x_{1}\\
-\frac{b_{3}-\sum_{k=1}^{2}a_{3k}x_{k}}{a_{33}}
 \end{pmatrix}
 \]
 
@@ -1531,7 +1552,7 @@ De manière similaire à la précédente, cette algorithme possèdent une comple
 \end_layout
 
 \begin_layout Subsection
-Elimination de Gauss
+Élimination de Gauss
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1870,29 +1891,46 @@ Afin d'éviter de recalculer
 \begin_inset Formula $B$
 \end_inset
 
- change, on factorise 
+ change, on exprime 
 \begin_inset Formula $A$
 \end_inset
 
- de notre expression 
-\begin_inset Formula $AX=B$
+ de notre expression initiale :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+AX=B
+\]
+
 \end_inset
 
- en deux matrice triangulaire inférieure et suppérieure carrée , respectivement
- 
-\begin_inset Formula $U$
+
+\end_layout
+
+\begin_layout Standard
+En cette expression :
+\begin_inset Formula 
+\[
+A=LU
+\]
+
 \end_inset
 
- et 
+
+\end_layout
+
+\begin_layout Standard
+Où 
 \begin_inset Formula $L$
 \end_inset
 
-.
- On a donc : 
-\begin_inset Formula $A=LU$
+ est une matrice triangulaire supérieure carrée et 
+\begin_inset Formula $U$
 \end_inset
 
-.
+ une matrice inférieure carrée.
  Cette opération sera réalisé par la fonction 
 \begin_inset Quotes eld
 \end_inset
@@ -1902,37 +1940,46 @@ LU
 \end_inset
 
 .
- On passe alors de 
-\begin_inset Formula $AX=B$
-\end_inset
-
- à 
-\begin_inset Formula $LUX=B$
-\end_inset
-
-, que l'on peut encore factoriser en 
-\begin_inset Formula $Y=UX$
-\end_inset
-
-, tel que 
-\begin_inset Formula $LY=B$
-\end_inset
-
-.
- 
+ On a donc :
 \end_layout
 
 \begin_layout Standard
-On peut maintenant passer à la résolution.
- Tout d'abord avec l'équation 
-\begin_inset Formula $LUX=B$
+\begin_inset Formula 
+\[
+LUX=B
+\]
+
 \end_inset
 
-, 
+
+\end_layout
+
+\begin_layout Standard
+On peut maintenant passer à la résolution qui va se faire en deux étapes.
+ Tout d'abord, nous allons exprimer 
+\begin_inset Formula $Y=UX$
+\end_inset
+
+ tel que :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+LY=B
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula $L$
 \end_inset
 
- étant une matrice triangulaire inférieure, la résolution avec 
+ étant une matrice triangulaire inférieure carrée, il sufit d'utiliser la
+ fonction 
 \begin_inset Quotes fld
 \end_inset
 
@@ -1940,20 +1987,23 @@ Sol_Sup
 \begin_inset Quotes frd
 \end_inset
 
- nous permet d'obtenir 
+ afin d'obtenir 
 \begin_inset Formula $Y$
 \end_inset
 
 .
- Puis, comme 
-\begin_inset Formula $Y=UX$
+\end_layout
+
+\begin_layout Standard
+Enfin, comme 
+\begin_inset Formula $UX=Y$
 \end_inset
 
-, on peut enfin calculer 
-\begin_inset Formula $X$
+ avec 
+\begin_inset Formula $U$
 \end_inset
 
- à l'aide de 
+ une matrice supérieure carrée, il suffit d'utiliser 
 \begin_inset Quotes fld
 \end_inset
 
@@ -1961,8 +2011,11 @@ Sol_Inf
 \begin_inset Quotes frd
 \end_inset
 
+ pour obtenir 
+\begin_inset Formula $X$
+\end_inset
+
 .
- 
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2140,7 +2193,22 @@ Méthode
 \end_layout
 
 \begin_layout Standard
-Soit la matrice 
+Comme vu précédemment, nous avons réussi à optimiser notre résolution dans
+ le cas où 
+\begin_inset Formula $B$
+\end_inset
+
+ change afin d'éviter de tout recalculer.
+ Dans le cas où 
+\begin_inset Formula $A$
+\end_inset
+
+ est symétrique, il est également possible de procéder à d'autres optimisations
+ :
+\end_layout
+
+\begin_layout Standard
+On a donc la matrice 
 \begin_inset Formula $A$
 \end_inset
 
@@ -2165,69 +2233,105 @@ Définie positive, c'est à dire quelle est positive et inversible, tel que
 \end_layout
 
 \begin_layout Standard
-Alors, on a : 
-\begin_inset Formula $A=L\cdot L^{T}$
-\end_inset
-
- ou L est une matrice triangulaire inférieure carrée dont la diagonale est
- positive.
-\end_layout
-
-\begin_layout Standard
-On a donc 
-\begin_inset Formula $A=L\cdot L^{T}$
-\end_inset
-
- et 
-\begin_inset Formula $AX=B$
-\end_inset
-
-, si on remplace 
+On peut alors exprimer 
 \begin_inset Formula $A$
 \end_inset
 
-, 
-\begin_inset Formula $L\cdot L^{T}X=B$
+ en fonction de 
+\begin_inset Formula $L$
 \end_inset
 
- et simplifier avec 
+ une matrice triangulaire inférieure carrée dont la diagonale est positive
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A=L\cdot L^{T}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si on remplace dans notre expression initiale, on a :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+AX=B\Leftrightarrow L\cdot L^{T}\cdot X=B
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On peut passer maintenant passer à la résolution.
+ De manière similaire à la méthode 
+\begin_inset Quotes fld
+\end_inset
+
+LU
+\begin_inset Quotes frd
+\end_inset
+
+, nous allons procéder en deux étapes.
+\end_layout
+
+\begin_layout Itemize
+Tout d'abord, la résolution de l'expression 
 \begin_inset Formula $LY=B$
 \end_inset
 
- ou 
+ où 
 \begin_inset Formula $Y=L^{T}X$
 \end_inset
 
-.
- On peut donc résoudre 
-\begin_inset Formula $LY=B$
-\end_inset
-
  avec la fonction 
-\begin_inset Quotes eld
+\begin_inset Quotes fld
 \end_inset
 
 Sol_Inf
-\begin_inset Quotes erd
+\begin_inset Quotes frd
 \end_inset
 
- et efin résoudre 
+.
+ 
+\begin_inset Formula $L$
+\end_inset
+
+ étant une matrice triangulaire inférieure carrée.
+\end_layout
+
+\begin_layout Itemize
+Enfin, la résolution de l'expression 
 \begin_inset Formula $L^{T}X=Y$
 \end_inset
 
  avec la fonction 
-\begin_inset Quotes eld
+\begin_inset Quotes fld
 \end_inset
 
 Sol_Sup
-\begin_inset Quotes erd
+\begin_inset Quotes frd
 \end_inset
 
 .
+ 
+\begin_inset Formula $L^{T}$
+\end_inset
+
+ étant également une matrice triangulaire inférieure carrée.
 \end_layout
 
 \begin_layout Subsubsection*
-Méthode
+Application
 \end_layout
 
 \begin_layout Standard
