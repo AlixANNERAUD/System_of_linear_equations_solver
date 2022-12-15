@@ -403,7 +403,7 @@ et
 Nous allons donc à l'aide de plusieurs méthodes, tenter de simplifier le
  problème en sous-problèmes plus simple à résoudre et procéder à des optimisatio
 ns graduelles afin d'optimiser le cout en temps de calcul et l'espace mémoire
- utilisé pour le cacul.
+ utilisé pour le calcul.
 \end_layout
 
 \begin_layout Standard
@@ -523,6 +523,29 @@ Sur la résolution numérique des systèmes d'équations linéaires
 Jacobi
 \end_layout
 
+\begin_layout Standard
+Charles Gustave Jacob Jacobi est un mathématicien allemand né le 10 décembre
+ 1804.
+ Après avoir soutenu une thèse sur la théorie des fractions, il enseigne
+ les mathématiques à l'université de Königsberg.
+ En parallèle de sa fonction de professeur, il effectue des travaux de recherche
+ en physique mathématique, en théorie des nombres et en analyse mathématique
+ pour n'en citer que quelques uns.
+ On lui doit notamment la théorie des déterminants et en particulier l'invention
+ du déterminant d'une matrice (jacobienne).
+ Il publie également un traité fondamental sur les fonctions elliptiques
+ qui révolutionne la physique mathématique mais il dédie aussi un ouvrage
+ aux équations différentielles.
+ Malgré sa mort prématurée en 1851, à l'âge de 46 ans, ses travaux furent
+ nombreux et on retrouve parmi eux une méthode de résolution de systèmes
+ linéaires.
+ Contrairement aux méthodes de Gauss, de Cholesky ou encore de factorisation
+ LU qui sont des méthodes directes, la méthode de Jacobi est une méthode
+ dite itérative.
+ Il est alors pertinent de s'intéresser à cette méthode et de la coder si
+ l'on veut réaliser une comparaison entre les deux types de méthode.
+\end_layout
+
 \begin_layout Subsubsection
 Philipp von Seidel
 \end_layout
@@ -578,7 +601,7 @@ Tout d'abord, en C, comme la plupart des langages de programmation, il est
  car il faudrait disposer d'une mémoire infinie pour représenter une infinité
  de nombres.
  Comme nous utilisons des nombres réels pour les vecteurs et matrices, il
- faut choisir parmis les types signés flottant du C qui sont :
+ faut choisir parmi les types signés flottant du C qui sont :
 \end_layout
 
 \begin_layout Standard
@@ -812,9 +835,8 @@ float
  C'est à dire, dont les processeur possèdent des registres de calculs flottant
  de 64 bits / 8 octets.
  Il est à noter que cette considération aurait été différente il y 10 -
- 20 ans car les processeurs d’antan ne supportaient ne possédaient que des
- registres de calcul flottant de 32 bits, 16 bits voir 8 bits (pour les
- plus anciens).
+ 20 ans car les processeurs d’antan ne possédaient que des registres de
+ calcul flottant de 32 bits, 16 bits voir 8 bits (pour les plus anciens).
  De plus, bien que le type 
 \begin_inset Quotes fld
 \end_inset
@@ -2223,15 +2245,33 @@ Principe
 \end_layout
 
 \begin_layout Standard
-Afin d'éviter de recalculer 
-\begin_inset Formula $U$
-\end_inset
-
- si 
+Dans le cas où 
 \begin_inset Formula $B$
 \end_inset
 
- change, on exprime 
+ est modifié mais que 
+\begin_inset Formula $A$
+\end_inset
+
+ reste constant, il est possible d'optimiser les calculs afin d'éviter de
+ recalculer 
+\begin_inset Formula $U$
+\end_inset
+
+.
+ C'est ce que nous allons faire ici avec la fonction 
+\begin_inset Quotes fld
+\end_inset
+
+LU
+\begin_inset Quotes frd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Tout d'abord, on exprime 
 \begin_inset Formula $A$
 \end_inset
 
@@ -2295,31 +2335,26 @@ LUX=B
 \end_layout
 
 \begin_layout Standard
-On peut maintenant passer à la résolution qui va se faire en deux étapes.
- Tout d'abord, nous allons exprimer 
+On peut maintenant passer à la résolution qui va se faire en deux étapes
+ :
+\end_layout
+
+\begin_layout Itemize
+Tout d'abord, nous allons exprimer 
 \begin_inset Formula $Y=UX$
 \end_inset
 
- tel que :
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-LY=B
-\]
-
+ tel que : 
+\begin_inset Formula $LY=B$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
+.
+ 
 \begin_inset Formula $L$
 \end_inset
 
- étant une matrice triangulaire inférieure carrée, il sufit d'utiliser la
- fonction 
+ étant une matrice triangulaire inférieure carrée, il suffit d'utiliser
+ la fonction 
 \begin_inset Quotes fld
 \end_inset
 
@@ -2334,7 +2369,7 @@ Sol_Sup
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Enfin, comme 
 \begin_inset Formula $UX=Y$
 \end_inset
@@ -2556,8 +2591,7 @@ Sol_Inf
 \end{pmatrix}$
 \end_inset
 
-.
- 
+, ce qui est correct.
 \end_layout
 
 \begin_layout Standard
@@ -2903,7 +2937,7 @@ On constate que
 \end_layout
 
 \begin_layout Subsubsection*
-Algorithme
+Code
 \end_layout
 
 \begin_layout Standard
@@ -2919,6 +2953,89 @@ Ecrire code
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection*
+Exemple
+\end_layout
+
+\begin_layout Standard
+Ainsi, pour 
+\begin_inset Formula $A=\begin{pmatrix}1 & 1 & 1 & 1\\
+1 & 5 & 5 & 5\\
+1 & 5 & 14 & 14\\
+1 & 5 & 14 & 15
+\end{pmatrix}$
+\end_inset
+
+, l'algorithme nous retourne 
+\begin_inset Formula $L=\begin{pmatrix}1 & 0 & 0 & 0\\
+1 & 2 & 0 & 0\\
+1 & 2 & 3 & 0\\
+1 & 2 & 3 & 1
+\end{pmatrix}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Puis, pour 
+\begin_inset Formula $B=\begin{pmatrix}5\\
+1\\
+3\\
+1
+\end{pmatrix}$
+\end_inset
+
+ et 
+\begin_inset Formula $L$
+\end_inset
+
+, 
+\begin_inset Quotes fld
+\end_inset
+
+Sol_Inf
+\begin_inset Quotes frd
+\end_inset
+
+ retourne 
+\begin_inset Formula $Y=\begin{pmatrix}5\\
+-20\\
+8,5
+\end{pmatrix}$
+\end_inset
+
+, ce qui est correct.
+\end_layout
+
+\begin_layout Standard
+Enfin, pour 
+\begin_inset Formula $A$
+\end_inset
+
+ et 
+\begin_inset Formula $Y$
+\end_inset
+
+, 
+\begin_inset Quotes fld
+\end_inset
+
+Sol_Inf
+\begin_inset Quotes frd
+\end_inset
+
+ retourne 
+\begin_inset Formula $X=\begin{pmatrix}1\\
+-1\\
+2
+\end{pmatrix}$
+\end_inset
+
+, ce qui est correct.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2959,7 +3076,7 @@ Méthode de Jacobi
 \end_layout
 
 \begin_layout Subsubsection*
-Méthode
+Principe
 \end_layout
 
 \begin_layout Standard
@@ -3088,7 +3205,7 @@ L'équation initiale
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\Rightarrow DX=b-\left(E+F\right)X
+\Rightarrow DX=B-\left(E+F\right)X
 \]
 
 \end_inset
@@ -3099,7 +3216,7 @@ L'équation initiale
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\Rightarrow X=D^{-1}\left(b-\left[E+F\right]X\right)
+\Rightarrow X=D^{-1}\left(B-\left[E+F\right]X\right)
 \]
 
 \end_inset
@@ -3110,9 +3227,9 @@ L'équation initiale
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\begin{cases}
+\Rightarrow\begin{cases}
 X^{0} & k=0\\
-X^{k+1}=D^{-1}\left(b-\left[E+F\right]X^{k}\right) & k=1,\ldots,N
+X_{i}^{k+1}=D^{-1}\left(B-\left[E+F\right]X^{k}\right) & k=1,\ldots,N
 \end{cases}
 \]
 
@@ -3122,12 +3239,24 @@ X^{k+1}=D^{-1}\left(b-\left[E+F\right]X^{k}\right) & k=1,\ldots,N
 \end_layout
 
 \begin_layout Standard
+Si il y a convergence, 
+\begin_inset Formula $X^{k+1}\approx X^{k}=X^{*}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Méthode
+\end_layout
+
+\begin_layout Standard
 Ainsi, pour un 
-\begin_inset Formula $X^{0}$
+\begin_inset Formula $X_{i}^{k+1}$
 \end_inset
 
  donné, on peut calculer 
-\begin_inset Formula $X_{i}^{k+1}=\frac{b_{i}-\sum_{j=1,j\neq i}^{N}A_{ij}X_{j}^{k}}{A_{ii}}$
+\begin_inset Formula $X_{i}^{k+1}=\frac{B_{i}-\sum_{j=1,j\neq i}^{N}A_{ij}X_{j}^{k}}{A_{ii}}$
 \end_inset
 
  pour 
@@ -3138,20 +3267,30 @@ Ainsi, pour un
 \end_layout
 
 \begin_layout Standard
-On peut alors calculer la norme : 
-\begin_inset Formula $\text{Norm}=\left\Vert x_{k+1}-x_{k}\right\Vert _{2}=\sqrt{\sum_{n=0}^{N-1}\left(x_{k+1}\left[n\right]-x_{k}\left[n\right]\right)^{2}}$
+A chaque itération, 
+\begin_inset Formula $x_{k}$
 \end_inset
 
+ va converger vers 
+\begin_inset Formula $x_{k+1}$
+\end_inset
 
+.
+ On définit alors un 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ pour que la boucle continue d'itérer jusqu'à ce que : 
+\begin_inset Formula $\left\Vert x_{k+1}-x_{k}\right\Vert _{2}=\sqrt{\sum_{n=0}^{N-1}\left(x_{k+1}\left[n\right]-x_{k}\left[n\right]\right)^{2}}\leqslant\varepsilon$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-On définit 
-\begin_inset Formula $\varepsilon=0,001$
-\end_inset
-
- et 
-\begin_inset Formula $X_{k}=X_{0}$
+On définit également un nombre d'itération maximale pour limiter le nombre
+ maximale d'itération si jamais l'algorithme n'atteint pas 
+\begin_inset Formula $\varepsilon$
 \end_inset
 
 .
@@ -3177,6 +3316,49 @@ status open
 
 \begin_layout Subsubsection*
 Exemple
+\end_layout
+
+\begin_layout Standard
+Pour 
+\begin_inset Formula $A=\begin{pmatrix}4 & 1 & 1\\
+1 & 3 & 1\\
+2 & 0 & 5
+\end{pmatrix}$
+\end_inset
+
+, 
+\begin_inset Formula $B=\begin{pmatrix}1\\
+1\\
+1
+\end{pmatrix}$
+\end_inset
+
+, 
+\begin_inset Formula $\varepsilon=0,01$
+\end_inset
+
+ et un nombre d'itération maximale de 
+\begin_inset Formula $10$
+\end_inset
+
+, l'algorithme retourne 
+\begin_inset Formula $X=\begin{pmatrix}0,157701\\
+0,236300\\
+0,137924
+\end{pmatrix}$
+\end_inset
+
+, ce qui semble correct car 
+\begin_inset Formula $X\cdot A=\begin{pmatrix}1,005028\\
+1,004525\\
+1,005022
+\end{pmatrix}\approx B=\begin{pmatrix}1\\
+1\\
+1
+\end{pmatrix}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3226,6 +3408,10 @@ Méthode
 
 \begin_layout Standard
 dd
+\end_layout
+
+\begin_layout Standard
+De manière similaire à la méthode de Jacobi
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3365,6 +3551,9 @@ Triangulaire inférieure
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $O\left(\frac{}{}\right)$
+\end_inset
+
 
 \end_layout
 
@@ -3407,6 +3596,9 @@ Triangulaire supérieure
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $O\left(\frac{}{}\right)$
+\end_inset
+
 
 \end_layout
 
@@ -3580,6 +3772,9 @@ Méthode de Jacobi
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $O\left(\right)$
+\end_inset
+
 
 \end_layout
 
@@ -3618,6 +3813,9 @@ Méthode Gauss-Seidel
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $O\left(\right)$
+\end_inset
+
 
 \end_layout
 
@@ -3664,11 +3862,11 @@ La forme de
 \begin_inset Formula $B$
 \end_inset
 
-, afin d'optimiser le temps de calcul et éventuellement l'empreinte mémoire
+, afin d'optimiser le temps de calcul et éventuellement l'empreinte mémoire.
 \end_layout
 
 \begin_layout Itemize
-La précision de la résolution
+La précision de la résolution.
 \end_layout
 
 \begin_layout Standard

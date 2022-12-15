@@ -114,9 +114,9 @@ void Afficher_Matrice(double **Matrice, int Taille)
 
 // - Méthodes directes de résolution.
 
-// - - Méthode triangulaire
+// - - Resolution de matrices triangulaires carrées
 
-// Fonction qui résoud une matrice carrée triangulaire inférieure (algorithme de la redescente).
+// Fonction qui résoud AX = B avec A une matrice triangulaire inférieure carrée et B un vecteur (algorithme de la redescente).
 double *Sol_Inf(double **A, double *B, int Taille)
 {
     // Allocation du vecteur X.
@@ -141,7 +141,7 @@ double *Sol_Inf(double **A, double *B, int Taille)
     return X;
 }
 
-// Fonction qui résoud une matrice carrée triangulaire supérieure (algorithme de la remontée).
+// Fonction qui résoud AX = B avec A une matrice triangulaire supérieure carrée et B un vecteur (algorithme de la remontée).
 double *Sol_Sup(double **A, double *B, int Taille)
 {
     // Allocation du vecteur X.
@@ -166,8 +166,9 @@ double *Sol_Sup(double **A, double *B, int Taille)
     return X;
 }
 
-// - - Méthode de Gauss
+// - - Elimination de Gauss
 
+// Fonction qui effectue l'élimination de Gauss pour transformer A en U, une matrice triangulaire supérieure carrée (algorithme de Gauss).
 void Gauss(double **A, double *B, double **U, double *e, int Taille)
 {
     for (int i = 0; i < Taille - 1; i++)
@@ -184,14 +185,9 @@ void Gauss(double **A, double *B, double **U, double *e, int Taille)
     }
 }
 
-double *Resol_Gauss(double **A, double *B, int Taille)
-{
-    Gauss(A, B, A, B, Taille);
+// - - Factorisation LU
 
-    return Sol_Sup(A, B, Taille);
-}
-
-// Transforme A en U.
+// Fonction qui effectue la factorisation LU pour transformer A en L et U, deux matrices triangulaires carrées inférieures et supérieures (algorithme de LU).
 void LU(double **L, double **A, int Taille)
 {
     Nettoyage_Matrice(L, Taille);
@@ -219,30 +215,31 @@ void LU(double **L, double **A, int Taille)
     }
 }
 
+// - - Factorisation de Cholesky
+
 // Fonction qui transforme A en L*L^T. Renvoi L.
 double **Cholesky(double **A, int Taille)
 {
-    double **L = Allocation_Matrice(Taille); // Allocation de la matrice L.
+    // Allocation de la matrice L.
+    double **L = Allocation_Matrice(Taille);
 
+    // Itère parmis les lignes de la matrice.
     for (int j = 0; j < Taille; j++)
     {
         double Sum = 0;
-        // Calcul de la diagonale
-        // Calcul de la somme
 
+        // - Calcul de la somme.
         for (int k = 0; k < j; k++)
         {
-
             Sum += L[j][k] * L[j][k];
         }
 
-        // Calcul des termes de la diagonale de L.
+        // - Calcul des termes de la diagonale de L.
         L[j][j] = sqrt(A[j][j] - Sum);
 
-        // Calcul des termes pour i = j+1 à N.
+        // - Calcul des termes pour i = j+1 à N.
         for (int i = j + 1; i < Taille; i++)
         {
-
             Sum = 0;
             for (int k = 0; k < j; k++)
             {
@@ -255,8 +252,6 @@ double **Cholesky(double **A, int Taille)
     return L;
 }
 
-// - Méthodes itératives de résolution.
-
 // Fonction qui transpose une matrice carrée inférieure en matrice carrée supérieure.
 double **Transposer(double **Matrice, int Taille)
 {
@@ -268,12 +263,16 @@ double **Transposer(double **Matrice, int Taille)
         {
             // On inverse les termes (en cooordonnées) de la matrice.
             Matrice[i][j] = Matrice[j][i];
-            // On supprime les termes inférieures.
+            //  On supprime les termes inférieurs.
             Matrice[j][i] = 0;
         }
     }
     return Matrice;
 }
+
+// - Méthodes itératives de résolution.
+
+// - - Jacobi
 
 double *Jacobi(double **A, double *B, int Taille)
 {
@@ -287,19 +286,18 @@ double *Jacobi(double **A, double *B, int Taille)
 
     double *X_k_1 = Allocation_Vecteur(Taille);
 
-    double Norme = 1;
-
+    double Norme;
     int it = 0;
     int it_max = 10;
-
     double Epsilon = 0.001;
 
-    while ((Norme > Epsilon) && (it < it_max))
+    do
     {
-        // Calcul de X_k_1
+        printf("it = %d", it);
+        // - Calcul de X_k_1.
         for (int i = 0; i < Taille; i++)
         {
-            // Calcul de la somme
+            // - Calcul de la somme des a[i][j] * x_k[j].
             double Somme = 0;
             for (int j = 0; j < Taille; j++)
             {
@@ -310,7 +308,8 @@ double *Jacobi(double **A, double *B, int Taille)
             }
             X_k_1[i] = (B[i] - Somme) / A[i][i];
         }
-        // Calcul de la norme
+
+        // - Calcul de la norme.
         Norme = 0;
         for (int i = 0; i < Taille; i++)
         {
@@ -318,14 +317,74 @@ double *Jacobi(double **A, double *B, int Taille)
         }
         Norme = sqrt(Norme);
 
+        // - On remplace X_k par X_k_1.
         for (int i = 0; i < Taille; i++)
         {
             X_k[i] = X_k_1[i];
         }
         it++;
-    }
+    } while ((Norme > Epsilon) && (it < it_max));
+
     return X_k_1;
 }
+
+// - - Gauss-Seidel
+
+double *Gauss_Seidel(double **A, double *B, int Taille)
+{
+    // - Allocation des vecteurs.
+    double *X_k = Allocation_Vecteur(Taille);
+    double *X_k_1 = Allocation_Vecteur(Taille);
+
+    // - Remplissage de X_k par des 1.
+    for (int i = 0; i < Taille; i++)
+    {
+        X_k[i] = 1;
+    }
+
+    double Norme;
+    int it = 0;
+    int it_max = 10;
+    double Epsilon = 0.001;
+
+    do
+    {
+        // - Calcul de X_k_1.
+        for (int i = 0; i < Taille; i++)
+        {
+            // - Calcul de la somme des A[i][j] * X_k_1[j].
+            double Somme = 0;
+            for (int j = 0; j < i; j++)
+            {
+                Somme += A[i][j] * X_k_1[j];
+            }
+            // - Calcul de la somme des a[i][j] * x_k[j].
+            for (int j = i + 1; j < Taille; j++)
+            {
+                Somme += A[i][j] * X_k[j];
+            }
+            X_k_1[i] = (B[i] - Somme) / A[i][i];
+        }
+
+        // - Calcul de la norme entre X_k_1 et X_k.
+        Norme = 0;
+        for (int i = 0; i < Taille; i++)
+        {
+            Norme += (X_k_1[i] - X_k[i]) * (X_k_1[i] - X_k[i]);
+        }
+        Norme = sqrt(Norme);
+
+        // - On remplace X_k par X_k_1.
+        for (int i = 0; i < Taille; i++)
+        {
+            X_k[i] = X_k_1[i];
+        }
+        it++;
+    } while ((Norme > Epsilon) && (it < it_max));
+
+    return X_k_1;
+}
+
 
 int main()
 {
@@ -395,7 +454,7 @@ int main()
 
         double *X = Sol_Sup(A, B, Taille);
 
-        printf("La solution X de l'équation AX = B avec la méthode triangulaire supérieure est :\n");
+        printf("La solution X de AX = B d'après la méthode triangulaire supérieure est :\n");
         Afficher_Vecteur(X, Taille);
 
         // Désallocation des matrices et vecteurs.
@@ -404,7 +463,7 @@ int main()
         Desallocation_Vecteur(X);
     }
 
-    // - - Méthode de Gauss.
+    // - - Elimination de Gauss
 
     {
         // Définition de la taille.
@@ -413,7 +472,7 @@ int main()
         double **A = Allocation_Matrice(Taille);
         double *B = Allocation_Vecteur(Taille);
 
-        // Remplissage de A
+        // Remplissage de A.
         A[0][0] = 1;
         A[0][1] = 2;
         A[0][2] = 3;
@@ -424,16 +483,19 @@ int main()
         A[2][1] = -1;
         A[2][2] = 1;
 
-        // Remplissage de B
+        // Remplissage de B.
         B[0] = 5;
         B[1] = 5;
         B[2] = 6;
 
-        // Résolution de l'équation.
-        double *X = Resol_Gauss(A, B, Taille);
+        // Transformation de A en matrice triangulaire supérieure.
+        Gauss(A, B, A, B, Taille);
 
-        // Affichage
-        printf("La solution x pour Gauss est :\n");
+        // Résolution de l'équation.
+        double* X = Sol_Sup(A, B, Taille);
+
+        // Affichage de X.
+        printf("La solution X de AX = B d'après la méthode de l'élimination de Gauss est :\n");
         Afficher_Vecteur(X, Taille);
 
         // Désallocation des matrices et vecteurs.
@@ -467,17 +529,17 @@ int main()
 
         double **L = Allocation_Matrice(Taille);
 
-        // Factorisation de A = LU
+        // Factorisation de A = LU.
         LU(L, A, Taille);
 
-        // Résolution de LY = B
+        // Résolution de LY = B.
         double *Y = Sol_Inf(L, B, Taille);
 
-        // Résolution de UX = Y
+        // Résolution de UX = Y.
         double *X = Sol_Sup(A, Y, Taille);
 
-        // Affichage
-        printf("La solution X pour LU : \n");
+        // Affichage.
+        printf("La solution X de AX = B d'après la méthode de la factorisation LU est : \n");
         Afficher_Vecteur(X, Taille);
 
         // Désallocation des matrices et vecteurs.
@@ -523,10 +585,10 @@ int main()
 
         printf("La solution pour Choleski est :\n");
 
-        // Factorisation de A = LL^T
-        double** L = Cholesky(A, Taille);
+        // Factorisation de A = LL^T.
+        double **L = Cholesky(A, Taille);
 
-        // Résolution de LY = B
+        // Résolution de LY = B.
         double *Y = Sol_Inf(L, B, Taille);
 
         // Résolution de L^TX = Y
@@ -534,10 +596,11 @@ int main()
 
         double *X = Sol_Sup(L, Y, Taille);
 
-        printf("La solution X pour Cholesky : \n");
+        printf("La solution X de AX = B d'après la méthode de Cholesky est : \n");
 
         Afficher_Vecteur(X, Taille);
 
+        // Désallocation des matrices et vecteurs.
         Desallocation_Matrice(A, Taille);
         Desallocation_Matrice(L, Taille);
         Desallocation_Vecteur(Y);
@@ -547,13 +610,13 @@ int main()
 
     // - Méthodes itératives
 
-    // - - Méthode de Jacobi
-    {   
+    // - - Jacobi
+    {
         // Définition de la taille
         int Taille = 3;
         // Allocation des matrices et vecteurs.
-        double** A = Allocation_Matrice(Taille);
-        double* B = Allocation_Vecteur(Taille);
+        double **A = Allocation_Matrice(Taille);
+        double *B = Allocation_Vecteur(Taille);
 
         // Remplissage de A
         A[0][0] = 4;
@@ -565,23 +628,61 @@ int main()
         A[2][0] = 2;
         A[2][1] = 0;
         A[2][2] = 5;
-        
+
         // Remplissage de B
         B[0] = 1;
         B[1] = 1;
         B[2] = 1;
 
-        double* X = Jacobi(A, B, Taille);
+        double *X = Jacobi(A, B, Taille);
 
-        printf("La solution X de AX = B avec la méthode Jacobi : \n");
+        // - Résultat précis est : (1, 1, 1)
+
+        printf("La solution X de AX = B avec la méthode Jacobi E est : \n");
 
         Afficher_Vecteur(X, Taille);
 
-        // - Desallocation avant la fermeture du programme.
-
+        // Désallocation des matrices et vecteurs.
+        Desallocation_Matrice(A, Taille);
         Desallocation_Vecteur(B);
         Desallocation_Vecteur(X);
+    }
+
+    // - - Gauss-Seidel
+    {
+        // Définition de la taille
+        int Taille = 3;
+        // Allocation des matrices et vecteurs.
+        double **A = Allocation_Matrice(Taille);
+        double *B = Allocation_Vecteur(Taille);
+
+        // Remplissage de A matrice quelconque
+
+        A[0][0] = 4;
+        A[0][1] = 1;
+        A[0][2] = 1;
+        A[1][0] = 1;
+        A[1][1] = 3;
+        A[1][2] = 1;
+        A[2][0] = 2;
+        A[2][1] = 0;
+        A[2][2] = 5;
+
+        // Remplissage de B
+        B[0] = 1;
+        B[1] = 1;
+        B[2] = 1;
+
+        double *X = Gauss_Seidel(A, B, Taille);
+
+        printf("La solution X de AX = B avec la méthode de Gauss-Seidel : \n");
+
+        Afficher_Vecteur(X, Taille);
+
+        // Désallocation des matrices et vecteurs.
         Desallocation_Matrice(A, Taille);
+        Desallocation_Vecteur(B);
+        Desallocation_Vecteur(X);
     }
 
     return 0;
