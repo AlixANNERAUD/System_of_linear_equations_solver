@@ -86,8 +86,6 @@ void Desallocation_Matrice(double **Matrice, int Taille)
 // Fonction qui affiche un vecteur de taille N.
 void Afficher_Vecteur(double *Vecteur, int Taille)
 {
-    // Saut de ligne.
-    printf("\n");
     // Itère parmis les éléments du vecteur.
     for (int i = 0; i < Taille; i++)
     {
@@ -102,8 +100,6 @@ void Afficher_Matrice(double **Matrice, int Taille)
     // Itère parmis la première dimension de la matrice.
     for (int i = 0; i < Taille; i++)
     {
-        // Retour à la ligne.
-        printf("\n");
 
         // Itère parmis la deuxième dimension de la matrice.
         for (int j = 0; j < Taille; j++)
@@ -121,13 +117,13 @@ void Afficher_Matrice(double **Matrice, int Taille)
 // - - Méthode triangulaire
 
 // Fonction qui résoud une matrice carrée triangulaire inférieure (algorithme de la redescente).
-double *Sol_Inf(double **a, double *b, int Taille)
+double *Sol_Inf(double **A, double *B, int Taille)
 {
     // Allocation du vecteur X.
-    double *x = Allocation_Vecteur(Taille);
+    double *X = Allocation_Vecteur(Taille);
 
     // Calcul du premier terme de X.
-    x[0] = b[0] / a[0][0];
+    X[0] = B[0] / A[0][0];
 
     // Itère parmis les lignes de la matrice.
     for (int i = 1; i < Taille; i++)
@@ -136,40 +132,38 @@ double *Sol_Inf(double **a, double *b, int Taille)
         double Sum = 0;
         for (int j = 0; j < i; j++)
         {
-            Sum = Sum + a[i][j] * x[j];
+            Sum = Sum + A[i][j] * X[j];
         }
         // Calcul du terme X[i].
-        x[i] = (b[i] - Sum) / a[i][i];
+        X[i] = (B[i] - Sum) / A[i][i];
     }
 
-    return x;
+    return X;
 }
 
 // Fonction qui résoud une matrice carrée triangulaire supérieure (algorithme de la remontée).
-double *Sol_Sup(double **a, double *b, int Taille)
+double *Sol_Sup(double **A, double *B, int Taille)
 {
-    double *x = Allocation_Vecteur(Taille);
+    // Allocation du vecteur X.
+    double *X = Allocation_Vecteur(Taille);
 
-    for (int i = 0; i < Taille; i++)
-    {
-        x[i] = 0;
-    }
+    // Calcul du dernier terme de X (terme initial).
+    X[Taille - 1] = B[Taille - 1] / A[Taille - 1][Taille - 1];
 
-    x[Taille - 1] = b[Taille - 1] / a[Taille - 1][Taille - 1];
-
+    // Itère parmis les lignes de la matrice.
     for (int i = Taille - 2; i >= 0; i--)
     {
-        // - Somme
+        // Calcul de la somme des a[i][j] * x[j]
         double Sum = 0;
         for (int j = i + 1; j < Taille; j++)
         {
-            Sum += a[i][j] * x[j];
+            Sum += A[i][j] * X[j];
         }
 
-        x[i] = (b[i] - Sum) / a[i][i];
+        X[i] = (B[i] - Sum) / A[i][i];
     }
 
-    return x;
+    return X;
 }
 
 // - - Méthode de Gauss
@@ -229,7 +223,6 @@ void LU(double **L, double **A, int Taille)
 double **Cholesky(double **A, int Taille)
 {
     double **L = Allocation_Matrice(Taille); // Allocation de la matrice L.
-    Nettoyage_Matrice(L, Taille);
 
     for (int j = 0; j < Taille; j++)
     {
@@ -285,10 +278,13 @@ double **Transposer(double **Matrice, int Taille)
 double *Jacobi(double **A, double *B, int Taille)
 {
     double *X_k = Allocation_Vecteur(Taille);
+
+    // Remplissage de X_k par des 1.
     for (int i = 0; i < Taille; i++)
     {
         X_k[i] = 1;
     }
+
     double *X_k_1 = Allocation_Vecteur(Taille);
 
     double Norme = 1;
@@ -333,212 +329,260 @@ double *Jacobi(double **A, double *B, int Taille)
 
 int main()
 {
-    int Taille = 3;
 
-    // Allocation des matrices A et B.
-    double **A = Allocation_Matrice(Taille);
-    double *B = Allocation_Vecteur(Taille);
-    double *X;
+    // Les différentes parties sont mises entre crochet afin que les variables aients une portée locale (propres à chaques parties).
 
-    // - Sol inf
+    // - Méthodes directes
 
-    // Remplissage des matrices et vecteurs.
-    A[0][0] = 1;
-    A[0][1] = 0;
-    A[0][2] = 0;
-    A[1][0] = 2;
-    A[1][1] = 3;
-    A[1][2] = 0;
-    A[2][0] = 1;
-    A[2][1] = 4;
-    A[2][2] = -1;
+    // - - Méthode triangulaire inférieure.
 
-    B[0] = 1;
-    B[1] = 8;
-    B[2] = 10;
+    {
+        // Définition de la taille.
+        int Taille = 3;
+        // Allocation des matrices et vecteurs.
+        double **A = Allocation_Matrice(Taille);
+        double *B = Allocation_Vecteur(Taille);
 
-    X = Sol_Inf(A, B, Taille);
+        // Remplissage des matrices et vecteurs.
+        A[0][0] = 1;
+        A[0][1] = 0;
+        A[0][2] = 0;
+        A[1][0] = 2;
+        A[1][1] = 3;
+        A[1][2] = 0;
+        A[2][0] = 1;
+        A[2][1] = 4;
+        A[2][2] = -1;
 
-    printf("La solution x pour la remontée est :\n%f\n %f\n%f\n", X[0], X[1], X[2]);
+        B[0] = 1;
+        B[1] = 8;
+        B[2] = 10;
 
-    // Remplissage des matrices et vecteurs.
-    A[0][0] = 1;
-    A[0][1] = 2;
-    A[0][2] = 3;
-    A[1][0] = 0;
-    A[1][1] = 4;
-    A[1][2] = 8;
-    A[2][0] = 0;
-    A[2][1] = 0;
-    A[2][2] = 5;
+        double *X = Sol_Inf(A, B, Taille);
 
-    B[0] = 6;
-    B[1] = 16;
-    B[2] = 15;
+        printf("La solution X de l'équation AX = B avec la méthode triangulaire inférieure est :\n");
+        Afficher_Vecteur(X, Taille);
 
-    X = Sol_Sup(A, B, Taille);
+        // Désallocation des matrices et vecteurs.
+        Desallocation_Matrice(A, Taille);
+        Desallocation_Vecteur(B);
+        Desallocation_Vecteur(X);
+    }
 
-    printf("La solution x pour la descente est :\n%f\n%f\n%f\n", X[0], X[1], X[2]);
+    // - - Méthode triangulaire supérieure.
 
-    // - Gauss
+    {
+        // Définition de la taille.
+        int Taille = 3;
+        // Allocation des matrices et vecteurs.
+        double **A = Allocation_Matrice(Taille);
+        double *B = Allocation_Vecteur(Taille);
 
-    // Remplissage de la matrice
-    A[0][0] = 3;
-    A[0][1] = 1;
-    A[0][2] = 2;
-    A[1][0] = 3;
-    A[1][1] = 2;
-    A[1][2] = 6;
-    A[2][0] = 6;
-    A[2][1] = 1;
-    A[2][2] = -1;
+        // Remplissage des matrices et vecteurs.
+        A[0][0] = 1;
+        A[0][1] = 2;
+        A[0][2] = 3;
+        A[1][0] = 0;
+        A[1][1] = 4;
+        A[1][2] = 8;
+        A[2][0] = 0;
+        A[2][1] = 0;
+        A[2][2] = 5;
 
-    B[0] = 2;
-    B[1] = 1;
-    B[2] = 4;
+        B[0] = 6;
+        B[1] = 16;
+        B[2] = 15;
 
-    X = Resol_Gauss(A, B, Taille);
+        double *X = Sol_Sup(A, B, Taille);
 
-    printf("\nLa solution x pour Gauss est :\n%f\n%f\n%f\n", X[0], X[1], X[2]);
+        printf("La solution X de l'équation AX = B avec la méthode triangulaire supérieure est :\n");
+        Afficher_Vecteur(X, Taille);
 
-    // - LU
-    Nettoyage_Matrice(A, Taille);
+        // Désallocation des matrices et vecteurs.
+        Desallocation_Matrice(A, Taille);
+        Desallocation_Vecteur(B);
+        Desallocation_Vecteur(X);
+    }
 
-    A[0][0] = 1;
-    A[0][1] = 2;
-    A[0][2] = 3;
-    A[1][0] = 5;
-    A[1][1] = 2;
-    A[1][2] = 1;
-    A[2][0] = 3;
-    A[2][1] = -1;
-    A[2][2] = 1;
+    // - - Méthode de Gauss.
 
-    B[0] = 5;
-    B[1] = 5;
-    B[2] = 6;
+    {
+        // Définition de la taille.
+        int Taille = 3;
+        // Allocation des matrices et vecteurs.
+        double **A = Allocation_Matrice(Taille);
+        double *B = Allocation_Vecteur(Taille);
 
-    double **L = Allocation_Matrice(Taille);
+        // Remplissage de A
+        A[0][0] = 1;
+        A[0][1] = 2;
+        A[0][2] = 3;
+        A[1][0] = 5;
+        A[1][1] = 2;
+        A[1][2] = 1;
+        A[2][0] = 3;
+        A[2][1] = -1;
+        A[2][2] = 1;
 
-    LU(L, A, Taille);
+        // Remplissage de B
+        B[0] = 5;
+        B[1] = 5;
+        B[2] = 6;
 
-    double *Y = Sol_Inf(L, B, Taille);
+        // Résolution de l'équation.
+        double *X = Resol_Gauss(A, B, Taille);
 
-    X = Sol_Sup(A, Y, Taille);
+        // Affichage
+        printf("La solution x pour Gauss est :\n");
+        Afficher_Vecteur(X, Taille);
 
-    printf("La solution X pour LU : \n");
-    Afficher_Vecteur(X, Taille);
+        // Désallocation des matrices et vecteurs.
+        Desallocation_Matrice(A, Taille);
+        Desallocation_Vecteur(B);
+        Desallocation_Vecteur(X);
+    }
 
-    Desallocation_Matrice(L, Taille);
+    // - - Résolution par factorisation LU
 
-    Desallocation_Matrice(A, Taille);
+    {
+        // Définition de la taille.
+        int Taille = 3;
+        // Allocation des matrices et vecteurs.
+        double **A = Allocation_Matrice(Taille);
+        double *B = Allocation_Vecteur(Taille);
 
-    Desallocation_Vecteur(Y);
+        A[0][0] = 1;
+        A[0][1] = 2;
+        A[0][2] = 3;
+        A[1][0] = 5;
+        A[1][1] = 2;
+        A[1][2] = 1;
+        A[2][0] = 3;
+        A[2][1] = -1;
+        A[2][2] = 1;
 
-    Desallocation_Vecteur(X);
+        B[0] = 5;
+        B[1] = 5;
+        B[2] = 6;
 
-    Desallocation_Vecteur(B);
+        double **L = Allocation_Matrice(Taille);
 
-    // - Cholesky
+        // Factorisation de A = LU
+        LU(L, A, Taille);
 
-    Taille = 4;
+        // Résolution de LY = B
+        double *Y = Sol_Inf(L, B, Taille);
 
-    A = Allocation_Matrice(Taille);
-    B = Allocation_Vecteur(Taille);
+        // Résolution de UX = Y
+        double *X = Sol_Sup(A, Y, Taille);
 
-    Y = Allocation_Vecteur(Taille);
-    X = Allocation_Vecteur(Taille);
+        // Affichage
+        printf("La solution X pour LU : \n");
+        Afficher_Vecteur(X, Taille);
 
-    Nettoyage_Matrice(A, Taille);
+        // Désallocation des matrices et vecteurs.
+        Desallocation_Matrice(L, Taille);
+        Desallocation_Matrice(A, Taille);
+        Desallocation_Vecteur(B);
+        Desallocation_Vecteur(Y);
+        Desallocation_Vecteur(X);
+    }
 
-    A[0][0] = 1;
-    A[0][1] = 1;
-    A[0][2] = 1;
-    A[0][3] = 1;
-    A[1][0] = 1;
-    A[1][1] = 5;
-    A[1][2] = 5;
-    A[1][3] = 5;
-    A[2][0] = 1;
-    A[2][1] = 5;
-    A[2][2] = 14;
-    A[2][3] = 14;
-    A[3][0] = 1;
-    A[3][1] = 5;
-    A[3][2] = 14;
-    A[3][3] = 15;
+    // - - Cholesky
 
-    B[0] = 5;
-    B[1] = 1;
-    B[2] = 3;
-    B[3] = 1;
+    {
+        // Définition de la taille.
+        int Taille = 4;
+        // Allocation des matrices et vecteurs.
+        double **A = Allocation_Matrice(Taille);
+        double *B = Allocation_Vecteur(Taille);
 
-    Afficher_Matrice(A, Taille);
+        // Remplissage de A
+        A[0][0] = 1;
+        A[0][1] = 1;
+        A[0][2] = 1;
+        A[0][3] = 1;
+        A[1][0] = 1;
+        A[1][1] = 5;
+        A[1][2] = 5;
+        A[1][3] = 5;
+        A[2][0] = 1;
+        A[2][1] = 5;
+        A[2][2] = 14;
+        A[2][3] = 14;
+        A[3][0] = 1;
+        A[3][1] = 5;
+        A[3][2] = 14;
+        A[3][3] = 15;
 
-    printf("La solution pour Choleski est :\n");
+        // Remplissage de B
+        B[0] = 5;
+        B[1] = 1;
+        B[2] = 3;
+        B[3] = 1;
 
-    L = Cholesky(A, Taille);
+        printf("La solution pour Choleski est :\n");
 
-    printf("La matrice L : \n");
+        // Factorisation de A = LL^T
+        double** L = Cholesky(A, Taille);
 
-    Afficher_Matrice(L, Taille);
+        // Résolution de LY = B
+        double *Y = Sol_Inf(L, B, Taille);
 
-    Y = Sol_Inf(L, B, Taille);
+        // Résolution de L^TX = Y
+        Transposer(L, Taille);
 
-    Transposer(L, Taille);
+        double *X = Sol_Sup(L, Y, Taille);
 
-    printf("La matrice transaposée est : \n");
+        printf("La solution X pour Cholesky : \n");
 
-    Afficher_Matrice(L, Taille);
+        Afficher_Vecteur(X, Taille);
 
-    X = Sol_Sup(L, Y, Taille);
+        Desallocation_Matrice(A, Taille);
+        Desallocation_Matrice(L, Taille);
+        Desallocation_Vecteur(Y);
+        Desallocation_Vecteur(B);
+        Desallocation_Vecteur(X);
+    }
 
-    printf("La solution X pour Cholesky : \n");
+    // - Méthodes itératives
 
-    Afficher_Vecteur(X, Taille);
+    // - - Méthode de Jacobi
+    {   
+        // Définition de la taille
+        int Taille = 3;
+        // Allocation des matrices et vecteurs.
+        double** A = Allocation_Matrice(Taille);
+        double* B = Allocation_Vecteur(Taille);
 
-    Desallocation_Matrice(L, Taille);
+        // Remplissage de A
+        A[0][0] = 4;
+        A[0][1] = 1;
+        A[0][2] = 1;
+        A[1][0] = 1;
+        A[1][1] = 3;
+        A[1][2] = 1;
+        A[2][0] = 2;
+        A[2][1] = 0;
+        A[2][2] = 5;
+        
+        // Remplissage de B
+        B[0] = 1;
+        B[1] = 1;
+        B[2] = 1;
 
-    Desallocation_Vecteur(Y);
+        double* X = Jacobi(A, B, Taille);
 
-    Desallocation_Matrice(A, Taille);
+        printf("La solution X de AX = B avec la méthode Jacobi : \n");
 
-    Desallocation_Vecteur(B);
+        Afficher_Vecteur(X, Taille);
 
-    Desallocation_Vecteur(X);
+        // - Desallocation avant la fermeture du programme.
 
-    // - Jacobi
-
-    Taille = 3;
-
-    A = Allocation_Matrice(Taille);
-    B = Allocation_Vecteur(Taille);
-
-    A[0][0] = 4;
-    A[0][1] = 1;
-    A[0][2] = 1;
-    A[1][0] = 1;
-    A[1][1] = 3;
-    A[1][2] = 1;
-    A[2][0] = 2;
-    A[2][1] = 0;
-    A[2][2] = 5;
-
-    B[0] = 1;
-    B[1] = 1;
-    B[2] = 1;
-
-    X = Jacobi(A, B, Taille);
-
-    printf("La solution X pour Jacobi : \n");
-
-    Afficher_Vecteur(X, Taille);
-
-    // - Desallocation avant la fermeture du programme.
-
-    Desallocation_Vecteur(B);
-    Desallocation_Vecteur(X);
-    Desallocation_Matrice(A, Taille);
+        Desallocation_Vecteur(B);
+        Desallocation_Vecteur(X);
+        Desallocation_Matrice(A, Taille);
+    }
 
     return 0;
 }

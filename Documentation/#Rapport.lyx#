@@ -2223,15 +2223,33 @@ Principe
 \end_layout
 
 \begin_layout Standard
-Afin d'éviter de recalculer 
-\begin_inset Formula $U$
-\end_inset
-
- si 
+Dans le cas où 
 \begin_inset Formula $B$
 \end_inset
 
- change, on exprime 
+ est modifié mais que 
+\begin_inset Formula $A$
+\end_inset
+
+ reste constant, il est possible d'optimiser les calculs afin d'éviter de
+ recalculer 
+\begin_inset Formula $U$
+\end_inset
+
+.
+ C'est ce que nous allons faire ici avec la fonction 
+\begin_inset Quotes fld
+\end_inset
+
+LU
+\begin_inset Quotes frd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Tout d'abord, on exprime 
 \begin_inset Formula $A$
 \end_inset
 
@@ -2295,15 +2313,16 @@ LUX=B
 \end_layout
 
 \begin_layout Standard
-On peut maintenant passer à la résolution qui va se faire en deux étapes.
- Tout d'abord, nous allons exprimer 
+On peut maintenant passer à la résolution qui va se faire en deux étapes
+ :
+\end_layout
+
+\begin_layout Itemize
+Tout d'abord, nous allons exprimer 
 \begin_inset Formula $Y=UX$
 \end_inset
 
  tel que :
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
 LY=B
@@ -2334,7 +2353,7 @@ Sol_Sup
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Enfin, comme 
 \begin_inset Formula $UX=Y$
 \end_inset
@@ -2556,8 +2575,7 @@ Sol_Inf
 \end{pmatrix}$
 \end_inset
 
-.
- 
+, ce qui est correct.
 \end_layout
 
 \begin_layout Standard

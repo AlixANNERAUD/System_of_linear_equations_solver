@@ -32,7 +32,7 @@
 \spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -49,7 +49,7 @@
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
-\suppress_date false
+\suppress_date true
 \justification true
 \use_refstyle 1
 \use_minted 0
@@ -57,6 +57,10 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -79,7 +83,12 @@
 \begin_body
 
 \begin_layout Title
-Rapport de projet Mathématiques.
+Rapport de projet mathématiques : Méthodes numériques pour la résolution
+ de systèmes linéaires
+\end_layout
+
+\begin_layout Author
+Alix ANNERAUD - Amandine BURCON - Myriem ABID
 \end_layout
 
 \begin_layout Standard
@@ -127,7 +136,216 @@ Motivation
 \end_layout
 
 \begin_layout Standard
-ds
+La résolution des systèmes linéaires est utile à un bon nombres de domaines.
+ Voici quelques exemples de problèmes que nous avons rencontrés précédemment
+ :
+\end_layout
+
+\begin_layout Itemize
+
+\bar under
+Électricité (P3) :
+\bar default
+ Calcul d'intensité dans un circuit électronique en utilisant les lois des
+ noeuds / mailles.
+\end_layout
+
+\begin_layout Itemize
+
+\bar under
+Chimie (C3) :
+\bar default
+ Calcul de l’équilibre des équations des réactions chimiques.
+\end_layout
+
+\begin_layout Itemize
+
+\bar under
+Algèbre linéaire (M4) :
+\bar default
+ Recherche des vecteurs propres d’une matrice carrée associés à une valeur
+ propre donnée, déterminer le noyau d’un endomorphisme en dimension finie
+ (système homogène).
+\end_layout
+
+\begin_layout Itemize
+
+\bar under
+Géométrie analytique (Projet Informatique):
+\bar default
+ Déterminer la position relative de droite et de plan dans l’espace.
+\end_layout
+
+\begin_layout Standard
+Nous allons nous intéresser au dernier cas, où nous devions, en projet informati
+que, détecter et déterminer la collision entre un parallélépipède rectangle
+ (
+\begin_inset Formula $IJKLMNOP$
+\end_inset
+
+) et une droite (
+\begin_inset Formula $D$
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Standard
+En images de synthèse, les objets dans l'espaces sont définis par des points
+ dans 
+\begin_inset Formula $\reel^{3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ainsi, pour une droite définie par 
+\begin_inset Formula $A$
+\end_inset
+
+ et 
+\begin_inset Formula $B$
+\end_inset
+
+, il est relativement aisé de retrouver son vecteur directeur : 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\overrightarrow{D}=\overrightarrow{AB}=\begin{pmatrix}x_{B}-x_{A}\\
+y_{B}-y_{A}\\
+z_{B}-z_{A}
+\end{pmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ensuite, à partir du parallélépipède rectangle, on peut déterminer une base
+ de l'espace :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha\times\overrightarrow{JI}+\beta\times\overrightarrow{JK}+\gamma\times\overrightarrow{JL}=\alpha\times\begin{pmatrix}x_{I}-x_{J}\\
+y_{I}-y_{J}\\
+z_{I}-z_{J}
+\end{pmatrix}+\beta\times\begin{pmatrix}x_{K}-x_{J}\\
+y_{K}-y_{J}\\
+z_{K}-z_{J}
+\end{pmatrix}+\gamma\begin{pmatrix}x_{L}-x_{J}\\
+y_{L}-y_{J}\\
+z_{L}-z_{J}
+\end{pmatrix},\forall\alpha,\beta,\gamma\in\reel
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ainsi, on peut exprimer la le vecteur 
+\begin_inset Formula $\overrightarrow{D}$
+\end_inset
+
+, c'est à dire déterminer les valeurs de 
+\begin_inset Formula $\alpha,\beta$
+\end_inset
+
+ et 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha\times\overrightarrow{JI}+\beta\times\overrightarrow{JK}+\gamma\times\overrightarrow{JL}=\overrightarrow{D}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha\times\begin{pmatrix}x_{I}-x_{J}\\
+y_{I}-y_{J}\\
+z_{I}-z_{J}
+\end{pmatrix}+\beta\times\begin{pmatrix}x_{K}-x_{J}\\
+y_{K}-y_{J}\\
+z_{K}-z_{J}
+\end{pmatrix}+\gamma\begin{pmatrix}x_{L}-x_{J}\\
+y_{L}-y_{J}\\
+z_{L}-z_{J}
+\end{pmatrix}=\begin{pmatrix}x_{B}-x_{A}\\
+y_{B}-y_{A}\\
+z_{B}-z_{A}
+\end{pmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Une fois 
+\begin_inset Formula $\alpha,\beta$
+\end_inset
+
+ et 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ calculés, il suffit de voir 
+\end_layout
+
+\begin_layout Standard
+On a donc une équation matricielle de la forme :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+AX=B
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\underbrace{\begin{pmatrix}x_{I}-x_{J} & x_{K}-x_{J} & x_{L}-x_{J}\\
+y_{I}-y_{J} & y_{K}-y_{J} & y_{L}-y_{J}\\
+z_{I}-z_{J} & z_{K}-z_{J} & z_{L}-z_{J}
+\end{pmatrix}}_{A}\underbrace{\begin{pmatrix}\alpha\\
+\beta\\
+\gamma
+\end{pmatrix}}_{X}=\underbrace{\begin{pmatrix}x_{B}-x_{A}\\
+y_{B}-y_{A}\\
+z_{B}-z_{A}
+\end{pmatrix}}_{B}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -139,11 +357,24 @@ Le but est de résoudre l'équation linéaire de matrice :
 \begin_inset Formula $AX=B$
 \end_inset
 
+ pour 
+\begin_inset Formula $X$
+\end_inset
+
  dans 
 \begin_inset Formula $\reel^{N}$
 \end_inset
 
- sans avoir à calculer 
+ avec 
+\begin_inset Formula $A\in\reel^{N\times N}$
+\end_inset
+
+et 
+\begin_inset Formula $B\in\reel^{N}$
+\end_inset
+
+.
+ Et ce, sans avoir à calculer 
 \begin_inset Formula $A^{-1}$
 \end_inset
 
@@ -207,7 +438,7 @@ Biographies
 \end_layout
 
 \begin_layout Subsubsection
-Gauss
+Johann Carl Friedrich Gauss
 \end_layout
 
 \begin_layout Standard
@@ -262,7 +493,7 @@ prince des mathématiques
 \end_layout
 
 \begin_layout Subsubsection
-Cholesky
+André-Louis Cholesky
 \end_layout
 
 \begin_layout Standard
@@ -273,7 +504,7 @@ André-Louis Cholesky, également appelé René Cholesky, est un polytechnicien
  de triangulation.
  Il participe à la Première Guerre mondiale où il est blessé et il meurt
  le 31 août 1918 des suites de ses blessures.
- Cependant, on le connaît plus pour ses conctributions aux mathématiques
+ Cependant, on le connaît plus pour ses contributions aux mathématiques
  que pour sa carrière de militaire.
  En effet, il est l'auteur d'un manuscrit intitulé 
 \begin_inset Quotes eld
@@ -286,6 +517,44 @@ Sur la résolution numérique des systèmes d'équations linéaires
 .
  Cette méthode est en fait une nouvelle approche de la méthode des moindres
  carrés et sera publiée 6 ans après sa mort.
+\end_layout
+
+\begin_layout Subsubsection
+Jacobi
+\end_layout
+
+\begin_layout Subsubsection
+Philipp von Seidel
+\end_layout
+
+\begin_layout Standard
+Philipp von Seidel est un mathématicien et physicien Allemand.
+ Né le 24 octobre 1821, il étudie dans de nombreuses villes dû au travail
+ de son père, puis suit des cours privés sous la tutelle de L.C.
+ Schnürlein, ancien élève de Gauss, pendant un an.
+ Il suit ensuite l’enseignement d’autres grands représentants de leur discipline
+ tels que Dirichlet, Encke, Jacobi ou encore Neumann dans trois universités
+ différentes.
+ En 1846, Seidel obtient son doctorat grâce à sa thèse: “Sur la meilleure
+ forme des miroirs dans un télescope", puis publie une autre thèse six mois
+ plus tard sur un sujet entièrement différent: "Études sur la convergence
+ et divergence des fractions continues”, ce qui lui permet de devenir professeur
+ à l’université de Munich.
+ Des problèmes de vue le forcent à prendre une retraite anticipée, et n’étant
+ pas marié, ce sont sa sœur puis une veuve qui s’occupent de lui en fin
+ de vie.
+ Il meurt le 13 août 1896.
+\end_layout
+
+\begin_layout Standard
+Seidel se concentre tout au long de sa carrière sur ses travaux en optique
+ et en astronomie ainsi que sur l’analyse mathématique, et décompose les
+ aberrations optiques du premier ordre en cinq équations, appelées “équations
+ de Seidel”.
+ Il applique la théorie des probabilités à l’astronomie, et l’utilise également
+ pour étudier la fréquence de certaines maladies ou le climat.
+ Il est particulièrement connu pour la méthode de Gauss-Seidel de résolution
+ d’équation numérique, que nous décrirons dans ce rapport.
 \end_layout
 
 \begin_layout Standard
@@ -1075,19 +1344,15 @@ Soit
 \begin_inset Formula $X$
 \end_inset
 
-, des vecteurs de taille 
-\begin_inset Formula $N$
+ dans 
+\begin_inset Formula $\reel^{N}$
 \end_inset
 
- et 
-\begin_inset Formula $A$
+ 
+\begin_inset Formula $A\in\reel^{N\times N}$
 \end_inset
 
- une matrice triangulaire inférieure carrée de taille 
-\begin_inset Formula $N$
-\end_inset
-
-.
+une matrice triangulaire inférieure.
  On cherche, pour 
 \begin_inset Formula $A$
 \end_inset
@@ -1341,6 +1606,35 @@ double *Sol_Inf(double **a, double *b, int Taille)
 \end_layout
 
 \begin_layout Subsubsection*
+Exemple
+\end_layout
+
+\begin_layout Standard
+Ainsi, pour 
+\begin_inset Formula $A=\begin{pmatrix}1 & 0 & 0\\
+2 & 3 & 0\\
+1 & 4 & -1
+\end{pmatrix}$
+\end_inset
+
+ et 
+\begin_inset Formula $B=\begin{pmatrix}1\\
+8\\
+10
+\end{pmatrix}$
+\end_inset
+
+, l'algorithme nous retourne 
+\begin_inset Formula $X=\begin{pmatrix}1\\
+2\\
+-1
+\end{pmatrix}$
+\end_inset
+
+, ce qui est correct.
+\end_layout
+
+\begin_layout Subsubsection*
 Conclusion
 \end_layout
 
@@ -1372,27 +1666,15 @@ Soit
 \begin_inset Formula $B$
 \end_inset
 
- un vecteur de taille 
-\begin_inset Formula $N$
-\end_inset
-
-, 
-\begin_inset Formula $A$
-\end_inset
-
- une matrice triangulaire supérieure carrée de taille 
-\begin_inset Formula $N$
-\end_inset
-
  et 
-\begin_inset Formula $X$
+\begin_inset Formula $X\in\reel^{N}$
 \end_inset
 
- un vecteur de taille 
-\begin_inset Formula $N$
+ , 
+\begin_inset Formula $A\in\reel^{N\times N}$
 \end_inset
 
- tel.
+ une matrice triangulaire supérieure.
  Comme pour la section précédente, on cherche pour 
 \begin_inset Formula $A$
 \end_inset
@@ -1539,6 +1821,35 @@ Ecrire algorithme ici
 \end_layout
 
 \begin_layout Subsubsection*
+Exemple
+\end_layout
+
+\begin_layout Standard
+Ainsi, pour 
+\begin_inset Formula $A=\begin{pmatrix}1 & 2 & 3\\
+0 & 4 & 8\\
+0 & 0 & 5
+\end{pmatrix}$
+\end_inset
+
+ et 
+\begin_inset Formula $B=\begin{pmatrix}6\\
+16\\
+15
+\end{pmatrix}$
+\end_inset
+
+, l'algorithme nous retourne 
+\begin_inset Formula $X=\begin{pmatrix}1\\
+-2\\
+3
+\end{pmatrix}$
+\end_inset
+
+, ce qui est correct.
+\end_layout
+
+\begin_layout Subsubsection*
 Conclusion
 \end_layout
 
@@ -1592,7 +1903,7 @@ Maintenant que nous disposons des fonctions pour résoudre
 \end_inset
 
  qui est une matrice triangulaire supérieure.
- Ainsi, il ne restera plusq qu'a résoudre 
+ Ainsi, il ne restera plus qu'a résoudre 
 \begin_inset Formula $UX=e$
 \end_inset
 
@@ -1842,6 +2153,35 @@ void KILL_ME()
 \end_layout
 
 \begin_layout Subsubsection*
+Exemple
+\end_layout
+
+\begin_layout Standard
+Ainsi, pour 
+\begin_inset Formula $A=\begin{pmatrix}1 & 2 & 3\\
+5 & 2 & 1\\
+3 & -1 & 1
+\end{pmatrix}$
+\end_inset
+
+ et 
+\begin_inset Formula $B=\begin{pmatrix}5\\
+5\\
+6
+\end{pmatrix}$
+\end_inset
+
+, l'algorithme nous retourne 
+\begin_inset Formula $X=\begin{pmatrix}1\\
+-2\\
+2
+\end{pmatrix}$
+\end_inset
+
+, ce qui est correct.
+\end_layout
+
+\begin_layout Subsubsection*
 Conclusion
 \end_layout
 
@@ -1855,7 +2195,7 @@ Cette méthode est de complexité
 \begin_inset Formula $B$
 \end_inset
 
-, il faut reclaculer totalement les matrices 
+, il faut recalculer totalement les matrices 
 \begin_inset Formula $U$
 \end_inset
 
@@ -1863,7 +2203,7 @@ Cette méthode est de complexité
 \begin_inset Formula $e$
 \end_inset
 
-, ce qui est couteux en temps de calcul.
+, ce qui est coûteux en temps de calcul.
 \end_layout
 
 \begin_layout Subsection
@@ -1879,19 +2219,37 @@ LU
 \end_layout
 
 \begin_layout Subsubsection*
-Introduction
+Principe
 \end_layout
 
 \begin_layout Standard
-Afin d'éviter de recalculer 
-\begin_inset Formula $U$
-\end_inset
-
- si 
+Dans le cas où 
 \begin_inset Formula $B$
 \end_inset
 
- change, on exprime 
+ est modifié mais que 
+\begin_inset Formula $A$
+\end_inset
+
+ reste constant, il est possible d'optimiser les calculs afin d'éviter de
+ recalculer 
+\begin_inset Formula $U$
+\end_inset
+
+.
+ C'est ce que nous allons faire ici avec la fonction 
+\begin_inset Quotes fld
+\end_inset
+
+LU
+\begin_inset Quotes frd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Tout d'abord, on exprime 
 \begin_inset Formula $A$
 \end_inset
 
@@ -1955,31 +2313,26 @@ LUX=B
 \end_layout
 
 \begin_layout Standard
-On peut maintenant passer à la résolution qui va se faire en deux étapes.
- Tout d'abord, nous allons exprimer 
+On peut maintenant passer à la résolution qui va se faire en deux étapes
+ :
+\end_layout
+
+\begin_layout Itemize
+Tout d'abord, nous allons exprimer 
 \begin_inset Formula $Y=UX$
 \end_inset
 
- tel que :
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-LY=B
-\]
-
+ tel que : 
+\begin_inset Formula $LY=B$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
+.
+ 
 \begin_inset Formula $L$
 \end_inset
 
- étant une matrice triangulaire inférieure carrée, il sufit d'utiliser la
- fonction 
+ étant une matrice triangulaire inférieure carrée, il suffit d'utiliser
+ la fonction 
 \begin_inset Quotes fld
 \end_inset
 
@@ -1994,7 +2347,7 @@ Sol_Sup
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Enfin, comme 
 \begin_inset Formula $UX=Y$
 \end_inset
@@ -2167,6 +2520,86 @@ void LU(double **L, double **A, int Taille)
 \end_layout
 
 \begin_layout Subsubsection*
+Exemple
+\end_layout
+
+\begin_layout Standard
+Ainsi, pour 
+\begin_inset Formula $A=\begin{pmatrix}3 & 1 & 2\\
+3 & 2 & 6\\
+6 & 1 & -1
+\end{pmatrix}$
+\end_inset
+
+, l'algorithme nous retourne 
+\begin_inset Formula $L=\begin{pmatrix}1 & 0 & 0\\
+5 & 1 & 0\\
+3 & 0,875 & 1
+\end{pmatrix}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Puis, pour 
+\begin_inset Formula $B=\begin{pmatrix}6\\
+16\\
+15
+\end{pmatrix}$
+\end_inset
+
+ et 
+\begin_inset Formula $L$
+\end_inset
+
+, 
+\begin_inset Quotes fld
+\end_inset
+
+Sol_Inf
+\begin_inset Quotes frd
+\end_inset
+
+ retourne 
+\begin_inset Formula $Y=\begin{pmatrix}5\\
+-20\\
+8,5
+\end{pmatrix}$
+\end_inset
+
+, ce qui est correct.
+\end_layout
+
+\begin_layout Standard
+Enfin, pour 
+\begin_inset Formula $A$
+\end_inset
+
+ et 
+\begin_inset Formula $Y$
+\end_inset
+
+, 
+\begin_inset Quotes fld
+\end_inset
+
+Sol_Inf
+\begin_inset Quotes frd
+\end_inset
+
+ retourne 
+\begin_inset Formula $X=\begin{pmatrix}1\\
+-1\\
+2
+\end{pmatrix}$
+\end_inset
+
+, ce qui est correct.
+\end_layout
+
+\begin_layout Subsubsection*
 Conclusion
 \end_layout
 
@@ -2176,7 +2609,11 @@ Cette fonction est de complexité temporelle
 \end_inset
 
 .
- Cependant, dans le cas où 
+ 
+\end_layout
+
+\begin_layout Standard
+Cependant, dans le cas où 
 \begin_inset Formula $A$
 \end_inset
 
@@ -2189,7 +2626,7 @@ Factorisation de Cholesky
 \end_layout
 
 \begin_layout Subsubsection*
-Méthode
+Principe
 \end_layout
 
 \begin_layout Standard
@@ -2331,7 +2768,7 @@ Sol_Sup
 \end_layout
 
 \begin_layout Subsubsection*
-Application
+Méthode
 \end_layout
 
 \begin_layout Standard
@@ -2386,7 +2823,9 @@ a_{41} & a_{42} & a_{43} & a_{44}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\Leftrightarrow\begin{pmatrix}l_{11}^{2} & l_{11}l_{21} & l_{11}l_{31} & l_{11}l_{41}\\
+\begin_inset Formula 
+\[
+\Leftrightarrow\begin{pmatrix}l_{11}^{2} & l_{11}l_{21} & l_{11}l_{31} & l_{11}l_{41}\\
 l_{21}l_{11} & l_{21}^{2}+l_{22}^{2} & l_{21}l_{31}+l_{22}l_{32} & l_{21}l_{41}+l_{22}l_{42}\\
 l_{31}l_{11} & l_{31}l_{21}+l_{32}l_{22} & l_{31}^{2}+l_{32}^{2}+l_{33}^{2} & l_{31}l_{41}+l_{32}l_{42}+l_{33}l_{43}\\
 l_{41}l_{11} & l_{41}l_{21}+l_{42}l_{22} & l_{41}l_{31}+l_{42}l_{32}+l_{43}l_{33} & l_{41}^{2}+l_{42}^{2}+l_{43}^{2}+l_{44}^{2}
@@ -2394,7 +2833,9 @@ l_{41}l_{11} & l_{41}l_{21}+l_{42}l_{22} & l_{41}l_{31}+l_{42}l_{32}+l_{43}l_{33
 a_{21} & a_{22} & a_{23} & a_{24}\\
 a_{31} & a_{32} & a_{33} & a_{34}\\
 a_{41} & a_{42} & a_{43} & a_{44}
-\end{pmatrix}$
+\end{pmatrix}
+\]
+
 \end_inset
 
 
@@ -2474,7 +2915,7 @@ On constate que
 \end_layout
 
 \begin_layout Subsubsection*
-Algorithme
+Code
 \end_layout
 
 \begin_layout Standard
@@ -2493,7 +2934,94 @@ Ecrire code
 \end_layout
 
 \begin_layout Subsubsection*
+Exemple
+\end_layout
+
+\begin_layout Standard
+Ainsi, pour 
+\begin_inset Formula $A=\begin{pmatrix}1 & 1 & 1 & 1\\
+1 & 5 & 5 & 5\\
+1 & 5 & 14 & 14\\
+1 & 5 & 14 & 15
+\end{pmatrix}$
+\end_inset
+
+, l'algorithme nous retourne 
+\begin_inset Formula $L=\begin{pmatrix}1 & 0 & 0 & 0\\
+1 & 2 & 0 & 0\\
+1 & 2 & 3 & 0\\
+1 & 2 & 3 & 1
+\end{pmatrix}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Puis, pour 
+\begin_inset Formula $B=\begin{pmatrix}5\\
+1\\
+3\\
+1
+\end{pmatrix}$
+\end_inset
+
+ et 
+\begin_inset Formula $L$
+\end_inset
+
+, 
+\begin_inset Quotes fld
+\end_inset
+
+Sol_Inf
+\begin_inset Quotes frd
+\end_inset
+
+ retourne 
+\begin_inset Formula $Y=\begin{pmatrix}5\\
+-20\\
+8,5
+\end{pmatrix}$
+\end_inset
+
+, ce qui est correct.
+\end_layout
+
+\begin_layout Standard
+Enfin, pour 
+\begin_inset Formula $A$
+\end_inset
+
+ et 
+\begin_inset Formula $Y$
+\end_inset
+
+, 
+\begin_inset Quotes fld
+\end_inset
+
+Sol_Inf
+\begin_inset Quotes frd
+\end_inset
+
+ retourne 
+\begin_inset Formula $X=\begin{pmatrix}1\\
+-1\\
+2
+\end{pmatrix}$
+\end_inset
+
+, ce qui est correct.
+\end_layout
+
+\begin_layout Subsubsection*
 Conclusion
+\end_layout
+
+\begin_layout Standard
+Lors de la factorisation, on effectue 
 \end_layout
 
 \begin_layout Standard
@@ -2531,19 +3059,37 @@ Méthode
 
 \begin_layout Standard
 Soit 
-\begin_inset Formula $A$
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $B,X\in\reel^{N}$
 \end_inset
 
- une matrice carrée de taille 
-\begin_inset Formula $N$
-\end_inset
-
- et 
-\begin_inset Formula $B$
-\end_inset
-
- un vecteur de taille 
-\begin_inset Formula $N$
+ et
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $A\in\reel^{N\times N}$
 \end_inset
 
 , on cherche toujours à résoudre l'équation 
@@ -2569,14 +3115,15 @@ On peut décomposer
 \begin_inset Formula $D$
 \end_inset
 
- la matrice contenant la diagonnale de 
+ la matrice contenant la diagonale de 
 \begin_inset Formula $A$
 \end_inset
 
  : 
-\begin_inset Formula $D=\begin{pmatrix}A_{11} & 0 & 0\\
-0 & \ddots & 0\\
-0 & 0 & A_{nn}
+\begin_inset Formula $D=\begin{pmatrix}A_{11} & 0 & \cdots & 0\\
+0 & \ddots & \ddots & \vdots\\
+\vdots & \ddots & \ddots & 0\\
+0 & \cdots & 0 & A_{nn}
 \end{pmatrix}$
 \end_inset
 
@@ -2599,7 +3146,7 @@ A_{ij} & \cdots & A_{\left(i-1\right)j} & 0
 \end{pmatrix}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Itemize
@@ -2618,7 +3165,7 @@ A_{ij} & \cdots & A_{\left(i-1\right)j} & 0
 \end{pmatrix}$
 \end_inset
 
-
+e
 \end_layout
 
 \begin_layout Standard
@@ -2706,7 +3253,7 @@ On définit
 \end_layout
 
 \begin_layout Subsubsection*
-Algorithme
+Code
 \end_layout
 
 \begin_layout Standard
@@ -2723,8 +3270,49 @@ status open
 
 \end_layout
 
+\begin_layout Subsubsection*
+Exemple
+\end_layout
+
+\begin_layout Subsubsection*
+Conclusion
+\end_layout
+
 \begin_layout Subsection
 Méthode de Gauss-Seidel
+\end_layout
+
+\begin_layout Subsubsection*
+Introduction
+\end_layout
+
+\begin_layout Standard
+Les coeffs du vecteur 
+\begin_inset Formula $X(k+1)$
+\end_inset
+
+ sont plus précis que ceux de 
+\begin_inset Formula $X(k)$
+\end_inset
+
+.
+ Lorsquel’on calcule 
+\begin_inset Formula $X(k+1)$
+\end_inset
+
+, on calcule les coefficients de ce vecteur un par un: on peut donc utiliser
+ les coefficients de ce vecteur déjà calculés plutôt que ceux du vecteur
+ précédent.
+ Cependant, en calculant 
+\begin_inset Formula $Xi(k+1)$
+\end_inset
+
+ on ne connaît les coef de 
+\begin_inset Formula $X(k+1)$
+\end_inset
+
+ que jusqu’à i-1, on utilise ceux de X(k) pour le reste de la somme.
+ Donc somme séparée en deux.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2732,15 +3320,34 @@ Méthode
 \end_layout
 
 \begin_layout Standard
-d
+dd
 \end_layout
 
 \begin_layout Subsubsection*
-Algorithme
+Code
 \end_layout
 
 \begin_layout Standard
-f
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Plus précis mais plus complexe
 \end_layout
 
 \begin_layout Standard
@@ -2780,8 +3387,395 @@ Conclusion
 \end_layout
 
 \begin_layout Standard
-Ainsi, nous avons trouvé différentes méthodes pour résoudre l'équation de
- matrice : 
+Ainsi, nous avons découvert plusieurs méthodes possibles pour la résolution
+ d'une équation de matrice de la forme 
+\begin_inset Formula $AX=B$
+\end_inset
+
+, sans calculer 
+\begin_inset Formula $A^{-1}$
+\end_inset
+
+.
+ Voici un récapitulatif des différentes méthodes :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Méthode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Complexité temporelle
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Avantages
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Inconvénients
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Triangulaire inférieure
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- Fonctionne si 
+\begin_inset Formula $A$
+\end_inset
+
+ est une matrice triangulaire inférieure.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Triangulaire supérieure
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- Fonctionne uniquement dans le cas où 
+\begin_inset Formula $A$
+\end_inset
+
+ est une matrice triangulaire supérieure.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Élimination de Gauss
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O\left(\frac{2n^{3}}{3}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- Résolution d'un 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+La factorisation LU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O\left(\frac{n^{3}}{3}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Méthode optimisé lorsque 
+\begin_inset Formula $A$
+\end_inset
+
+ reste constant.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+La factorisation de Cholesky
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O\left(\frac{n^{3}}{6}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- Fonctionne uniquement dans le cas où 
+\begin_inset Formula $A$
+\end_inset
+
+ est une matrice carrée symétrique définie positive.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Méthode de Jacobi
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- Valeurs approchés
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Méthode Gauss-Seidel
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- Valeurs approchés
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ainsi, on constate que les méthodes ci-dessus sont complémentaires car car
+ elles présentes chacune des avantages et des inconvénients.
+ Ainsi, le choix de la méthode doit se faire en fonction :
+\end_layout
+
+\begin_layout Itemize
+La forme de 
+\begin_inset Formula $A$
+\end_inset
+
+ et 
+\begin_inset Formula $B$
+\end_inset
+
+, afin d'optimiser le temps de calcul et éventuellement l'empreinte mémoire
+\end_layout
+
+\begin_layout Itemize
+La précision de la résolution
+\end_layout
+
+\begin_layout Standard
+Ainsi, il en revient à l'utilisateur de choisir quel méthode convient le
+ mieux.
+ Nous aurions pu éventuellement rédiger un algorithme qui fait le choix
+ automatiquement.
+\end_layout
+
+\begin_layout Standard
+nous avons trouvé différentes méthodes pour résoudre l'équation de matrice
+ : 
 \begin_inset Formula $AX=B$
 \end_inset
 
