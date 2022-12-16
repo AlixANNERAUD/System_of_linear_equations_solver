@@ -2538,10 +2538,29 @@ Pour faciliter les calculs, on décide que la diagonale de
 \end_inset
 
 .
-\end_layout
+ Cela revient à remplacer les coefficients de 
+\begin_inset Formula $A$
+\end_inset
 
-\begin_layout Standard
-<A finir !!!!!!!>
+ pour créer 
+\begin_inset Formula $U$
+\end_inset
+
+ par les combinaisons linéaires de l'élimination de Gauss, selon la formule
+ 
+\begin_inset Formula $A_{kj}=A_{kj}-\left(\frac{A_{ki}}{A_{ii}}\times A_{ij}\right)$
+\end_inset
+
+.
+ On complète en même temps 
+\begin_inset Formula $L$
+\end_inset
+
+ par les coefficients de ces combinaisons linéaires : 
+\begin_inset Formula $L_{ki}=\frac{A_{ki}}{A_{ii}}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2692,7 +2711,7 @@ void LU(double **L, double **A, int Taille)
 Exemple
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Pour 
 \begin_inset Formula $A=\begin{pmatrix}3 & 1 & 2\\
 3 & 2 & 6\\
@@ -2711,7 +2730,7 @@ Pour
  
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Puis, pour 
 \begin_inset Formula $B=\begin{pmatrix}6\\
 16\\
@@ -2741,7 +2760,7 @@ Sol_Sup
 , ce qui est correct.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Enfin, pour 
 \begin_inset Formula $U$
 \end_inset
@@ -2831,18 +2850,12 @@ Cette nouvelle méthode nous permet d’optimiser encore plus le code dans
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-Si on remplace dans notre expression initiale, on a : 
-\begin_inset Formula $AX=B\Leftrightarrow L\cdot L^{T}\cdot X=B$
+ Si on remplace dans notre expression initiale, on a : 
+\begin_inset Formula $L\cdot L^{T}\cdot X=B$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-On peut passer maintenant passer à la résolution.
+.
+ On peut ensuite passer à la résolution.
  De manière similaire à la méthode 
 \begin_inset Quotes fld
 \end_inset
@@ -2855,7 +2868,7 @@ LU
 \end_layout
 
 \begin_layout Itemize
-Tout d'abord, la résolution de l'expression 
+Tout d'abord, la résolution de l'équation 
 \begin_inset Formula $LY=B$
 \end_inset
 
@@ -2871,16 +2884,15 @@ Sol_Inf
 \begin_inset Quotes frd
 \end_inset
 
-.
- 
+, 
 \begin_inset Formula $L$
 \end_inset
 
- étant une matrice triangulaire inférieure carrée.
+ étant une matrice triangulaire inférieure.
 \end_layout
 
 \begin_layout Itemize
-Enfin, la résolution de l'expression 
+Enfin, la résolution de l'équation 
 \begin_inset Formula $L^{T}X=Y$
 \end_inset
 
@@ -2897,7 +2909,7 @@ Sol_Sup
 \begin_inset Formula $L^{T}$
 \end_inset
 
- étant également une matrice triangulaire inférieure carrée.
+ étant également une matrice triangulaire supérieure carrée.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2909,19 +2921,11 @@ Soit
 \begin_inset Formula $N=4$
 \end_inset
 
-, 
-\begin_inset Formula $L$
-\end_inset
-
- une matrice de taille 
-\begin_inset Formula $N*N$
-\end_inset
-
- : 
+, : 
 \end_layout
 
 \begin_layout Standard
-On créer une matrice 
+On cherche une matrice 
 \begin_inset Formula $L$
 \end_inset
 
@@ -2958,7 +2962,7 @@ a_{41} & a_{42} & a_{43} & a_{44}
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\Leftrightarrow\begin{pmatrix}l_{11}^{2} & l_{11}l_{21} & l_{11}l_{31} & l_{11}l_{41}\\
+\Rightarrow\begin{pmatrix}l_{11}^{2} & l_{11}l_{21} & l_{11}l_{31} & l_{11}l_{41}\\
 l_{21}l_{11} & l_{21}^{2}+l_{22}^{2} & l_{21}l_{31}+l_{22}l_{32} & l_{21}l_{41}+l_{22}l_{42}\\
 l_{31}l_{11} & l_{31}l_{21}+l_{32}l_{22} & l_{31}^{2}+l_{32}^{2}+l_{33}^{2} & l_{31}l_{41}+l_{32}l_{42}+l_{33}l_{43}\\
 l_{41}l_{11} & l_{41}l_{21}+l_{42}l_{22} & l_{41}l_{31}+l_{42}l_{32}+l_{43}l_{33} & l_{41}^{2}+l_{42}^{2}+l_{43}^{2}+l_{44}^{2}
@@ -2974,10 +2978,11 @@ a_{41} & a_{42} & a_{43} & a_{44}
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 On a donc pour les termes en diagonale :
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 \begin_inset Formula $l_{11}^{2}=a_{11}\Rightarrow l_{11}=\sqrt{a_{11}}$
 \end_inset
@@ -3006,6 +3011,7 @@ On a donc pour les termes en diagonale :
 
 \end_layout
 
+\end_deeper
 \begin_layout Standard
 On constate que : 
 \begin_inset Formula $l_{ii}=\sqrt{a_{ii}-\sum_{k=1}^{i-1}l_{ik}^{2}}$
@@ -3014,33 +3020,8 @@ On constate que :
  
 \end_layout
 
-\begin_layout Standard
-On a également pour les autres termes :
-\end_layout
-
 \begin_layout Itemize
-\begin_inset Formula $l_{21}l_{11}=a_{21}\Rightarrow l_{21}=\frac{a_{21}}{l_{11}}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $l_{31}l_{11}=a_{31}\Rightarrow l_{31}=\frac{a_{31}}{l_{11}}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $l_{31}l_{11}=a_{41}\Rightarrow l_{41}=\frac{a_{31}}{l_{11}}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-On constate que 
+On a également pour les autres termes, on constate que 
 \begin_inset Formula $l_{ij}=\frac{a_{ij}}{l_{jj}}-\sum_{k=1}^{j-1}l_{ik}l_{jk}$
 \end_inset
 
@@ -3070,7 +3051,7 @@ Ecrire code
 Exemple
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Ainsi, pour 
 \begin_inset Formula $A=\begin{pmatrix}1 & 1 & 1 & 1\\
 1 & 5 & 5 & 5\\
@@ -3091,7 +3072,7 @@ Ainsi, pour
  
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Puis, pour 
 \begin_inset Formula $B=\begin{pmatrix}5\\
 1\\
@@ -3122,7 +3103,7 @@ Sol_Inf
 , ce qui est correct.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Enfin, pour 
 \begin_inset Formula $A$
 \end_inset
@@ -3181,7 +3162,7 @@ Les méthodes itératives sont une autre approche à la résolution de systèmes
  On effectue ensuite des itérations qui établissent une suite de solutions
  intermédiaires qui se rapprochent de plus en plus de la solution finale.
  L'idée est donc de construire une suite de vecteurs intermédiaires 
-\begin_inset Formula $X^{k}$
+\begin_inset Formula $\left(X^{k}\right)$
 \end_inset
 
  qui converge vers 
@@ -3208,64 +3189,22 @@ Principe
 \end_layout
 
 \begin_layout Standard
-Soit 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
-
-\begin_inset Formula $B,X\in\reel^{N}$
-\end_inset
-
- et
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\xout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
- 
-\begin_inset Formula $A\in\reel^{N\times N}$
-\end_inset
-
-, on cherche toujours à résoudre l'équation 
-\begin_inset Formula $AX=B$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
 On peut décomposer 
 \begin_inset Formula $A$
 \end_inset
 
  en 3 matrices tel que 
-\begin_inset Formula $A=E+F+G$
+\begin_inset Formula $A=E+F+D$
 \end_inset
 
  : 
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $D$
+\begin_inset Formula $D\in\reel^{N\times N}$
 \end_inset
 
- la matrice contenant la diagonale de 
+, la matrice contenant la diagonale de 
 \begin_inset Formula $A$
 \end_inset
 
@@ -3278,17 +3217,22 @@ On peut décomposer
 \end_inset
 
 .
+ 
+\begin_inset Formula $D$
+\end_inset
+
+ est inversible.
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $E$
+\begin_inset Formula $E\in\reel^{N\times N}$
 \end_inset
 
- la matrice contenant la partie inférieur de 
+, la matrice contenant la partie inférieure de 
 \begin_inset Formula $A$
 \end_inset
 
- (sans sa diagonale) : 
+ (sans la diagonale) : 
 \begin_inset Formula $E=\begin{pmatrix}0 & \cdots & \cdots & 0\\
 A_{1j} & \ddots & \iddots & \vdots\\
 \vdots & \ddots & \ddots & \vdots\\
@@ -3300,10 +3244,10 @@ A_{ij} & \cdots & A_{\left(i-1\right)j} & 0
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $F$
+\begin_inset Formula $F\in\reel^{N\times N}$
 \end_inset
 
- la matrice contenant la partie supérieure de 
+, la matrice contenant la partie supérieure de 
 \begin_inset Formula $A$
 \end_inset
 
@@ -3315,7 +3259,7 @@ A_{ij} & \cdots & A_{\left(i-1\right)j} & 0
 \end{pmatrix}$
 \end_inset
 
-e
+.
 \end_layout
 
 \begin_layout Standard
@@ -3367,11 +3311,15 @@ X_{i}^{k+1}=D^{-1}\left(B-\left[E+F\right]X^{k}\right) & k=1,\ldots,N
 \end_layout
 
 \begin_layout Standard
-Si il y a convergence, 
-\begin_inset Formula $X^{k+1}\approx X^{k}=X^{*}$
+Si il y a convergence de la suite 
+\begin_inset Formula $\left(X^{n}\right)$
 \end_inset
 
+, alors 
+\begin_inset Formula $X^{k+1}\approx X^{k}=X$
+\end_inset
 
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3380,7 +3328,7 @@ Méthode
 
 \begin_layout Standard
 Ainsi, pour un 
-\begin_inset Formula $X_{i}^{k+1}$
+\begin_inset Formula $X^{0}$
 \end_inset
 
  donné, on peut calculer 
@@ -3392,32 +3340,18 @@ Ainsi, pour un
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-A chaque itération, 
-\begin_inset Formula $x_{k}$
-\end_inset
-
- va converger vers 
-\begin_inset Formula $x_{k+1}$
-\end_inset
-
-.
  On définit alors un 
 \begin_inset Formula $\varepsilon$
 \end_inset
 
- pour que la boucle continue d'itérer jusqu'à ce que : 
-\begin_inset Formula $\left\Vert x_{k+1}-x_{k}\right\Vert _{2}=\sqrt{\sum_{n=0}^{N-1}\left(x_{k+1}\left[n\right]-x_{k}\left[n\right]\right)^{2}}\leqslant\varepsilon$
+ pour que la boucle s'arrête une fois que le résultat est considéré comme
+ satisfaisant : 
+\begin_inset Formula $\left\Vert X^{k+1}-X^{k}\right\Vert _{2}=\sqrt{\sum_{n=0}^{N-1}\left(X^{k+1}\left[n\right]-X^{k}\left[n\right]\right)^{2}}\leqslant\varepsilon$
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-On définit également un nombre d'itération maximale pour limiter le nombre
- maximale d'itération si jamais l'algorithme n'atteint pas 
+ On définit également un nombre d'itération maximale dans le cas où l'algorithme
+ n'atteint pas 
 \begin_inset Formula $\varepsilon$
 \end_inset
 
@@ -3462,7 +3396,7 @@ Pour
 \end_inset
 
 , 
-\begin_inset Formula $\varepsilon=0,01$
+\begin_inset Formula $\varepsilon=0,001$
 \end_inset
 
  et un nombre d'itération maximale de 
@@ -3486,7 +3420,7 @@ Pour
 \end{pmatrix}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3586,6 +3520,416 @@ Cette méthode permet de gagner en précision par rapport à la précédente,
 \end_inset
 
  arbitrairement.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Ainsi, nous avons découvert plusieurs méthodes possibles pour la résolution
+ d'une équation de matrice de la forme 
+\begin_inset Formula $AX=B$
+\end_inset
+
+, sans calculer 
+\begin_inset Formula $A^{-1}$
+\end_inset
+
+.
+ Voici un tableau récapitulatif des différentes méthodes :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="10page%">
+<column alignment="center" valignment="top" width="10page%">
+<column alignment="center" valignment="top" width="20page%">
+<column alignment="center" valignment="top" width="20page%">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Méthode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Complexité temporelle
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Avantages
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Inconvénients
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Triangulaire inférieure
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O\left(N^{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+Fonctionne si 
+\begin_inset Formula $A$
+\end_inset
+
+ est une matrice triangulaire inférieure.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Triangulaire supérieure
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O\left(N^{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+Fonctionne uniquement dans le cas où 
+\begin_inset Formula $A$
+\end_inset
+
+ est une matrice triangulaire supérieure.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Élimination de Gauss
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O\left(\frac{2N^{3}}{3}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+Résolution d'un 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+La factorisation LU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O\left(\frac{N^{3}}{3}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+Méthode optimisé lorsque 
+\begin_inset Formula $A$
+\end_inset
+
+ reste constant.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+La factorisation de Cholesky
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O\left(\frac{N^{3}}{6}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+Fonctionne uniquement dans le cas où 
+\begin_inset Formula $A$
+\end_inset
+
+ est une matrice carrée symétrique définie positive.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Méthode de Jacobi
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O\left(3N^{2}+2N\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+Valeurs approchés
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Méthode Gauss-Seidel
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O\left(3N^{2}+2N\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+Valeurs approchés
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ainsi, on constate que les méthodes ci-dessus sont complémentaires car car
+ elles présentes chacune des avantages et des inconvénients.
+ Alors, le choix de la méthode doit se faire en fonction de :
+\end_layout
+
+\begin_layout Itemize
+La forme de 
+\begin_inset Formula $A$
+\end_inset
+
+ et 
+\begin_inset Formula $B$
+\end_inset
+
+, afin d'optimiser le temps de calcul et éventuellement l'empreinte mémoire.
+\end_layout
+
+\begin_layout Itemize
+La précision de la résolution requise.
+\end_layout
+
+\begin_layout Standard
+Ainsi, il en revient à l'utilisateur de choisir quel méthode convient le
+ mieux.
+ Nous aurions pu éventuellement rédiger un algorithme qui fait le choix
+ automatiquement.
 \end_layout
 
 \begin_layout Standard
@@ -6948,416 +7292,6 @@ n");
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage pagebreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Conclusion
-\end_layout
-
-\begin_layout Standard
-Ainsi, nous avons découvert plusieurs méthodes possibles pour la résolution
- d'une équation de matrice de la forme 
-\begin_inset Formula $AX=B$
-\end_inset
-
-, sans calculer 
-\begin_inset Formula $A^{-1}$
-\end_inset
-
-.
- Voici un récapitulatif des différentes méthodes :
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="8" columns="4">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Méthode
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Complexité temporelle
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Avantages
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Inconvénients
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Triangulaire inférieure
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $O\left(N^{2}\right)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-- 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-- Fonctionne si 
-\begin_inset Formula $A$
-\end_inset
-
- est une matrice triangulaire inférieure.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Triangulaire supérieure
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $O\left(N^{2}\right)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-- Fonctionne uniquement dans le cas où 
-\begin_inset Formula $A$
-\end_inset
-
- est une matrice triangulaire supérieure.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Élimination de Gauss
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $O\left(\frac{2N^{3}}{3}\right)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-- Résolution d'un 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-La factorisation LU
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $O\left(\frac{N^{3}}{3}\right)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Méthode optimisé lorsque 
-\begin_inset Formula $A$
-\end_inset
-
- reste constant.
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-La factorisation de Cholesky
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $O\left(\frac{N^{3}}{6}\right)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-- Fonctionne uniquement dans le cas où 
-\begin_inset Formula $A$
-\end_inset
-
- est une matrice carrée symétrique définie positive.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Méthode de Jacobi
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $O\left(3N^{2}+2N\right)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-- Valeurs approchés
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Méthode Gauss-Seidel
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $O\left(N^{2}\right)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-- Valeurs approchés
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Ainsi, on constate que les méthodes ci-dessus sont complémentaires car car
- elles présentes chacune des avantages et des inconvénients.
- Ainsi, le choix de la méthode doit se faire en fonction :
-\end_layout
-
-\begin_layout Itemize
-La forme de 
-\begin_inset Formula $A$
-\end_inset
-
- et 
-\begin_inset Formula $B$
-\end_inset
-
-, afin d'optimiser le temps de calcul et éventuellement l'empreinte mémoire.
-\end_layout
-
-\begin_layout Itemize
-La précision de la résolution.
-\end_layout
-
-\begin_layout Standard
-Ainsi, il en revient à l'utilisateur de choisir quel méthode convient le
- mieux.
- Nous aurions pu éventuellement rédiger un algorithme qui fait le choix
- automatiquement.
 \end_layout
 
 \end_body
