@@ -1,15 +1,11 @@
+// - Importation des librairies nécéssaires.
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include <malloc.h>
 
-///////////////////////////////////////////////////////////////////////////////
-//                                                                           //
-//                          Fonctions générales                              //
-//                                                                           //
-///////////////////////////////////////////////////////////////////////////////
-
-// - Gestion des vecteurs et matrices
+// - Gestion des vecteurs et matrices.
 
 // - - Nettoyage
 
@@ -385,11 +381,11 @@ double *Gauss_Seidel(double **A, double *B, int Taille)
     return X_k_1;
 }
 
-
+// - Fonction principale.
 int main()
 {
 
-    // Les différentes parties sont mises entre crochet afin que les variables aients une portée locale (propres à chaques parties).
+    // Les différentes parties sont mises entre accolades afin que les variables aients une portée locale (propres à chaques parties).
 
     // - Méthodes directes
 
@@ -463,7 +459,7 @@ int main()
         Desallocation_Vecteur(X);
     }
 
-    // - - Elimination de Gauss
+    // - - Elimination de Gauss.
 
     {
         // Définition de la taille.
@@ -492,7 +488,7 @@ int main()
         Gauss(A, B, A, B, Taille);
 
         // Résolution de l'équation.
-        double* X = Sol_Sup(A, B, Taille);
+        double *X = Sol_Sup(A, B, Taille);
 
         // Affichage de X.
         printf("La solution X de AX = B d'après la méthode de l'élimination de Gauss est :\n");
@@ -504,7 +500,7 @@ int main()
         Desallocation_Vecteur(X);
     }
 
-    // - - Résolution par factorisation LU
+    // - - Résolution par factorisation LU.
 
     {
         // Définition de la taille.
@@ -550,7 +546,7 @@ int main()
         Desallocation_Vecteur(X);
     }
 
-    // - - Cholesky
+    // - - Cholesky.
 
     {
         // Définition de la taille.
@@ -559,7 +555,7 @@ int main()
         double **A = Allocation_Matrice(Taille);
         double *B = Allocation_Vecteur(Taille);
 
-        // Remplissage de A
+        // Remplissage de A.
         A[0][0] = 1;
         A[0][1] = 1;
         A[0][2] = 1;
@@ -577,27 +573,26 @@ int main()
         A[3][2] = 14;
         A[3][3] = 15;
 
-        // Remplissage de B
+        // Remplissage de B.
         B[0] = 5;
         B[1] = 1;
         B[2] = 3;
         B[3] = 1;
 
-        printf("La solution pour Choleski est :\n");
-
-        // Factorisation de A = LL^T.
+        // Factorisation de A = L*L^T.
         double **L = Cholesky(A, Taille);
 
         // Résolution de LY = B.
         double *Y = Sol_Inf(L, B, Taille);
 
-        // Résolution de L^TX = Y
+        // Transposition de L en L^T.
         Transposer(L, Taille);
 
+        // Résolution de L^T*X = Y.
         double *X = Sol_Sup(L, Y, Taille);
 
+        // Affichage de la solution X.
         printf("La solution X de AX = B d'après la méthode de Cholesky est : \n");
-
         Afficher_Vecteur(X, Taille);
 
         // Désallocation des matrices et vecteurs.
@@ -608,9 +603,10 @@ int main()
         Desallocation_Vecteur(X);
     }
 
-    // - Méthodes itératives
+    // - Méthodes itératives.
 
-    // - - Jacobi
+    // - - Jacobi.
+
     {
         // Définition de la taille
         int Taille = 3;
@@ -634,12 +630,11 @@ int main()
         B[1] = 1;
         B[2] = 1;
 
+        // Résolution pour X.
         double *X = Jacobi(A, B, Taille);
 
-        // - Résultat précis est : (1, 1, 1)
-
+        // Affichage de la solution X.
         printf("La solution X de AX = B avec la méthode Jacobi E est : \n");
-
         Afficher_Vecteur(X, Taille);
 
         // Désallocation des matrices et vecteurs.
@@ -648,16 +643,17 @@ int main()
         Desallocation_Vecteur(X);
     }
 
-    // - - Gauss-Seidel
+    // - - Gauss-Seidel.
+
     {
         // Définition de la taille
         int Taille = 3;
+
         // Allocation des matrices et vecteurs.
         double **A = Allocation_Matrice(Taille);
         double *B = Allocation_Vecteur(Taille);
 
-        // Remplissage de A matrice quelconque
-
+        // Remplissage de A (matrice quelconque).
         A[0][0] = 4;
         A[0][1] = 1;
         A[0][2] = 1;
@@ -668,15 +664,16 @@ int main()
         A[2][1] = 0;
         A[2][2] = 5;
 
-        // Remplissage de B
+        // Remplissage de B.
         B[0] = 1;
         B[1] = 1;
         B[2] = 1;
 
+        // Résolution pour X.
         double *X = Gauss_Seidel(A, B, Taille);
 
+        // Affichage de la solution X.
         printf("La solution X de AX = B avec la méthode de Gauss-Seidel : \n");
-
         Afficher_Vecteur(X, Taille);
 
         // Désallocation des matrices et vecteurs.
