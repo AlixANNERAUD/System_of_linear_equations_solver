@@ -107,10 +107,6 @@ Alix ANNERAUD - Amandine BURCON - Myriem ABID
 
 \end_layout
 
-\begin_layout Section*
-Sommaire
-\end_layout
-
 \begin_layout Standard
 \begin_inset CommandInset toc
 LatexCommand tableofcontents
@@ -136,7 +132,7 @@ Motivation
 \end_layout
 
 \begin_layout Standard
-La résolution des systèmes linéaires est utile à un bon nombres de domaines.
+La résolution des systèmes linéaires est utile à un bon nombre de domaines.
  Voici quelques exemples de problèmes que nous avons rencontrés précédemment
  :
 \end_layout
@@ -147,7 +143,7 @@ La résolution des systèmes linéaires est utile à un bon nombres de domaines.
 Électricité (P3) :
 \bar default
  Calcul d'intensité dans un circuit électronique en utilisant les lois des
- noeuds / mailles.
+ nœuds / mailles.
 \end_layout
 
 \begin_layout Itemize
@@ -173,7 +169,7 @@ Algèbre linéaire (M4) :
 \bar under
 Géométrie analytique (Projet Informatique):
 \bar default
- Déterminer la position relative de droite et de plan dans l’espace.
+ Déterminer la position relative de droites et de plans dans l’espace.
 \end_layout
 
 \begin_layout Standard
@@ -192,7 +188,7 @@ que, détecter et déterminer la collision entre un parallélépipède rectangle
 \end_layout
 
 \begin_layout Standard
-En images de synthèse, les objets dans l'espaces sont définis par des points
+En images de synthèse, les objets dans l'espace sont définis par des points
  dans 
 \begin_inset Formula $\reel^{3}$
 \end_inset
@@ -252,11 +248,11 @@ z_{L}-z_{J}
 \end_layout
 
 \begin_layout Standard
-Ainsi, on peut exprimer la le vecteur 
+Ainsi, on peut exprimer le vecteur 
 \begin_inset Formula $\overrightarrow{D}$
 \end_inset
 
-, c'est à dire déterminer les valeurs de 
+ dans cette base, c'est à dire déterminer les valeurs de 
 \begin_inset Formula $\alpha,\beta$
 \end_inset
 
@@ -337,7 +333,7 @@ z_{B}-z_{A}
 \end_layout
 
 \begin_layout Standard
-Une fois trouvé 
+Une fois trouvés 
 \begin_inset Formula $\alpha,\beta$
 \end_inset
 
@@ -355,7 +351,7 @@ Une fois trouvé
 
  par rapport au parallélépipède rectangle.
  Ainsi, avec de simples comparaisons, on peut déduire si la droite est en
- collision avec le parallélépipède rectangle, et si oui, a quels endroits.
+ collision avec le parallélépipède rectangle, et si oui, à quels endroits.
 \end_layout
 
 \begin_layout Subsection
@@ -384,7 +380,7 @@ Notre but sera de résoudre pour
 \begin_inset Formula $A$
 \end_inset
 
- peut poser problèmes de par le temps de calcul lorsque 
+ peut poser problème de par le temps de calcul lorsque 
 \begin_inset Formula $N$
 \end_inset
 
@@ -402,12 +398,12 @@ Notre but sera de résoudre pour
 \end_inset
 
 .
- Nous allons donc, à l'aide de plusieurs méthodes, tender de résoudre l'équation
+ Nous allons donc, à l'aide de plusieurs méthodes, tenter de résoudre l'équation
  sans réaliser ce calcul, en décomposant le problème en sous-problèmes plus
  simples à résoudre.
  Nous procéderons à des optimisations graduelles d'une méthode à l'autre
  du coût en temps de calcul et en espace mémoire utilisé pour le calcul.
- On utilisera tout au long de ce rapport, les matrices 
+ On utilisera tout au long de ce rapport les matrices 
 \begin_inset Formula $A\in\reel^{N\times N}$
 \end_inset
 
@@ -426,148 +422,14 @@ Notre but sera de résoudre pour
 \end_layout
 
 \begin_layout Section
-Références
-\end_layout
-
-\begin_layout Subsection
-Bibliographie
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-btprint "btPrintCited"
-bibfiles "example-glossaries-url"
-options "plain"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
 Biographies
 \end_layout
 
 \begin_layout Standard
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "25col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Gauss.png
-	scale 10
-
-\end_inset
-
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "25col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Cholesky.png
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "25col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "25col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\end_layout
-
-\begin_layout Subsubsection
+\begin_layout Subsection*
 Johann Carl Friedrich Gauss
 \end_layout
 
@@ -612,7 +474,7 @@ prince des mathématiques
  L'élimination de Gauss est expliquée ci-après.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection*
 André-Louis Cholesky
 \end_layout
 
@@ -639,8 +501,8 @@ Sur la résolution numérique des systèmes d'équations linéaires
  carrés et sera publiée 6 ans après sa mort.
 \end_layout
 
-\begin_layout Subsubsection
-Jacobi
+\begin_layout Subsection*
+Charles Gustave Jacob Jacobi
 \end_layout
 
 \begin_layout Standard
@@ -650,7 +512,7 @@ Charles Gustave Jacob Jacobi est un mathématicien allemand né le 10 décembre
  les mathématiques à l'université de Königsberg.
  En parallèle de sa fonction de professeur, il effectue des travaux de recherche
  en physique mathématique, en théorie des nombres et en analyse mathématique
- pour n'en citer que quelques uns.
+ pour n'en citer que quelques-uns.
  On lui doit notamment la théorie des déterminants et en particulier l'invention
  du déterminant d'une matrice (jacobienne).
  Il publie également un traité fondamental sur les fonctions elliptiques
@@ -663,10 +525,10 @@ Charles Gustave Jacob Jacobi est un mathématicien allemand né le 10 décembre
  LU qui sont des méthodes directes, la méthode de Jacobi est une méthode
  dite itérative.
  Il est alors pertinent de s'intéresser à cette méthode et de l'implémenter
- en C si l'on veut réaliser une comparaison entre les deux types de méthode.
+ en C si l'on veut réaliser une comparaison entre les deux types de méthodes.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection*
 Philipp von Seidel
 \end_layout
 
@@ -708,7 +570,7 @@ Seidel se concentre tout au long de sa carrière sur ses travaux en optique
 \end_layout
 
 \begin_layout Section
-Travail préliminaire
+Préliminaires
 \end_layout
 
 \begin_layout Subsection
@@ -810,7 +672,7 @@ float
 \begin_inset Text
 
 \begin_layout Plain Layout
-6 chiffre après la virgule
+6 chiffres après la virgule
 \end_layout
 
 \end_inset
@@ -952,16 +814,16 @@ float
 \begin_inset Quotes frd
 \end_inset
 
- sur les ordinateurs modernes, pour lesquels, les processeur possèdent des
+ sur les ordinateurs modernes, pour lesquels les processeur possèdent des
  registres de calculs flottant de 64 bits / 8 octets.
  Il est à noter que cette considération aurait été différente il y a 10
- - 20 ans car les processeurs plus anciens possédaient seulement unités
- et registres de calcul flottant de 32 bits, 16 bits voir 8 bits (pour les
- plus anciens).
+ - 20 ans car les processeurs plus anciens possédaient seulement des unités
+ et registres de calcul flottant de 32 bits, 16 bits voire 8 bits (pour
+ les plus anciens).
  Ainsi, il fallait des cycles d'horloges supplémentaires pour un calcul
  flottant sur 64 bits par rapport à un calcul flottant sur 32 bits.
  Idem dans le cas de calculateurs scientifiques qui possèdent généralement
- des unités de calculs et registres flottants de 128 bits (voir plus).
+ des unités de calculs et registres flottants de 128 bits (voire plus).
  De plus, bien que le type 
 \begin_inset Quotes fld
 \end_inset
@@ -1037,12 +899,11 @@ double *Allocation_Vecteur(int Taille)
 
 \begin_layout Plain Layout
 
-    double * Vecteur = (double *)malloc(Taille * sizeof(double));
+    double *Vecteur = (double *)malloc(Taille * sizeof(double));
 \end_layout
 
 \begin_layout Plain Layout
 
-    
 \end_layout
 
 \begin_layout Plain Layout
@@ -1124,21 +985,6 @@ double **Allocation_Matrice(int Taille)
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
-    // Nettoyage de la matrice (remplissage par des 0)
-\end_layout
-
-\begin_layout Plain Layout
-
-    Nettoyage_Matrice(Matrice, Taille);
-\end_layout
-
-\begin_layout Plain Layout
-
-    
 \end_layout
 
 \begin_layout Plain Layout
@@ -1245,7 +1091,7 @@ void Nettoyage_Vecteur(double *Vecteur, int Taille)
 
 \begin_layout Plain Layout
 
-void Nettoyer_Matrice(double **A, int Taille)
+void Nettoyage_Matrice(double **A, int Taille)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1315,18 +1161,6 @@ void Afficher_Vecteur(double *Vecteur, int Taille)
 
 \begin_layout Plain Layout
 
-    // Saut de ligne.
-\end_layout
-
-\begin_layout Plain Layout
-
-    printf("
-\backslash
-n");
-\end_layout
-
-\begin_layout Plain Layout
-
     // Itère parmis les éléments du vecteur.
 \end_layout
 
@@ -1389,18 +1223,6 @@ void Afficher_Matrice(double **Matrice, int Taille)
 \begin_layout Plain Layout
 
     {
-\end_layout
-
-\begin_layout Plain Layout
-
-        // Retour à la ligne.
-\end_layout
-
-\begin_layout Plain Layout
-
-        printf("
-\backslash
-n");
 \end_layout
 
 \begin_layout Plain Layout
@@ -1477,6 +1299,66 @@ status open
 
 \begin_layout Plain Layout
 
+void Desallocation_Vecteur(double *Vecteur)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    free(Vecteur);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void Desallocation_Matrice(double **Matrice, int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Itère parmis la première dimension de la matrice.
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        Desallocation_Vecteur(Matrice[i]);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -1496,7 +1378,7 @@ Méthodes directes
 \end_layout
 
 \begin_layout Standard
-On considère qu'une méthode de résolution de systèmes linéaires 
+On considère qu'une méthode de résolution de système linéaire 
 \begin_inset Formula $AX=B$
 \end_inset
 
@@ -1504,7 +1386,7 @@ On considère qu'une méthode de résolution de systèmes linéaires
  dernière existe, au terme d'un nombre fini d'opérations élémentaires, c'est-à-d
 ire les additions, soustractions, multiplications et divisions.
  Les solutions obtenues via ce type de méthodes sont exactes mais cela ne
- signifie qu'elles sont infaillibles.
+ signifie pas qu'elles sont infaillibles.
  En effet, plus le nombre d'opérations à effectuer est important, plus le
  risque d'avoir des erreurs de calcul augmente.
  Généralement, ce nombre est proportionnel à la taille du système étudié.
@@ -1531,6 +1413,17 @@ Pour cette première méthode,
 \end_inset
 
  est une matrice triangulaire inférieure.
+ On appelle matrice triangulaire inférieure toute matrice carrée à coefficients
+ dans 
+\begin_inset Formula $\reel$
+\end_inset
+
+ dont la partie située au-dessus de la diagonale principale est uniquement
+ constituée de coefficients nuls : 
+\begin_inset Formula $\forall i<j,a_{ij}=0$
+\end_inset
+
+.
  On peut donc facilement trouver X en suivant un algorithme dit 
 \begin_inset Quotes fld
 \end_inset
@@ -1551,7 +1444,7 @@ Soit
 \begin_inset Formula $N=3$
 \end_inset
 
-, on a donc : 
+, on a : 
 \end_layout
 
 \begin_layout Standard
@@ -1653,7 +1546,7 @@ status open
 
 \begin_layout Plain Layout
 
-double *Sol_Inf(double **a, double *b, int Taille)
+double *Sol_Inf(double **A, double *B, int Taille)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1668,7 +1561,7 @@ double *Sol_Inf(double **a, double *b, int Taille)
 
 \begin_layout Plain Layout
 
-    double *x = Allocation_Vecteur(Taille);
+    double *X = Allocation_Vecteur(Taille);
 \end_layout
 
 \begin_layout Plain Layout
@@ -1682,7 +1575,7 @@ double *Sol_Inf(double **a, double *b, int Taille)
 
 \begin_layout Plain Layout
 
-    x[0] = b[0] / a[0][0];
+    X[0] = B[0] / A[0][0];
 \end_layout
 
 \begin_layout Plain Layout
@@ -1711,7 +1604,7 @@ double *Sol_Inf(double **a, double *b, int Taille)
 
 \begin_layout Plain Layout
 
-        double Sum = 0;
+        double Somme = 0;
 \end_layout
 
 \begin_layout Plain Layout
@@ -1726,7 +1619,7 @@ double *Sol_Inf(double **a, double *b, int Taille)
 
 \begin_layout Plain Layout
 
-            Sum = Sum + a[i][j] * x[j];
+            Somme = Somme + A[i][j] * X[j];
 \end_layout
 
 \begin_layout Plain Layout
@@ -1741,7 +1634,7 @@ double *Sol_Inf(double **a, double *b, int Taille)
 
 \begin_layout Plain Layout
 
-        x[i] = (b[i] - Sum) / a[i][i];
+        X[i] = (B[i] - Somme) / A[i][i];
 \end_layout
 
 \begin_layout Plain Layout
@@ -1755,7 +1648,7 @@ double *Sol_Inf(double **a, double *b, int Taille)
 
 \begin_layout Plain Layout
 
-    return x;
+    return X;
 \end_layout
 
 \begin_layout Plain Layout
@@ -1804,16 +1697,20 @@ Conclusion
 \begin_layout Standard
 Ainsi, cet algorithme possède une complexité temporelle maximale quadratique
  
-\begin_inset Formula $O\left(N²\right)$
+\begin_inset Formula $O\left(N^{2}\right)$
 \end_inset
 
- car nous avons deux boucles imbriquées les unes dans les autres qui dépendent
+ car nous avons deux boucles imbriquées l'une dans l'autre qui dépendent
  de la taille 
 \begin_inset Formula $N$
 \end_inset
 
  de 
-\begin_inset Formula $A,B$
+\begin_inset Formula $A$
+\end_inset
+
+,
+\begin_inset Formula $B$
 \end_inset
 
  et 
@@ -1821,7 +1718,8 @@ Ainsi, cet algorithme possède une complexité temporelle maximale quadratique
 \end_inset
 
 .
- 
+ Nous nous servirons de cet algorithme dans les méthodes qui suivent dont
+ le but sera de se rapporter à une forme de matrice triangulaire.
 \end_layout
 
 \begin_layout Subsection
@@ -1838,6 +1736,17 @@ Cette méthode est similaire à la précédente, mais
 \end_inset
 
  est ici une matrice triangulaire supérieure.
+ On appelle matrice triangulaire supérieure toute matrice carrée à coefficients
+ dans 
+\begin_inset Formula $\reel$
+\end_inset
+
+ dont la partie située en-dessous de la diagonale principale est uniquement
+ constituée de coefficients nuls : 
+\begin_inset Formula $\forall i>j,a_{ij}=0$
+\end_inset
+
+.
  On va donc cette fois trouver 
 \begin_inset Formula $X$
 \end_inset
@@ -1891,7 +1800,7 @@ x_{3}
 b_{1}\\
 b_{2}\\
 b_{3}
-\end{array}\right)\ensuremath{\Leftrightarrow}}
+\end{array}\right)}
 \]
 
 \end_inset
@@ -1964,7 +1873,113 @@ status open
 
 \begin_layout Plain Layout
 
-Ecrire algorithme ici
+double *Sol_Sup(double **A, double *B, int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Allocation du vecteur X.
+\end_layout
+
+\begin_layout Plain Layout
+
+    double *X = Allocation_Vecteur(Taille);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Calcul du dernier terme de X (terme initial).
+\end_layout
+
+\begin_layout Plain Layout
+
+    X[Taille - 1] = B[Taille - 1] / A[Taille - 1][Taille - 1];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Itère parmis les lignes de la matrice.
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = Taille - 2; i >= 0; i--)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Calcul de la somme des a[i][j] * x[j]
+\end_layout
+
+\begin_layout Plain Layout
+
+        double Somme = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int j = i + 1; j < Taille; j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            Somme += A[i][j] * X[j];
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        X[i] = (B[i] - Somme) / A[i][i];
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    return X;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -2019,7 +2034,7 @@ De la même manière que le précédent, cet algorithme possède une complexité
 \end_layout
 
 \begin_layout Subsubsection*
-Introduction
+Principe
 \end_layout
 
 \begin_layout Standard
@@ -2032,7 +2047,7 @@ On veut maintenant résoudre l'équation
 \end_inset
 
  est une matrice carrée quelconque.
- Nous allons utiliser la méthode de l'élimination Gauss pour transformer
+ Nous allons utiliser la méthode de l'élimination de Gauss pour transformer
  l'expression 
 \begin_inset Formula $AX=B$
 \end_inset
@@ -2231,11 +2246,11 @@ On remarque que pour éliminer un
 \begin_inset Formula $\left(2\right)$
 \end_inset
 
- en utilisant l'équation précédente (
+ en utilisant 
 \begin_inset Formula $\left(1\right)$
 \end_inset
 
-), on utilise une formule très simple : 
+ (équation précédente), on utilise une formule très simple : 
 \begin_inset Formula $\left(2\right)-\frac{a_{1}}{a_{2}}\times\left(1\right)$
 \end_inset
 
@@ -2243,7 +2258,7 @@ On remarque que pour éliminer un
 \begin_inset Formula $a_{k}$
 \end_inset
 
- le coefficient 
+ le coefficient de 
 \begin_inset Formula $x_{i}$
 \end_inset
 
@@ -2309,17 +2324,102 @@ status open
 
 \begin_layout Plain Layout
 
-Code de mes fesses
+void Gauss(double **A, double *B, double **U, double *e, int Taille)
 \end_layout
 
 \begin_layout Plain Layout
 
-void KILL_ME()
+{
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+    // Itère parmis la première dimension de la matrice.
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille - 1; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Itère parmis la deuxième dimension de la matrice.
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int k = i + 1; k < Taille; k++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            // Calcul du coefficient C = A_k_i / A_i_i.
+\end_layout
+
+\begin_layout Plain Layout
+
+            double C = A[k][i] / A[i][i];
+\end_layout
+
+\begin_layout Plain Layout
+
+            // Remplacement des valeurs de A.
+\end_layout
+
+\begin_layout Plain Layout
+
+            for (int j = 0; j < Taille; j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                U[k][j] = A[k][j] - (C * A[i][j]);
+\end_layout
+
+\begin_layout Plain Layout
+
+            }
+\end_layout
+
+\begin_layout Plain Layout
+
+            // Remplacement des valeurs de B.
+\end_layout
+
+\begin_layout Plain Layout
+
+            e[k] = B[k] - (C * B[i]);
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -2380,7 +2480,7 @@ Cette méthode est de complexité
 \begin_inset Formula $A$
 \end_inset
 
- mais surtout 
+ mais plus souvent 
 \begin_inset Formula $B$
 \end_inset
 
@@ -2437,11 +2537,11 @@ Afin d'éviter de recalculer
 \begin_inset Formula $L\in\reel^{N\times N}$
 \end_inset
 
-, une matrice triangulaire supérieure et 
+, une matrice triangulaire inférieure et 
 \begin_inset Formula $U\in\reel^{N\times N}$
 \end_inset
 
-, une matrice triangulaire inférieure.
+, une matrice triangulaire supérieure.
  Cette opération sera réalisée par la fonction 
 \begin_inset Quotes fld
 \end_inset
@@ -2475,12 +2575,12 @@ Tout d'abord, nous allons poser
 \begin_inset Formula $L$
 \end_inset
 
- étant une matrice triangulaire supérieure carrée, il suffit d'utiliser
- la fonction 
+ étant une matrice triangulaire inférieure, il suffit d'utiliser la fonction
+ 
 \begin_inset Quotes fld
 \end_inset
 
-Sol_Sup
+Sol_Inf
 \begin_inset Quotes frd
 \end_inset
 
@@ -2500,11 +2600,11 @@ Enfin, comme
 \begin_inset Formula $U$
 \end_inset
 
- une matrice inférieure carrée, on peut utiliser 
+ une matrice supérieure, on peut utiliser 
 \begin_inset Quotes fld
 \end_inset
 
-Sol_Inf
+Sol_Sup
 \begin_inset Quotes frd
 \end_inset
 
@@ -2542,13 +2642,13 @@ Pour faciliter les calculs, on décide que la diagonale de
 \begin_inset Formula $A$
 \end_inset
 
- pour créer 
+, pour créer 
 \begin_inset Formula $U$
 \end_inset
 
- par les combinaisons linéaires de l'élimination de Gauss, selon la formule
+, par les combinaisons linéaires de l'élimination de Gauss, selon la formule
  
-\begin_inset Formula $A_{kj}=A_{kj}-\left(\frac{A_{ki}}{A_{ii}}\times A_{ij}\right)$
+\begin_inset Formula $a_{kj}=a_{kj}-\left(\frac{a_{ki}}{a_{ii}}\times a_{ij}\right)$
 \end_inset
 
 .
@@ -2557,7 +2657,7 @@ Pour faciliter les calculs, on décide que la diagonale de
 \end_inset
 
  par les coefficients de ces combinaisons linéaires : 
-\begin_inset Formula $L_{ki}=\frac{A_{ki}}{A_{ii}}$
+\begin_inset Formula $l_{ki}=\frac{a_{ki}}{a_{ii}}$
 \end_inset
 
 .
@@ -2584,7 +2684,7 @@ void LU(double **L, double **A, int Taille)
 
 \begin_layout Plain Layout
 
-    Nettoyer_Matrice(L, Taille, Taille);
+    Nettoyage_Matrice(L, Taille);
 \end_layout
 
 \begin_layout Plain Layout
@@ -2698,10 +2798,6 @@ void LU(double **L, double **A, int Taille)
 }
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -2723,6 +2819,13 @@ Pour
 \begin_inset Formula $L=\begin{pmatrix}1 & 0 & 0\\
 5 & 1 & 0\\
 3 & 0,875 & 1
+\end{pmatrix}$
+\end_inset
+
+ et 
+\begin_inset Formula $U=\begin{pmatrix}1 & 2 & 3\\
+0 & -8 & -14\\
+0 & 0 & 4,25
 \end{pmatrix}$
 \end_inset
 
@@ -2757,7 +2860,7 @@ Sol_Sup
 \end{pmatrix}$
 \end_inset
 
-, ce qui est correct.
+.
 \end_layout
 
 \begin_layout Itemize
@@ -2793,19 +2896,11 @@ Conclusion
 
 \begin_layout Standard
 Cette fonction est de complexité temporelle 
-\begin_inset Formula $O\left(\frac{N^{3}}{6}\right)$
+\begin_inset Formula $O\left(\frac{N^{3}}{3}\right)$
 \end_inset
 
- 
-\end_layout
-
-\begin_layout Standard
 .
- 
-\end_layout
-
-\begin_layout Standard
-Cependant, dans le cas où 
+ Cependant, dans le cas où 
 \begin_inset Formula $A$
 \end_inset
 
@@ -2850,6 +2945,19 @@ Cette nouvelle méthode nous permet d’optimiser encore plus le code dans
 \end_inset
 
 .
+ La transposée de 
+\begin_inset Formula $L$
+\end_inset
+
+ étant une matrice 
+\begin_inset Formula $L^{T}$
+\end_inset
+
+ où les lignes et les colonnes de 
+\begin_inset Formula $L$
+\end_inset
+
+ ont été permutées.
  Si on remplace dans notre expression initiale, on a : 
 \begin_inset Formula $L\cdot L^{T}\cdot X=B$
 \end_inset
@@ -2909,7 +3017,7 @@ Sol_Sup
 \begin_inset Formula $L^{T}$
 \end_inset
 
- étant également une matrice triangulaire supérieure carrée.
+ étant une matrice triangulaire supérieure carrée.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2921,11 +3029,7 @@ Soit
 \begin_inset Formula $N=4$
 \end_inset
 
-, : 
-\end_layout
-
-\begin_layout Standard
-On cherche une matrice 
+, on cherche une matrice 
 \begin_inset Formula $L$
 \end_inset
 
@@ -2979,41 +3083,7 @@ a_{41} & a_{42} & a_{43} & a_{44}
 \end_layout
 
 \begin_layout Itemize
-On a donc pour les termes en diagonale :
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\begin_inset Formula $l_{11}^{2}=a_{11}\Rightarrow l_{11}=\sqrt{a_{11}}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $l_{21}^{2}+l_{22}^{2}=a_{22}\Rightarrow l_{22}=\sqrt{a_{22}-l_{21}^{2}}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $l_{31}^{2}+l_{32}^{2}+l_{33}^{2}=a_{33}\Rightarrow l_{33}=\sqrt{a_{33}-l_{31}^{2}-l_{32}^{2}}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $l_{41}^{2}+l_{42}^{2}+l_{43}^{2}+l_{44}^{2}=a_{44}\Rightarrow l_{44}=\sqrt{a_{44}-l_{41}^{2}-l_{42}^{2}-l_{43}^{2}}$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-On constate que : 
+On a donc pour les termes en diagonale : 
 \begin_inset Formula $l_{ii}=\sqrt{a_{ii}-\sum_{k=1}^{i-1}l_{ik}^{2}}$
 \end_inset
 
@@ -3021,7 +3091,7 @@ On constate que :
 \end_layout
 
 \begin_layout Itemize
-On a également pour les autres termes, on constate que 
+On a également pour les autres termes : 
 \begin_inset Formula $l_{ij}=\frac{a_{ij}}{l_{jj}}-\sum_{k=1}^{j-1}l_{ik}l_{jk}$
 \end_inset
 
@@ -3039,7 +3109,242 @@ status open
 
 \begin_layout Plain Layout
 
-Ecrire code
+double **Cholesky(double **A, int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Allocation de la matrice L.
+\end_layout
+
+\begin_layout Plain Layout
+
+    double **L = Allocation_Matrice(Taille);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Itère parmis les lignes de la matrice.
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int j = 0; j < Taille; j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Calcul de la somme.
+\end_layout
+
+\begin_layout Plain Layout
+
+        double Somme = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int k = 0; k < j; k++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            Somme += L[j][k] * L[j][k];
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Calcul des termes de la diagonale de L.
+\end_layout
+
+\begin_layout Plain Layout
+
+        L[j][j] = sqrt(A[j][j] - Somme);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Calcul des termes pour i = j+1 à N.
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int i = j + 1; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            Somme = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+            for (int k = 0; k < j; k++)
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+                Somme += L[i][k] * L[j][k];
+\end_layout
+
+\begin_layout Plain Layout
+
+            }
+\end_layout
+
+\begin_layout Plain Layout
+
+            L[i][j] = (A[i][j] - Somme) / L[j][j];
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    return L;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+double **Transposer(double **Matrice, int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // On itère parmis les colones.
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // On itère parmis les lignes.
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int j = i + 1; j < Taille; j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            // On inverse les termes (en cooordonnées) de la matrice.
+\end_layout
+
+\begin_layout Plain Layout
+
+            Matrice[i][j] = Matrice[j][i];
+\end_layout
+
+\begin_layout Plain Layout
+
+            //  On supprime les termes inférieurs.
+\end_layout
+
+\begin_layout Plain Layout
+
+            Matrice[j][i] = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    return Matrice;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -3100,12 +3405,12 @@ Sol_Inf
 \end{pmatrix}$
 \end_inset
 
-, ce qui est correct.
+.
 \end_layout
 
 \begin_layout Itemize
 Enfin, pour 
-\begin_inset Formula $A$
+\begin_inset Formula $L^{T}$
 \end_inset
 
  et 
@@ -3116,7 +3421,7 @@ Enfin, pour
 \begin_inset Quotes fld
 \end_inset
 
-Sol_Inf
+Sol_Sup
 \begin_inset Quotes frd
 \end_inset
 
@@ -3135,7 +3440,38 @@ Conclusion
 \end_layout
 
 \begin_layout Standard
-Lors de la factorisation, on effectue 
+Cette méthode qui est un cas particulier de la précédente est la moins complexe
+ avec 
+\begin_inset Formula $O\left(\frac{N^{3}}{6}\right)$
+\end_inset
+
+, ce qui en fait la plus pertinente pour résoudre l'équation.
+ Cependant elle n'est utilisable que lorsque 
+\begin_inset Formula $A$
+\end_inset
+
+ est symétrique et définie positive, son utilisation est donc restreinte.
+\end_layout
+
+\begin_layout Subsection
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Dans cette partie, nous avons pu voir plusieurs manières de résoudre un
+ système linéaire par le biais d'opérations élémentaires.
+ Même si nous avons vu que certaines méthodes étaient moins coûteuses que
+ d'autres en matière de temps de calcul, le choix de la méthode dépend également
+ des spécificités du système linéaire.
+ Par exemple, dans le cas d'une matrice définie positive mais qui n'est
+ pas symétrique, la méthode de Cholesky ne pourra pas être appliquée et
+ il faudra passer par une autre méthode.
+ De plus, leurs résultats sont justes lorsque la taille de la matrice et
+ des vecteurs reste raisonnable car les risques d'erreurs de calcul sont
+ proportionnels à la taille.
+ Ces méthodes ne sont pas les plus économes en matière d'utilisation d'espace
+ mémoire, c'est pourquoi nous allons étudier un autre type de méthodes de
+ résolution de systèmes linéaires.
 \end_layout
 
 \begin_layout Standard
@@ -3177,7 +3513,7 @@ Les méthodes itératives sont une autre approche à la résolution de systèmes
  Même si nous n'avons pas eu l'occasion d'aborder en détails la méthode
  de Gauss-Seidel en cours, il nous semblait pertinent de tout de même l'inclure
  dans notre rapport afin d'avoir un élément supplémentaire de comparaison
- dans notre étude des différentes méthodes de résolutions de systèmes linéaires.
+ dans notre étude des différentes méthodes de résolution de systèmes linéaires.
 \end_layout
 
 \begin_layout Subsection
@@ -3271,7 +3607,7 @@ L'équation initiale
 \begin_inset Formula $\left(E+D+F\right)X=B$
 \end_inset
 
-, ce qui donne
+, ce qui donne :
 \end_layout
 
 \begin_layout Standard
@@ -3332,7 +3668,7 @@ Ainsi, pour un
 \end_inset
 
  donné, on peut calculer 
-\begin_inset Formula $X_{i}^{k+1}=\frac{B_{i}-\sum_{j=1,j\neq i}^{N}A_{ij}X_{j}^{k}}{A_{ii}}$
+\begin_inset Formula $X_{i}^{k+1}=\frac{b_{i}-\sum_{j=1,j\neq i}^{N}a_{ij}X_{j}^{k}}{a_{ii}}$
 \end_inset
 
  pour 
@@ -3345,12 +3681,12 @@ Ainsi, pour un
 \end_inset
 
  pour que la boucle s'arrête une fois que le résultat est considéré comme
- satisfaisant : 
+ satisfaisant, c'est à dire : 
 \begin_inset Formula $\left\Vert X^{k+1}-X^{k}\right\Vert _{2}=\sqrt{\sum_{n=0}^{N-1}\left(X^{k+1}\left[n\right]-X^{k}\left[n\right]\right)^{2}}\leqslant\varepsilon$
 \end_inset
 
 .
- On définit également un nombre d'itération maximale dans le cas où l'algorithme
+ On définit également un nombre d'itérations maximal dans le cas où l'algorithme
  n'atteint pas 
 \begin_inset Formula $\varepsilon$
 \end_inset
@@ -3365,10 +3701,274 @@ Code
 \begin_layout Standard
 \begin_inset listings
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
+double *Jacobi(double **A, double *B, int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Allocation du vecteur X_k.
+\end_layout
+
+\begin_layout Plain Layout
+
+    double *X_k = Allocation_Vecteur(Taille);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Remplissage de X_k par des 1 (X_0).
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        X_k[i] = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Allocation du vecteur X_k_1.
+\end_layout
+
+\begin_layout Plain Layout
+
+    double *X_k_1 = Allocation_Vecteur(Taille);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    double Norme;
+\end_layout
+
+\begin_layout Plain Layout
+
+    int it = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+    int it_max = 10;
+\end_layout
+
+\begin_layout Plain Layout
+
+    double Epsilon = 0.001;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Itération.
+\end_layout
+
+\begin_layout Plain Layout
+
+    do
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Calcul de X_k_1.
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            // Calcul de la somme des a[i][j] * x_k[j].
+\end_layout
+
+\begin_layout Plain Layout
+
+            double Somme = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+            for (int j = 0; j < Taille; j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                if (i != j)
+\end_layout
+
+\begin_layout Plain Layout
+
+                {
+\end_layout
+
+\begin_layout Plain Layout
+
+                    Somme += A[i][j] * X_k[j];
+\end_layout
+
+\begin_layout Plain Layout
+
+                }
+\end_layout
+
+\begin_layout Plain Layout
+
+            }
+\end_layout
+
+\begin_layout Plain Layout
+
+            X_k_1[i] = (B[i] - Somme) / A[i][i];
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Calcul de la norme.
+\end_layout
+
+\begin_layout Plain Layout
+
+        Norme = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            Norme += (X_k_1[i] - X_k[i]) * (X_k_1[i] - X_k[i]);
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+        Norme = sqrt(Norme);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        // On remplace X_k par X_k_1.
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            X_k[i] = X_k_1[i];
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+        it++;
+\end_layout
+
+\begin_layout Plain Layout
+
+    } while ((Norme > Epsilon) && (it < it_max));
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    return X_k_1;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -3396,10 +3996,17 @@ Pour
 \end_inset
 
 , 
+\begin_inset Formula $X^{0}=\begin{pmatrix}1\\
+1\\
+1
+\end{pmatrix}$
+\end_inset
+
+ 
 \begin_inset Formula $\varepsilon=0,001$
 \end_inset
 
- et un nombre d'itération maximale de 
+ et un nombre d'itérations maximal de 
 \begin_inset Formula $10$
 \end_inset
 
@@ -3410,7 +4017,7 @@ Pour
 \end{pmatrix}$
 \end_inset
 
-, ce qui semble correct car 
+, ce que l'on peut considérer comme correct car : 
 \begin_inset Formula $X\cdot A=\begin{pmatrix}1,005028\\
 1,004525\\
 1,005022
@@ -3425,6 +4032,27 @@ Pour
 
 \begin_layout Subsubsection*
 Conclusion
+\end_layout
+
+\begin_layout Standard
+Cet algorithme a une complexité 
+\begin_inset Formula $O\left(3N^{2}+2N\right)$
+\end_inset
+
+, ce qui est moindre que pour les méthodes précédentes.
+ On peut également décider, dans une certaine mesure, de la précision voulue
+ du résultat en modifiant 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+.
+ Cependant 
+\begin_inset Formula $X^{0}$
+\end_inset
+
+ est choisi arbitrairement, ce qui réduit la précision des résultats.
+ Le nombre d'itérations nécessaires à un résultat précis peut également
+ être un point négatif.
 \end_layout
 
 \begin_layout Subsection
@@ -3488,6 +4116,15 @@ En calculant
 
  pour le reste de la somme.
  On sépare donc la somme de la formule précédente en deux.
+ On a : 
+\begin_inset Formula $X_{i}^{k+1}=\frac{b^{i}-\sum_{j=1}^{i-1}a_{ij}X_{j}^{k+1}-\sum_{j=i+1}^{N}a_{ij}X_{j}^{k}}{a_{ii}}$
+\end_inset
+
+, pour 
+\begin_inset Formula $i=1,\ldots,N$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3501,7 +4138,266 @@ status open
 
 \begin_layout Plain Layout
 
-Code
+double *Gauss_Seidel(double **A, double *B, int Taille)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Allocation des vecteurs.
+\end_layout
+
+\begin_layout Plain Layout
+
+    double *X_k = Allocation_Vecteur(Taille);
+\end_layout
+
+\begin_layout Plain Layout
+
+    double *X_k_1 = Allocation_Vecteur(Taille);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Remplissage de X_k par des 1 (X_0).
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        X_k[i] = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    double Norme;
+\end_layout
+
+\begin_layout Plain Layout
+
+    int it = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+    int it_max = 10;
+\end_layout
+
+\begin_layout Plain Layout
+
+    double Epsilon = 0.001;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    do
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Calcul de X_k_1.
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            // Calcul de la somme des A[i][j] * X_k_1[j].
+\end_layout
+
+\begin_layout Plain Layout
+
+            double Somme = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+            for (int j = 0; j < i; j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                Somme += A[i][j] * X_k_1[j];
+\end_layout
+
+\begin_layout Plain Layout
+
+            }
+\end_layout
+
+\begin_layout Plain Layout
+
+            // Calcul de la somme des a[i][j] * x_k[j].
+\end_layout
+
+\begin_layout Plain Layout
+
+            for (int j = i + 1; j < Taille; j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                Somme += A[i][j] * X_k[j];
+\end_layout
+
+\begin_layout Plain Layout
+
+            }
+\end_layout
+
+\begin_layout Plain Layout
+
+            X_k_1[i] = (B[i] - Somme) / A[i][i];
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Calcul de la norme entre X_k_1 et X_k.
+\end_layout
+
+\begin_layout Plain Layout
+
+        Norme = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            Norme += (X_k_1[i] - X_k[i]) * (X_k_1[i] - X_k[i]);
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+        Norme = sqrt(Norme);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        // On remplace X_k par X_k_1.
+\end_layout
+
+\begin_layout Plain Layout
+
+        for (int i = 0; i < Taille; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            X_k[i] = X_k_1[i];
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+        it++;
+\end_layout
+
+\begin_layout Plain Layout
+
+    } while ((Norme > Epsilon) && (it < it_max));
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    return X_k_1;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -3510,16 +4406,92 @@ Code
 \end_layout
 
 \begin_layout Subsubsection*
+Exemple
+\end_layout
+
+\begin_layout Standard
+Pour 
+\begin_inset Formula $A=\begin{pmatrix}10 & 1 & 1\\
+2 & 10 & 1\\
+2 & 2 & 10
+\end{pmatrix}$
+\end_inset
+
+, 
+\begin_inset Formula $B=\begin{pmatrix}12\\
+13\\
+14
+\end{pmatrix}$
+\end_inset
+
+, 
+\begin_inset Formula $X^{0}=\begin{pmatrix}1\\
+1\\
+1
+\end{pmatrix}$
+\end_inset
+
+, 
+\begin_inset Formula $\varepsilon=0,001$
+\end_inset
+
+ et un nombre d'itérations maximal de 
+\begin_inset Formula $10$
+\end_inset
+
+, l'algorithme retourne 
+\begin_inset Formula $X=\begin{pmatrix}1,000000\\
+1,000000\\
+1,000000
+\end{pmatrix}$
+\end_inset
+
+, ce qui est correct car 
+\begin_inset Formula $X\cdot A=\begin{pmatrix}12\\
+13\\
+14
+\end{pmatrix}=B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
 Conclusion
 \end_layout
 
 \begin_layout Standard
-Cette méthode permet de gagner en précision par rapport à la précédente,
- bien qu’il faille encore choisir 
-\begin_inset Formula $X^{0}$
+La complexité de 
+\begin_inset Formula $O\left(3N^{2}+2N\right)$
 \end_inset
 
- arbitrairement.
+ est la même que précédemment, mais on gagne en espace mémoire puisque seulement
+ un vecteur 
+\begin_inset Formula $X$
+\end_inset
+
+ est nécessaire, au lieu de deux auparavant.
+ De plus, les résultats produits sont plus précis que la méthode de Jacobi.
+\end_layout
+
+\begin_layout Subsection
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Ici, nous avons étudié deux méthodes itératives visant à résoudre des systèmes
+ linéaires.
+ Comparées aux méthodes directes, celles-ci ne nécessitent pas de stocker
+ les matrices entières en mémoire vive mais uniquement les termes non nuls,
+ en d'autres termes, elles occupent moins d'espace mémoire.
+ De plus, pour des systèmes très grands, elles permettent d'obtenir des
+ solutions en passant par moins de calculs qu'avec les méthodes directes.
+ En revanche, le résultat obtenu à la fin ne sera pas exact mais très proche
+ de la solution réelle avec tout de même une propagation d'erreurs assez
+ limitée.
+ Les méthodes itératives sont donc moins coûteuses que les méthodes directes.
+ Néanmoins, les conditions de convergence pour les suites établies ne sont
+ pas faciles à mettre en œuvre.
 \end_layout
 
 \begin_layout Standard
@@ -3534,7 +4506,7 @@ Conclusion
 \end_layout
 
 \begin_layout Standard
-Ainsi, nous avons découvert plusieurs méthodes possibles pour la résolution
+Ainsi, nous avons étudié plusieurs méthodes possibles pour la résolution
  d'une équation de matrice de la forme 
 \begin_inset Formula $AX=B$
 \end_inset
@@ -3551,10 +4523,10 @@ Ainsi, nous avons découvert plusieurs méthodes possibles pour la résolution
 \begin_inset Tabular
 <lyxtabular version="3" rows="8" columns="4">
 <features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="8page%">
 <column alignment="center" valignment="top" width="10page%">
-<column alignment="center" valignment="top" width="10page%">
-<column alignment="center" valignment="top" width="25page%">
-<column alignment="center" valignment="top" width="25page%">
+<column alignment="left" valignment="top" width="20page%">
+<column alignment="left" valignment="middle" width="25page%">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -3574,7 +4546,7 @@ Complexité temporelle
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3583,7 +4555,7 @@ Avantages
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3598,7 +4570,7 @@ Inconvénients
 \begin_inset Text
 
 \begin_layout Plain Layout
-Triangulaire inférieure
+Sol_Inf
 \end_layout
 
 \end_inset
@@ -3615,16 +4587,16 @@ Triangulaire inférieure
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Itemize
+\begin_layout Plain Layout
 
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Itemize
@@ -3643,7 +4615,7 @@ Fonctionne si
 \begin_inset Text
 
 \begin_layout Plain Layout
-Triangulaire supérieure
+Sol_Sup
 \end_layout
 
 \end_inset
@@ -3660,7 +4632,7 @@ Triangulaire supérieure
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3669,11 +4641,11 @@ Triangulaire supérieure
 
 \end_inset
 </cell>
-<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Itemize
-Fonctionne uniquement dans le cas où 
+Fonctionne si 
 \begin_inset Formula $A$
 \end_inset
 
@@ -3688,7 +4660,7 @@ Fonctionne uniquement dans le cas où
 \begin_inset Text
 
 \begin_layout Plain Layout
-Élimination de Gauss
+Gauss
 \end_layout
 
 \end_inset
@@ -3705,20 +4677,28 @@ Fonctionne uniquement dans le cas où
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Itemize
-Résolution d'un 
+Résolution d'une matrice quelconque (pivot non nul).
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
+Modifie totalement 
+\begin_inset Formula $A$
+\end_inset
 
+ et 
+\begin_inset Formula $B$
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -3729,7 +4709,7 @@ Résolution d'un
 \begin_inset Text
 
 \begin_layout Plain Layout
-La factorisation LU
+LU
 \end_layout
 
 \end_inset
@@ -3746,11 +4726,15 @@ La factorisation LU
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Itemize
-Méthode optimisé lorsque 
+Optimisée même si 
+\begin_inset Formula $B$
+\end_inset
+
+ est modifié et si 
 \begin_inset Formula $A$
 \end_inset
 
@@ -3759,11 +4743,24 @@ Méthode optimisé lorsque
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
+Nécessite la résolution de deux systèmes linéaires avec des matrices triangulair
+es.
+\end_layout
 
+\begin_layout Itemize
+Empreinte mémoire élevée : stockage des deux matrices 
+\begin_inset Formula $L$
+\end_inset
+
+ et 
+\begin_inset Formula $U$
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -3774,7 +4771,7 @@ Méthode optimisé lorsque
 \begin_inset Text
 
 \begin_layout Plain Layout
-La factorisation de Cholesky
+Cholesky
 \end_layout
 
 \end_inset
@@ -3791,24 +4788,54 @@ La factorisation de Cholesky
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Itemize
-Fonctionne uniquement dans le cas où 
+Optimisée même si 
+\begin_inset Formula $B$
+\end_inset
+
+ est modifié et si 
 \begin_inset Formula $A$
 \end_inset
 
- est une matrice carrée symétrique définie positive.
+ reste constante et est symétrique.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+Ne permet pas la résolution pour 
+\begin_inset Formula $A$
+\end_inset
+
+ une matrice carrée quelconque.
+ 
+\begin_inset Formula $A$
+\end_inset
+
+ doit être symétrique et définie positive.
+\end_layout
+
+\begin_layout Itemize
+Nécessite la résolution de deux systèmes linéaires avec des matrices triangulair
+es.
+\end_layout
+
+\begin_layout Itemize
+Empreinte mémoire élevée : stockage des deux matrices 
+\begin_inset Formula $L$
+\end_inset
+
+ et 
+\begin_inset Formula $L^{T}$
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -3819,7 +4846,7 @@ Fonctionne uniquement dans le cas où
 \begin_inset Text
 
 \begin_layout Plain Layout
-Méthode de Jacobi
+Jacobi
 \end_layout
 
 \end_inset
@@ -3836,20 +4863,20 @@ Méthode de Jacobi
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
-
+\begin_layout Itemize
+Précision ajustable.
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Itemize
-Valeurs approchés
+Valeurs approchées.
 \end_layout
 
 \end_inset
@@ -3860,7 +4887,7 @@ Valeurs approchés
 \begin_inset Text
 
 \begin_layout Plain Layout
-Méthode Gauss-Seidel
+Gauss-Seidel
 \end_layout
 
 \end_inset
@@ -3877,20 +4904,32 @@ Méthode Gauss-Seidel
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Itemize
+Précision ajustable.
+\end_layout
 
+\begin_layout Itemize
+Empreinte mémoire réduite : un seul vecteur 
+\begin_inset Formula $X$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Précision plus élevée que Jacobi.
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Itemize
-Valeurs approchés
+Valeurs approchées.
 \end_layout
 
 \end_inset
@@ -3904,9 +4943,9 @@ Valeurs approchés
 \end_layout
 
 \begin_layout Standard
-Ainsi, on constate que les méthodes ci-dessus sont complémentaires car car
- elles présentes chacune des avantages et des inconvénients.
- Ainsi, le choix de la méthode doit se faire en fonction :
+On constate que les méthodes ci-dessus sont complémentaires car elles présentent
+ chacune des avantages et des inconvénients.
+ Le choix de la méthode doit alors se faire en fonction de :
 \end_layout
 
 \begin_layout Itemize
@@ -3922,13 +4961,28 @@ La forme de
 \end_layout
 
 \begin_layout Itemize
-La précision de la résolution.
+La précision requise.
 \end_layout
 
 \begin_layout Standard
-Ainsi, il en revient à l'utilisateur de choisir quel méthode convient le
- mieux.
- Nous aurions pu éventuellement rédiger un algorithme qui fait le choix
+Il sera possible de résoudre tout système linéaire qui admet une solution
+ dans 
+\begin_inset Formula $\reel^{N}$
+\end_inset
+
+ avec un de ces algorithmes, ainsi que par d'autres qui n'ont pas été citées
+ dans ce rapport (factorisation 
+\begin_inset Formula $QR$
+\end_inset
+
+, factorisation de Householder, relaxation).
+\end_layout
+
+\begin_layout Standard
+Pour conclure, il en revient à l'utilisateur de choisir quelle méthode convient
+ le mieux à sa situation, le but étant d'économiser le temps de calcul et
+ le coût mémoire de notre résolution.
+ Nous aurions pu éventuellement rédiger un algorithme qui fait ce choix
  automatiquement.
 \end_layout
 
@@ -3983,7 +5037,7 @@ status open
 
 \begin_layout Plain Layout
 
-// - Gestion des vecteurs et matrices
+// - Gestion des vecteurs et matrices.
 \end_layout
 
 \begin_layout Plain Layout
@@ -4301,6 +5355,11 @@ void Desallocation_Matrice(double **Matrice, int Taille)
 
 \begin_layout Plain Layout
 
+    // Itère parmis la première dimension de la matrice.
+\end_layout
+
+\begin_layout Plain Layout
+
     for (int i = 0; i < Taille; i++)
 \end_layout
 
@@ -4567,7 +5626,7 @@ double *Sol_Inf(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-        double Sum = 0;
+        double Somme = 0;
 \end_layout
 
 \begin_layout Plain Layout
@@ -4582,7 +5641,7 @@ double *Sol_Inf(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-            Sum = Sum + A[i][j] * X[j];
+            Somme = Somme + A[i][j] * X[j];
 \end_layout
 
 \begin_layout Plain Layout
@@ -4597,7 +5656,7 @@ double *Sol_Inf(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-        X[i] = (B[i] - Sum) / A[i][i];
+        X[i] = (B[i] - Somme) / A[i][i];
 \end_layout
 
 \begin_layout Plain Layout
@@ -4689,7 +5748,7 @@ double *Sol_Sup(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-        double Sum = 0;
+        double Somme = 0;
 \end_layout
 
 \begin_layout Plain Layout
@@ -4704,7 +5763,7 @@ double *Sol_Sup(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-            Sum += A[i][j] * X[j];
+            Somme += A[i][j] * X[j];
 \end_layout
 
 \begin_layout Plain Layout
@@ -4718,7 +5777,7 @@ double *Sol_Sup(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-        X[i] = (B[i] - Sum) / A[i][i];
+        X[i] = (B[i] - Somme) / A[i][i];
 \end_layout
 
 \begin_layout Plain Layout
@@ -4771,12 +5830,22 @@ void Gauss(double **A, double *B, double **U, double *e, int Taille)
 
 \begin_layout Plain Layout
 
+    // Itère parmis la première dimension de la matrice.
+\end_layout
+
+\begin_layout Plain Layout
+
     for (int i = 0; i < Taille - 1; i++)
 \end_layout
 
 \begin_layout Plain Layout
 
     {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // Itère parmis la deuxième dimension de la matrice.
 \end_layout
 
 \begin_layout Plain Layout
@@ -4791,7 +5860,17 @@ void Gauss(double **A, double *B, double **U, double *e, int Taille)
 
 \begin_layout Plain Layout
 
+            // Calcul du coefficient C = A_k_i / A_i_i.
+\end_layout
+
+\begin_layout Plain Layout
+
             double C = A[k][i] / A[i][i];
+\end_layout
+
+\begin_layout Plain Layout
+
+            // Remplacement des valeurs de A.
 \end_layout
 
 \begin_layout Plain Layout
@@ -4812,6 +5891,11 @@ void Gauss(double **A, double *B, double **U, double *e, int Taille)
 \begin_layout Plain Layout
 
             }
+\end_layout
+
+\begin_layout Plain Layout
+
+            // Remplacement des valeurs de B.
 \end_layout
 
 \begin_layout Plain Layout
@@ -5040,16 +6124,12 @@ double **Cholesky(double **A, int Taille)
 
 \begin_layout Plain Layout
 
-        double Sum = 0;
+        // Calcul de la somme.
 \end_layout
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
-        // - Calcul de la somme.
+        double Somme = 0;
 \end_layout
 
 \begin_layout Plain Layout
@@ -5064,7 +6144,7 @@ double **Cholesky(double **A, int Taille)
 
 \begin_layout Plain Layout
 
-            Sum += L[j][k] * L[j][k];
+            Somme += L[j][k] * L[j][k];
 \end_layout
 
 \begin_layout Plain Layout
@@ -5078,12 +6158,12 @@ double **Cholesky(double **A, int Taille)
 
 \begin_layout Plain Layout
 
-        // - Calcul des termes de la diagonale de L.
+        // Calcul des termes de la diagonale de L.
 \end_layout
 
 \begin_layout Plain Layout
 
-        L[j][j] = sqrt(A[j][j] - Sum);
+        L[j][j] = sqrt(A[j][j] - Somme);
 \end_layout
 
 \begin_layout Plain Layout
@@ -5092,7 +6172,7 @@ double **Cholesky(double **A, int Taille)
 
 \begin_layout Plain Layout
 
-        // - Calcul des termes pour i = j+1 à N.
+        // Calcul des termes pour i = j+1 à N.
 \end_layout
 
 \begin_layout Plain Layout
@@ -5107,7 +6187,7 @@ double **Cholesky(double **A, int Taille)
 
 \begin_layout Plain Layout
 
-            Sum = 0;
+            Somme = 0;
 \end_layout
 
 \begin_layout Plain Layout
@@ -5126,7 +6206,7 @@ double **Cholesky(double **A, int Taille)
 
 \begin_layout Plain Layout
 
-                Sum += L[i][k] * L[j][k];
+                Somme += L[i][k] * L[j][k];
 \end_layout
 
 \begin_layout Plain Layout
@@ -5136,7 +6216,7 @@ double **Cholesky(double **A, int Taille)
 
 \begin_layout Plain Layout
 
-            L[i][j] = (A[i][j] - Sum) / L[j][j];
+            L[i][j] = (A[i][j] - Somme) / L[j][j];
 \end_layout
 
 \begin_layout Plain Layout
@@ -5283,6 +6363,11 @@ double *Jacobi(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
+    // Allocation du vecteur X_k.
+\end_layout
+
+\begin_layout Plain Layout
+
     double *X_k = Allocation_Vecteur(Taille);
 \end_layout
 
@@ -5292,7 +6377,7 @@ double *Jacobi(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-    // Remplissage de X_k par des 1.
+    // Remplissage de X_k par des 1 (X_0).
 \end_layout
 
 \begin_layout Plain Layout
@@ -5317,6 +6402,11 @@ double *Jacobi(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
+    // Allocation du vecteur X_k_1.
 \end_layout
 
 \begin_layout Plain Layout
@@ -5354,6 +6444,11 @@ double *Jacobi(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
+    // Itération.
+\end_layout
+
+\begin_layout Plain Layout
+
     do
 \end_layout
 
@@ -5364,12 +6459,7 @@ double *Jacobi(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-        printf("it = %d", it);
-\end_layout
-
-\begin_layout Plain Layout
-
-        // - Calcul de X_k_1.
+        // Calcul de X_k_1.
 \end_layout
 
 \begin_layout Plain Layout
@@ -5384,7 +6474,7 @@ double *Jacobi(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-            // - Calcul de la somme des a[i][j] * x_k[j].
+            // Calcul de la somme des a[i][j] * x_k[j].
 \end_layout
 
 \begin_layout Plain Layout
@@ -5443,7 +6533,7 @@ double *Jacobi(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-        // - Calcul de la norme.
+        // Calcul de la norme.
 \end_layout
 
 \begin_layout Plain Layout
@@ -5482,7 +6572,7 @@ double *Jacobi(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-        // - On remplace X_k par X_k_1.
+        // On remplace X_k par X_k_1.
 \end_layout
 
 \begin_layout Plain Layout
@@ -5554,7 +6644,7 @@ double *Gauss_Seidel(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-    // - Allocation des vecteurs.
+    // Allocation des vecteurs.
 \end_layout
 
 \begin_layout Plain Layout
@@ -5573,7 +6663,7 @@ double *Gauss_Seidel(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-    // - Remplissage de X_k par des 1.
+    // Remplissage de X_k par des 1 (X_0).
 \end_layout
 
 \begin_layout Plain Layout
@@ -5636,7 +6726,7 @@ double *Gauss_Seidel(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-        // - Calcul de X_k_1.
+        // Calcul de X_k_1.
 \end_layout
 
 \begin_layout Plain Layout
@@ -5651,7 +6741,7 @@ double *Gauss_Seidel(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-            // - Calcul de la somme des A[i][j] * X_k_1[j].
+            // Calcul de la somme des A[i][j] * X_k_1[j].
 \end_layout
 
 \begin_layout Plain Layout
@@ -5681,7 +6771,7 @@ double *Gauss_Seidel(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-            // - Calcul de la somme des a[i][j] * x_k[j].
+            // Calcul de la somme des a[i][j] * x_k[j].
 \end_layout
 
 \begin_layout Plain Layout
@@ -5720,7 +6810,7 @@ double *Gauss_Seidel(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-        // - Calcul de la norme entre X_k_1 et X_k.
+        // Calcul de la norme entre X_k_1 et X_k.
 \end_layout
 
 \begin_layout Plain Layout
@@ -5759,7 +6849,7 @@ double *Gauss_Seidel(double **A, double *B, int Taille)
 
 \begin_layout Plain Layout
 
-        // - On remplace X_k par X_k_1.
+        // On remplace X_k par X_k_1.
 \end_layout
 
 \begin_layout Plain Layout
@@ -7042,7 +8132,7 @@ n");
 
 \begin_layout Plain Layout
 
-        printf("La solution X de AX = B avec la méthode Jacobi E est : 
+        printf("La solution X de AX = B avec la méthode Jacobi est : 
 \backslash
 n");
 \end_layout
@@ -7139,7 +8229,7 @@ n");
 
 \begin_layout Plain Layout
 
-        A[0][0] = 4;
+        A[0][0] = 10;
 \end_layout
 
 \begin_layout Plain Layout
@@ -7154,12 +8244,12 @@ n");
 
 \begin_layout Plain Layout
 
-        A[1][0] = 1;
+        A[1][0] = 2;
 \end_layout
 
 \begin_layout Plain Layout
 
-        A[1][1] = 3;
+        A[1][1] = 10;
 \end_layout
 
 \begin_layout Plain Layout
@@ -7174,12 +8264,12 @@ n");
 
 \begin_layout Plain Layout
 
-        A[2][1] = 0;
+        A[2][1] = 2;
 \end_layout
 
 \begin_layout Plain Layout
 
-        A[2][2] = 5;
+        A[2][2] = 10;
 \end_layout
 
 \begin_layout Plain Layout
@@ -7193,17 +8283,17 @@ n");
 
 \begin_layout Plain Layout
 
-        B[0] = 1;
+        B[0] = 12;
 \end_layout
 
 \begin_layout Plain Layout
 
-        B[1] = 1;
+        B[1] = 13;
 \end_layout
 
 \begin_layout Plain Layout
 
-        B[2] = 1;
+        B[2] = 14;
 \end_layout
 
 \begin_layout Plain Layout
@@ -7283,10 +8373,6 @@ n");
 \begin_layout Plain Layout
 
 }
-\end_layout
-
-\begin_layout Plain Layout
-
 \end_layout
 
 \end_inset

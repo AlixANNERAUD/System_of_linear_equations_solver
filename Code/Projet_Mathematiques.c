@@ -71,6 +71,7 @@ void Desallocation_Vecteur(double *Vecteur)
 // Fonction qui désalloue une matrice carrée de taille N.
 void Desallocation_Matrice(double **Matrice, int Taille)
 {
+    // Itère parmis la première dimension de la matrice.
     for (int i = 0; i < Taille; i++)
     {
         Desallocation_Vecteur(Matrice[i]);
@@ -125,13 +126,13 @@ double *Sol_Inf(double **A, double *B, int Taille)
     for (int i = 1; i < Taille; i++)
     {
         // Calcul de la somme des a[i][j] * x[j]
-        double Sum = 0;
+        double Somme = 0;
         for (int j = 0; j < i; j++)
         {
-            Sum = Sum + A[i][j] * X[j];
+            Somme = Somme + A[i][j] * X[j];
         }
         // Calcul du terme X[i].
-        X[i] = (B[i] - Sum) / A[i][i];
+        X[i] = (B[i] - Somme) / A[i][i];
     }
 
     return X;
@@ -150,13 +151,13 @@ double *Sol_Sup(double **A, double *B, int Taille)
     for (int i = Taille - 2; i >= 0; i--)
     {
         // Calcul de la somme des a[i][j] * x[j]
-        double Sum = 0;
+        double Somme = 0;
         for (int j = i + 1; j < Taille; j++)
         {
-            Sum += A[i][j] * X[j];
+            Somme += A[i][j] * X[j];
         }
 
-        X[i] = (B[i] - Sum) / A[i][i];
+        X[i] = (B[i] - Somme) / A[i][i];
     }
 
     return X;
@@ -167,15 +168,20 @@ double *Sol_Sup(double **A, double *B, int Taille)
 // Fonction qui effectue l'élimination de Gauss pour transformer A en U, une matrice triangulaire supérieure carrée (algorithme de Gauss).
 void Gauss(double **A, double *B, double **U, double *e, int Taille)
 {
+    // Itère parmis la première dimension de la matrice.
     for (int i = 0; i < Taille - 1; i++)
     {
+        // Itère parmis la deuxième dimension de la matrice.
         for (int k = i + 1; k < Taille; k++)
         {
+            // Calcul du coefficient C = A_k_i / A_i_i.
             double C = A[k][i] / A[i][i];
+            // Remplacement des valeurs de A.
             for (int j = 0; j < Taille; j++)
             {
                 U[k][j] = A[k][j] - (C * A[i][j]);
             }
+            // Remplacement des valeurs de B.
             e[k] = B[k] - (C * B[i]);
         }
     }
@@ -222,27 +228,26 @@ double **Cholesky(double **A, int Taille)
     // Itère parmis les lignes de la matrice.
     for (int j = 0; j < Taille; j++)
     {
-        double Sum = 0;
-
-        // - Calcul de la somme.
+        // Calcul de la somme.
+        double Somme = 0;
         for (int k = 0; k < j; k++)
         {
-            Sum += L[j][k] * L[j][k];
+            Somme += L[j][k] * L[j][k];
         }
 
-        // - Calcul des termes de la diagonale de L.
-        L[j][j] = sqrt(A[j][j] - Sum);
+        // Calcul des termes de la diagonale de L.
+        L[j][j] = sqrt(A[j][j] - Somme);
 
-        // - Calcul des termes pour i = j+1 à N.
+        // Calcul des termes pour i = j+1 à N.
         for (int i = j + 1; i < Taille; i++)
         {
-            Sum = 0;
+            Somme = 0;
             for (int k = 0; k < j; k++)
             {
 
-                Sum += L[i][k] * L[j][k];
+                Somme += L[i][k] * L[j][k];
             }
-            L[i][j] = (A[i][j] - Sum) / L[j][j];
+            L[i][j] = (A[i][j] - Somme) / L[j][j];
         }
     }
     return L;
@@ -272,14 +277,16 @@ double **Transposer(double **Matrice, int Taille)
 
 double *Jacobi(double **A, double *B, int Taille)
 {
+    // Allocation du vecteur X_k.
     double *X_k = Allocation_Vecteur(Taille);
 
-    // Remplissage de X_k par des 1.
+    // Remplissage de X_k par des 1 (X_0).
     for (int i = 0; i < Taille; i++)
     {
         X_k[i] = 1;
     }
 
+    // Allocation du vecteur X_k_1.
     double *X_k_1 = Allocation_Vecteur(Taille);
 
     double Norme;
@@ -287,13 +294,13 @@ double *Jacobi(double **A, double *B, int Taille)
     int it_max = 10;
     double Epsilon = 0.001;
 
+    // Itération.
     do
     {
-        printf("it = %d", it);
-        // - Calcul de X_k_1.
+        // Calcul de X_k_1.
         for (int i = 0; i < Taille; i++)
         {
-            // - Calcul de la somme des a[i][j] * x_k[j].
+            // Calcul de la somme des a[i][j] * x_k[j].
             double Somme = 0;
             for (int j = 0; j < Taille; j++)
             {
@@ -305,7 +312,7 @@ double *Jacobi(double **A, double *B, int Taille)
             X_k_1[i] = (B[i] - Somme) / A[i][i];
         }
 
-        // - Calcul de la norme.
+        // Calcul de la norme.
         Norme = 0;
         for (int i = 0; i < Taille; i++)
         {
@@ -313,7 +320,7 @@ double *Jacobi(double **A, double *B, int Taille)
         }
         Norme = sqrt(Norme);
 
-        // - On remplace X_k par X_k_1.
+        // On remplace X_k par X_k_1.
         for (int i = 0; i < Taille; i++)
         {
             X_k[i] = X_k_1[i];
@@ -328,11 +335,11 @@ double *Jacobi(double **A, double *B, int Taille)
 
 double *Gauss_Seidel(double **A, double *B, int Taille)
 {
-    // - Allocation des vecteurs.
+    // Allocation des vecteurs.
     double *X_k = Allocation_Vecteur(Taille);
     double *X_k_1 = Allocation_Vecteur(Taille);
 
-    // - Remplissage de X_k par des 1.
+    // Remplissage de X_k par des 1 (X_0).
     for (int i = 0; i < Taille; i++)
     {
         X_k[i] = 1;
@@ -345,16 +352,16 @@ double *Gauss_Seidel(double **A, double *B, int Taille)
 
     do
     {
-        // - Calcul de X_k_1.
+        // Calcul de X_k_1.
         for (int i = 0; i < Taille; i++)
         {
-            // - Calcul de la somme des A[i][j] * X_k_1[j].
+            // Calcul de la somme des A[i][j] * X_k_1[j].
             double Somme = 0;
             for (int j = 0; j < i; j++)
             {
                 Somme += A[i][j] * X_k_1[j];
             }
-            // - Calcul de la somme des a[i][j] * x_k[j].
+            // Calcul de la somme des a[i][j] * x_k[j].
             for (int j = i + 1; j < Taille; j++)
             {
                 Somme += A[i][j] * X_k[j];
@@ -362,7 +369,7 @@ double *Gauss_Seidel(double **A, double *B, int Taille)
             X_k_1[i] = (B[i] - Somme) / A[i][i];
         }
 
-        // - Calcul de la norme entre X_k_1 et X_k.
+        // Calcul de la norme entre X_k_1 et X_k.
         Norme = 0;
         for (int i = 0; i < Taille; i++)
         {
@@ -370,7 +377,7 @@ double *Gauss_Seidel(double **A, double *B, int Taille)
         }
         Norme = sqrt(Norme);
 
-        // - On remplace X_k par X_k_1.
+        // On remplace X_k par X_k_1.
         for (int i = 0; i < Taille; i++)
         {
             X_k[i] = X_k_1[i];
@@ -634,7 +641,7 @@ int main()
         double *X = Jacobi(A, B, Taille);
 
         // Affichage de la solution X.
-        printf("La solution X de AX = B avec la méthode Jacobi E est : \n");
+        printf("La solution X de AX = B avec la méthode Jacobi est : \n");
         Afficher_Vecteur(X, Taille);
 
         // Désallocation des matrices et vecteurs.
@@ -654,20 +661,20 @@ int main()
         double *B = Allocation_Vecteur(Taille);
 
         // Remplissage de A (matrice quelconque).
-        A[0][0] = 4;
+        A[0][0] = 10;
         A[0][1] = 1;
         A[0][2] = 1;
-        A[1][0] = 1;
-        A[1][1] = 3;
+        A[1][0] = 2;
+        A[1][1] = 10;
         A[1][2] = 1;
         A[2][0] = 2;
-        A[2][1] = 0;
-        A[2][2] = 5;
+        A[2][1] = 2;
+        A[2][2] = 10;
 
         // Remplissage de B.
-        B[0] = 1;
-        B[1] = 1;
-        B[2] = 1;
+        B[0] = 12;
+        B[1] = 13;
+        B[2] = 14;
 
         // Résolution pour X.
         double *X = Gauss_Seidel(A, B, Taille);
