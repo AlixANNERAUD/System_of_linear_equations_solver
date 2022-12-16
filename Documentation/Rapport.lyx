@@ -458,7 +458,7 @@ prince des mathématiques
  un ouvrage à la théorie des nombres contenant plusieurs démonstrations
  qui révolutionnent l'arithmétique, on lui doit en partie la forme actuelle
  des nombres complexes.
- En astrophysique, il met au point la méthodes des moindres carrés permettant
+ En astrophysique, il met au point la méthode des moindres carrés permettant
  de minimiser les incertitudes dues aux mesures ce qui lui permet de déterminer
  exactement la position de Ceres, une planète naine du système solaire.
  Avec la contribution de Wilhem Weber, Gauss formule deux théorèmes essentiels
@@ -3510,8 +3510,8 @@ Les méthodes itératives sont une autre approche à la résolution de systèmes
  ainsi obtenir la solution la plus proche possible de la solution réelle.
  Nous avons sélectionné deux méthodes itératives à décrire, la méthode de
  Jacobi et la méthode de Gauss-Seidel.
- Même si nous n'avons pas eu l'occasion d'aborder en détails la méthode
- de Gauss-Seidel en cours, il nous semblait pertinent de tout de même l'inclure
+ Même si nous n'avons pas eu l'occasion d'aborder en détail la méthode de
+ Gauss-Seidel en cours, il nous semblait pertinent de tout de même l'inclure
  dans notre rapport afin d'avoir un élément supplémentaire de comparaison
  dans notre étude des différentes méthodes de résolution de systèmes linéaires.
 \end_layout
