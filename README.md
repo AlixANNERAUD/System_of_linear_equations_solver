@@ -14,6 +14,6 @@ This project is an implementation in plain C of different methods to solve syste
 This project was made by :
 - Alix ANNERAUD
 - Myriem ABID
-- Amandine BURCON
+- Amandine BURÇON
 
 This project is under the [MIT license](License).
