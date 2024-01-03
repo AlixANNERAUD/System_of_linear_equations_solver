@@ -1,4 +1,4 @@
-<h1 align="center">🧮 System of Linear Equations Calculator 🧮</h1>
+<h1 align="center">🧮 System of linear equations calculator 🧮</h1>
 
 ## 🚀 Introduction
 
