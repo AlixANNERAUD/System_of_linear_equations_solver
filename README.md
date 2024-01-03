@@ -2,7 +2,7 @@
 
 ## 🚀 Introduction
 
-This project is an implementation in plain C of different methods to solve systems of linear equations :
+As part of our mathematics course, we had to implement different methods to solve systems of linear equations in plain C :
 - (PA)LU decomposition
 - Gauss elimination
 - Cholesky decomposition
